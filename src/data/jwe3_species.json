@@ -1,0 +1,4364 @@
+[
+  {
+    "id": "acrocanthosaurus",
+    "name": "Acrocanthosaurus",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "large",
+    "is_hybrid": false,
+    "security_rating": 6,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.23,
+      "pasture": 0.67,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 1001,
+        "appeal_per_hectare": 567.8,
+        "dominance": 135,
+        "height": 4.8,
+        "length": 12,
+        "weight": 7000
+      },
+      "male": {
+        "appeal": 1001,
+        "appeal_per_hectare": 567.8,
+        "dominance": 135,
+        "height": 4.8,
+        "length": 12,
+        "weight": 7000
+      },
+      "juvenile": {
+        "appeal": 500,
+        "appeal_per_hectare": 283.9,
+        "dominance": 67,
+        "height": 2.4,
+        "length": 6,
+        "weight": 3500
+      }
+    }
+  },
+  {
+    "id": "albertosaurus",
+    "name": "Albertosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Carnotaurus", "Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.06,
+      "pasture": 0.11,
+      "wetland": 0.7,
+      "water": 0.13,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 470,
+        "appeal_per_hectare": 751.6,
+        "dominance": 125,
+        "height": 3.3,
+        "length": 9.5,
+        "weight": 4000
+      },
+      "male": {
+        "appeal": 470,
+        "appeal_per_hectare": 751.6,
+        "dominance": 125,
+        "height": 3.3,
+        "length": 9.5,
+        "weight": 4000
+      },
+      "juvenile": {
+        "appeal": 235,
+        "appeal_per_hectare": 375.8,
+        "dominance": 62,
+        "height": 1.65,
+        "length": 4.75,
+        "weight": 2000
+      }
+    }
+  },
+  {
+    "id": "allosaurus",
+    "name": "Allosaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Ceratosaurus", "Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.15,
+      "pasture": 0.75,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 652,
+        "appeal_per_hectare": 869,
+        "dominance": 137,
+        "height": 3.8,
+        "length": 12.1,
+        "weight": 2300
+      },
+      "male": {
+        "appeal": 652,
+        "appeal_per_hectare": 869,
+        "dominance": 137,
+        "height": 3.8,
+        "length": 12.1,
+        "weight": 2300
+      },
+      "juvenile": {
+        "appeal": 326,
+        "appeal_per_hectare": 434.5,
+        "dominance": 68,
+        "height": 1.9,
+        "length": 6.05,
+        "weight": 1150
+      }
+    }
+  },
+  {
+    "id": "ankylodocus",
+    "name": "Ankylodocus",
+    "release_version": "Base Game",
+    "era": "Holocene",
+    "diet": "Tall Paleobotany",
+    "family": "Hybrid Sauropod",
+    "size": "Large",
+    "is_hybrid": true,
+    "security_rating": 4,
+    "likes": ["Sauropod"],
+    "dislikes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Scavenger"
+    ],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.19,
+      "pasture": 0.24,
+      "wetland": 0.1,
+      "water": 0.1,
+      "deep_water": 0.37
+    },
+    "restrictions": {
+      "has_males": false,
+      "has_juveniles": false
+    },
+    "variants": {
+      "female": {
+        "appeal": 278,
+        "appeal_per_hectare": 418.4,
+        "dominance": 124,
+        "height": 5.9,
+        "length": 28,
+        "weight": 0
+      }
+    }
+  },
+  {
+    "id": "ankylosaurus",
+    "name": "Ankylosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ankylosaurid",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 6,
+    "likes": [
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Hadrosaur",
+      "Pachy",
+      "Scavenger"
+    ],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.15,
+      "pasture": 0.19,
+      "wetland": 0.1,
+      "water": 0.28,
+      "deep_water": 0.28
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 213,
+        "appeal_per_hectare": 475,
+        "dominance": 97,
+        "height": 3.6,
+        "length": 9.6,
+        "weight": 8000
+      },
+      "male": {
+        "appeal": 213,
+        "appeal_per_hectare": 475,
+        "dominance": 97,
+        "height": 3.6,
+        "length": 9.6,
+        "weight": 8000
+      },
+      "juvenile": {
+        "appeal": 106,
+        "appeal_per_hectare": 237.5,
+        "dominance": 48,
+        "height": 1.8,
+        "length": 4.8,
+        "weight": 4000
+      }
+    }
+  },
+  {
+    "id": "apatosaurus",
+    "name": "Apatosaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Tall Palaeobotany",
+    "family": "Sauropod",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": [
+      "Brachiosaurus",
+      "Ankylodocus",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Sauropod"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.18,
+      "pasture": 0.32,
+      "wetland": 0.1,
+      "water": 0.4,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 152,
+        "appeal_per_hectare": 151.9,
+        "dominance": 133,
+        "height": 6,
+        "length": 27,
+        "weight": 20000
+      },
+      "male": {
+        "appeal": 152,
+        "appeal_per_hectare": 151.9,
+        "dominance": 133,
+        "height": 6,
+        "length": 27,
+        "weight": 20000
+      },
+      "juvenile": {
+        "appeal": 76,
+        "appeal_per_hectare": 75.9,
+        "dominance": 66,
+        "height": 3,
+        "length": 13.5,
+        "weight": 10000
+      }
+    }
+  },
+  {
+    "id": "archaeornithomimus",
+    "name": "Archaeornithomimus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ornithomimosaurid",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": ["Sauropod", "Ceratops"],
+    "dislikes": ["Ankylosaurid", "Hadrosaur", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.19,
+      "pasture": 0.22,
+      "wetland": 0.6,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 25,
+        "appeal_per_hectare": 215.7,
+        "dominance": 10,
+        "height": 2.2,
+        "length": 3.3,
+        "weight": 50
+      },
+      "male": {
+        "appeal": 25,
+        "appeal_per_hectare": 215.7,
+        "dominance": 10,
+        "height": 2.2,
+        "length": 3.3,
+        "weight": 50
+      },
+      "juvenile": {
+        "appeal": 12,
+        "appeal_per_hectare": 107.8,
+        "dominance": 5,
+        "height": 1.1,
+        "length": 1.65,
+        "weight": 25
+      }
+    }
+  },
+  {
+    "id": "atrociraptor",
+    "name": "Atrociraptor",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": [],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.16,
+      "pasture": 0.74,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 126,
+        "appeal_per_hectare": 172.7,
+        "dominance": 63,
+        "height": 2,
+        "length": 3.9,
+        "weight": 226
+      },
+      "male": {
+        "appeal": 126,
+        "appeal_per_hectare": 172.7,
+        "dominance": 63,
+        "height": 2,
+        "length": 3.9,
+        "weight": 226
+      },
+      "juvenile": {
+        "appeal": 63,
+        "appeal_per_hectare": 86.3,
+        "dominance": 31,
+        "height": 1,
+        "length": 1.95,
+        "weight": 113
+      }
+    }
+  },
+  {
+    "id": "austroraptor",
+    "name": "Austroraptor",
+    "release_version": "Wetlands Pack",
+    "era": "Late Cretaceous",
+    "diet": "Piscivore / Carnivore",
+    "family": "Carnivore",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.16,
+      "pasture": 0.16,
+      "wetland": 0.51,
+      "water": 0.17,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 200,
+        "appeal_per_hectare": 381.7,
+        "dominance": 39,
+        "height": 1.7,
+        "length": 5.5,
+        "weight": 300
+      },
+      "male": {
+        "appeal": 200,
+        "appeal_per_hectare": 381.7,
+        "dominance": 39,
+        "height": 1.7,
+        "length": 5.5,
+        "weight": 300
+      },
+      "juvenile": {
+        "appeal": 100,
+        "appeal_per_hectare": 190.8,
+        "dominance": 19,
+        "height": 0.85,
+        "length": 2.75,
+        "weight": 150
+      }
+    }
+  },
+  {
+    "id": "baryonyx",
+    "name": "Baryonyx",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Piscivore / Carnivore",
+    "family": "Carnivore",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": ["Irritator", "Suchomimus", "Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.26,
+      "pasture": 0.22,
+      "wetland": 0.26,
+      "water": 0.26,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 340,
+        "appeal_per_hectare": 503.7,
+        "dominance": 107,
+        "height": 2.6,
+        "length": 9.3,
+        "weight": 1700
+      },
+      "male": {
+        "appeal": 340,
+        "appeal_per_hectare": 503.7,
+        "dominance": 107,
+        "height": 2.6,
+        "length": 9.3,
+        "weight": 1700
+      },
+      "juvenile": {
+        "appeal": 170,
+        "appeal_per_hectare": 251.8,
+        "dominance": 53,
+        "height": 1.3,
+        "length": 4.65,
+        "weight": 850
+      }
+    }
+  },
+  {
+    "id": "brachiosaurus",
+    "name": "Brachiosaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Tall Palaeobotany",
+    "family": "Sauropod",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": [
+      "Apatosaurus",
+      "Ankylodocus",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Sauropod"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.14,
+      "pasture": 0.19,
+      "wetland": 0.1,
+      "water": 0.57,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 298,
+        "appeal_per_hectare": 239.4,
+        "dominance": 167,
+        "height": 12.4,
+        "length": 21.5,
+        "weight": 56000
+      },
+      "male": {
+        "appeal": 298,
+        "appeal_per_hectare": 239.4,
+        "dominance": 167,
+        "height": 12.4,
+        "length": 21.5,
+        "weight": 56000
+      },
+      "juvenile": {
+        "appeal": 149,
+        "appeal_per_hectare": 119.7,
+        "dominance": 83,
+        "height": 6.2,
+        "length": 10.75,
+        "weight": 28000
+      }
+    }
+  },
+  {
+    "id": "carnotaurus",
+    "name": "Carnotaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.45,
+      "pasture": 0.45,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 251,
+        "appeal_per_hectare": 493.6,
+        "dominance": 120,
+        "height": 2.9,
+        "length": 10.4,
+        "weight": 2100
+      },
+      "male": {
+        "appeal": 251,
+        "appeal_per_hectare": 493.6,
+        "dominance": 120,
+        "height": 2.9,
+        "length": 10.4,
+        "weight": 2100
+      },
+      "juvenile": {
+        "appeal": 125,
+        "appeal_per_hectare": 246.8,
+        "dominance": 60,
+        "height": 1.45,
+        "length": 5.2,
+        "weight": 1050
+      }
+    }
+  },
+  {
+    "id": "ceratosaurus",
+    "name": "Ceratosaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Carnivore",
+    "family": "Therapod",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Allosaurus", "Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.15,
+      "pasture": 0.37,
+      "wetland": 0.37,
+      "water": 0.1,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 213,
+        "appeal_per_hectare": 300.6,
+        "dominance": 110,
+        "height": 2,
+        "length": 7,
+        "weight": 700
+      },
+      "male": {
+        "appeal": 213,
+        "appeal_per_hectare": 300.6,
+        "dominance": 110,
+        "height": 2,
+        "length": 7,
+        "weight": 700
+      },
+      "juvenile": {
+        "appeal": 106,
+        "appeal_per_hectare": 150.3,
+        "dominance": 55,
+        "height": 1,
+        "length": 3.5,
+        "weight": 350
+      }
+    }
+  },
+  {
+    "id": "chasmosaurus",
+    "name": "Chasmosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ceratops",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": ["Microceratus", "Styracosaurus"],
+    "dislikes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Nasutoceratops",
+      "Spinoceratops",
+      "Stegosaurid"
+    ],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.09,
+      "pasture": 0.41,
+      "wetland": 0.1,
+      "water": 0.41,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 89,
+        "appeal_per_hectare": 436.8,
+        "dominance": 60,
+        "height": 2.2,
+        "length": 5,
+        "weight": 1500
+      },
+      "male": {
+        "appeal": 89,
+        "appeal_per_hectare": 436.8,
+        "dominance": 60,
+        "height": 2.2,
+        "length": 5,
+        "weight": 1500
+      },
+      "juvenile": {
+        "appeal": 44,
+        "appeal_per_hectare": 218.4,
+        "dominance": 30,
+        "height": 1.1,
+        "length": 2.5,
+        "weight": 750
+      }
+    }
+  },
+  {
+    "id": "chungkingosaurus",
+    "name": "Chungkingosaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Ground Palaeobotany",
+    "family": "Stegosaurid",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 2,
+    "likes": [
+      "Gigantspinosaurus",
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Ceratopsid"
+    ],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.69,
+      "pasture": 0.1,
+      "wetland": 0.21,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 82,
+        "appeal_per_hectare": 281.4,
+        "dominance": 88,
+        "height": 1.2,
+        "length": 3.2,
+        "weight": 600
+      },
+      "male": {
+        "appeal": 82,
+        "appeal_per_hectare": 281.4,
+        "dominance": 88,
+        "height": 1.2,
+        "length": 3.2,
+        "weight": 600
+      },
+      "juvenile": {
+        "appeal": 41,
+        "appeal_per_hectare": 140.7,
+        "dominance": 44,
+        "height": 0.6,
+        "length": 1.6,
+        "weight": 300
+      }
+    }
+  },
+  {
+    "id": "coelophysis",
+    "name": "Coelophysis",
+    "release_version": "Base Game",
+    "era": "Late Triassic",
+    "diet": "Carnivore",
+    "family": "Scavenger",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": [
+      "Carnivores",
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Therizinosaurs",
+      "Scavenger"
+    ],
+    "dislikes": [],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.08,
+      "pasture": 0.82,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 18,
+        "appeal_per_hectare": 188.9,
+        "dominance": 23,
+        "height": 1.3,
+        "length": 3,
+        "weight": 18
+      },
+      "male": {
+        "appeal": 18,
+        "appeal_per_hectare": 188.9,
+        "dominance": 23,
+        "height": 1.3,
+        "length": 3,
+        "weight": 18
+      },
+      "juvenile": {
+        "appeal": 45,
+        "appeal_per_hectare": 188.9,
+        "dominance": 11,
+        "height": 0.65,
+        "length": 1.5,
+        "weight": 9
+      }
+    }
+  },
+  {
+    "id": "compsognathus",
+    "name": "Compsognathus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Carnivore Feeder",
+    "family": "Scavenger",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": [
+      "Carnivores",
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Therizinosaurs",
+      "Scavenger"
+    ],
+    "dislikes": ["Indominus rex", "Indoraptor", "Scorpios rex"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.45,
+      "pasture": 0.45,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 19,
+        "appeal_per_hectare": 553.8,
+        "dominance": 14,
+        "height": 0.3,
+        "length": 1,
+        "weight": 2.3
+      },
+      "male": {
+        "appeal": 19,
+        "appeal_per_hectare": 553.8,
+        "dominance": 14,
+        "height": 0.3,
+        "length": 1,
+        "weight": 2.3
+      },
+      "juvenile": {
+        "appeal": 9,
+        "appeal_per_hectare": 276.9,
+        "dominance": 7,
+        "height": 0.15,
+        "length": 0.5,
+        "weight": 1.15
+      }
+    }
+  },
+  {
+    "id": "concavenator",
+    "name": "Concavenator",
+    "release_version": "Deluxe Upgrade",
+    "era": "Early Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.16,
+      "pasture": 0.4,
+      "wetland": 0.43,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 279,
+        "appeal_per_hectare": 484.9,
+        "dominance": 76,
+        "height": 2,
+        "length": 6,
+        "weight": 400
+      },
+      "male": {
+        "appeal": 279,
+        "appeal_per_hectare": 484.9,
+        "dominance": 76,
+        "height": 2,
+        "length": 6,
+        "weight": 400
+      },
+      "juvenile": {
+        "appeal": 139,
+        "appeal_per_hectare": 242.4,
+        "dominance": 38,
+        "height": 1,
+        "length": 3,
+        "weight": 200
+      }
+    }
+  },
+  {
+    "id": "corythosaurus",
+    "name": "Corythosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Hadrosaur",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 2,
+    "likes": ["Sauropod", "Ornithomimosaurid", "Ceratops"],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.59,
+      "pasture": 0.09,
+      "wetland": 0.32,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 39,
+        "appeal_per_hectare": 170.7,
+        "dominance": 50,
+        "height": 3.1,
+        "length": 9,
+        "weight": 4000
+      },
+      "male": {
+        "appeal": 39,
+        "appeal_per_hectare": 170.7,
+        "dominance": 50,
+        "height": 3.1,
+        "length": 9,
+        "weight": 4000
+      },
+      "juvenile": {
+        "appeal": 19,
+        "appeal_per_hectare": 85.3,
+        "dominance": 25,
+        "height": 1.55,
+        "length": 4.5,
+        "weight": 2000
+      }
+    }
+  },
+  {
+    "id": "deinocheirus",
+    "name": "Deinocheirus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Omnivore",
+    "family": "Deinocheirus",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Sauropod"],
+    "dislikes": ["Hadrosaur"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.1,
+      "pasture": 0.38,
+      "wetland": 0,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 864,
+        "appeal_per_hectare": 1916.1,
+        "dominance": 122,
+        "height": 3.8,
+        "length": 11,
+        "weight": 6500
+      },
+      "male": {
+        "appeal": 864,
+        "appeal_per_hectare": 1916.1,
+        "dominance": 122,
+        "height": 3.8,
+        "length": 11,
+        "weight": 6500
+      },
+      "juvenile": {
+        "appeal": 432,
+        "appeal_per_hectare": 958,
+        "dominance": 61,
+        "height": 1.9,
+        "length": 5.5,
+        "weight": 3250
+      }
+    }
+  },
+  {
+    "id": "deinonychus",
+    "name": "Deinonychus",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": [],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.13,
+      "pasture": 0.77,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 123,
+        "appeal_per_hectare": 266.2,
+        "dominance": 46,
+        "height": 1.6,
+        "length": 3.2,
+        "weight": 100
+      },
+      "male": {
+        "appeal": 123,
+        "appeal_per_hectare": 266.2,
+        "dominance": 46,
+        "height": 1.6,
+        "length": 3.2,
+        "weight": 100
+      },
+      "juvenile": {
+        "appeal": 61,
+        "appeal_per_hectare": 133.1,
+        "dominance": 23,
+        "height": 0.8,
+        "length": 1.6,
+        "weight": 50
+      }
+    }
+  },
+  {
+    "id": "dilophosaurus",
+    "name": "Dilophosaurus",
+    "release_version": "Base Game",
+    "era": "Early Jurassic",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.23,
+      "pasture": 0.33,
+      "wetland": 0.33,
+      "water": 0.1,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 93,
+        "appeal_per_hectare": 284,
+        "dominance": 51,
+        "height": 1.6,
+        "length": 3,
+        "weight": 300
+      },
+      "male": {
+        "appeal": 93,
+        "appeal_per_hectare": 284,
+        "dominance": 51,
+        "height": 1.6,
+        "length": 3,
+        "weight": 300
+      },
+      "juvenile": {
+        "appeal": 46,
+        "appeal_per_hectare": 142,
+        "dominance": 25,
+        "height": 0.8,
+        "length": 1.5,
+        "weight": 150
+      }
+    }
+  },
+  {
+    "id": "dimetrodon",
+    "name": "Dimetrodon",
+    "release_version": "Base Game",
+    "era": "Early Permian",
+    "diet": "Carnivore Feeder",
+    "family": "Dimetrodon",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 2,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.42,
+      "pasture": 0.05,
+      "wetland": 0.53,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 83,
+        "appeal_per_hectare": 236.7,
+        "dominance": 54,
+        "height": 1.8,
+        "length": 4.5,
+        "weight": 226
+      },
+      "male": {
+        "appeal": 83,
+        "appeal_per_hectare": 236.7,
+        "dominance": 54,
+        "height": 1.8,
+        "length": 4.5,
+        "weight": 226
+      },
+      "juvenile": {
+        "appeal": 41,
+        "appeal_per_hectare": 118.3,
+        "dominance": 27,
+        "height": 0.9,
+        "length": 2.25,
+        "weight": 113
+      }
+    }
+  },
+  {
+    "id": "diplodocus",
+    "name": "Diplodocus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Tall Palaeobotany",
+    "family": "Sauropod",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": [
+      "Ankylodocus",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Sauropod"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.1,
+      "pasture": 0.2,
+      "wetland": 0.28,
+      "water": 0.1,
+      "deep_water": 0.32
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 208,
+        "appeal_per_hectare": 330.2,
+        "dominance": 137,
+        "height": 4,
+        "length": 24,
+        "weight": 12000
+      },
+      "male": {
+        "appeal": 208,
+        "appeal_per_hectare": 330.2,
+        "dominance": 137,
+        "height": 4,
+        "length": 24,
+        "weight": 12000
+      },
+      "juvenile": {
+        "appeal": 104,
+        "appeal_per_hectare": 165.1,
+        "dominance": 68,
+        "height": 2,
+        "length": 12,
+        "weight": 6000
+      }
+    }
+  },
+  {
+    "id": "dreadnoughtus",
+    "name": "Dreadnoughtus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Tall Palaeobotany",
+    "family": "Sauropod",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": [
+      "Ankylodocus",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Sauropod"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.13,
+      "pasture": 0.29,
+      "wetland": 0.1,
+      "water": 0.32,
+      "deep_water": 0.16
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 464,
+        "appeal_per_hectare": 408.4,
+        "dominance": 163,
+        "height": 15.8,
+        "length": 18.6,
+        "weight": 65400
+      },
+      "male": {
+        "appeal": 464,
+        "appeal_per_hectare": 408.4,
+        "dominance": 163,
+        "height": 15.8,
+        "length": 18.6,
+        "weight": 65400
+      },
+      "juvenile": {
+        "appeal": 232,
+        "appeal_per_hectare": 204.2,
+        "dominance": 81,
+        "height": 7.9,
+        "length": 9.3,
+        "weight": 32700
+      }
+    }
+  },
+  {
+    "id": "dryosaurus",
+    "name": "Dryosaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Ground Palaeobotany",
+    "family": "Ornithomimosaurid",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": ["Sauropod", "Ceratops"],
+    "dislikes": ["Ankylosaurid", "Hadrosaur", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.46,
+      "pasture": 0.1,
+      "wetland": 0.22,
+      "water": 0.22,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 16,
+        "appeal_per_hectare": 146.8,
+        "dominance": 4,
+        "height": 1.8,
+        "length": 5,
+        "weight": 80
+      },
+      "male": {
+        "appeal": 16,
+        "appeal_per_hectare": 146.8,
+        "dominance": 4,
+        "height": 1.8,
+        "length": 5,
+        "weight": 80
+      },
+      "juvenile": {
+        "appeal": 8,
+        "appeal_per_hectare": 73.4,
+        "dominance": 2,
+        "height": 0.9,
+        "length": 2.5,
+        "weight": 40
+      }
+    }
+  },
+  {
+    "id": "edmontosaurus",
+    "name": "Edmontosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Hadrosaur",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": ["Sauropod", "Ornithomimosaurid", "Ceratops"],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.5,
+      "pasture": 0.31,
+      "wetland": 0.07,
+      "water": 0.12,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 40,
+        "appeal_per_hectare": 144.2,
+        "dominance": 60,
+        "height": 3,
+        "length": 9,
+        "weight": 3200
+      },
+      "male": {
+        "appeal": 40,
+        "appeal_per_hectare": 144.2,
+        "dominance": 60,
+        "height": 3,
+        "length": 9,
+        "weight": 3200
+      },
+      "juvenile": {
+        "appeal": 20,
+        "appeal_per_hectare": 72.1,
+        "dominance": 30,
+        "height": 1.5,
+        "length": 4.5,
+        "weight": 1600
+      }
+    }
+  },
+  {
+    "id": "gallimimus",
+    "name": "Gallimimus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ornithomimosaurid",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": ["Sauropod", "Ceratops"],
+    "dislikes": ["Ankylosaurid", "Hadrosaur", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.08,
+      "pasture": 0.16,
+      "wetland": 0.1,
+      "water": 0.66,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 21,
+        "appeal_per_hectare": 127.5,
+        "dominance": 8,
+        "height": 3,
+        "length": 4.7,
+        "weight": 450
+      },
+      "male": {
+        "appeal": 21,
+        "appeal_per_hectare": 127.5,
+        "dominance": 8,
+        "height": 3,
+        "length": 4.7,
+        "weight": 450
+      },
+      "juvenile": {
+        "appeal": 10,
+        "appeal_per_hectare": 63.7,
+        "dominance": 4,
+        "height": 1.5,
+        "length": 2.35,
+        "weight": 225
+      }
+    }
+  },
+  {
+    "id": "giganotosaurus",
+    "name": "Giganotosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 6,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.11,
+      "pasture": 0.6,
+      "wetland": 0.18,
+      "water": 0.1,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 586,
+        "appeal_per_hectare": 554.8,
+        "dominance": 137,
+        "height": 5.3,
+        "length": 15.5,
+        "weight": 14000
+      },
+      "male": {
+        "appeal": 586,
+        "appeal_per_hectare": 554.8,
+        "dominance": 137,
+        "height": 5.3,
+        "length": 15.5,
+        "weight": 14000
+      },
+      "juvenile": {
+        "appeal": 293,
+        "appeal_per_hectare": 277.4,
+        "dominance": 68,
+        "height": 2.65,
+        "length": 7.75,
+        "weight": 7000
+      }
+    }
+  },
+  {
+    "id": "gigantspinosaurus",
+    "name": "Gigantspinosaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Ground Palaeobotany",
+    "family": "Stegosaurid",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 2,
+    "likes": [
+      "Chungkingosaurus",
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Ceratopsid"
+    ],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.15,
+      "pasture": 0.1,
+      "wetland": 0.75,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 68,
+        "appeal_per_hectare": 255.6,
+        "dominance": 88,
+        "height": 1.5,
+        "length": 4.2,
+        "weight": 700
+      },
+      "male": {
+        "appeal": 68,
+        "appeal_per_hectare": 255.6,
+        "dominance": 88,
+        "height": 1.5,
+        "length": 4.2,
+        "weight": 700
+      },
+      "juvenile": {
+        "appeal": 34,
+        "appeal_per_hectare": 127.8,
+        "dominance": 44,
+        "height": 0.75,
+        "length": 2.1,
+        "weight": 350
+      }
+    }
+  },
+  {
+    "id": "guanlong",
+    "name": "Guanlong",
+    "release_version": "Deluxe Upgrade",
+    "era": "Late Jurassic",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.17,
+      "pasture": 0.73,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 68,
+        "appeal_per_hectare": 117.2,
+        "dominance": 76,
+        "height": 1.1,
+        "length": 3,
+        "weight": 75
+      },
+      "male": {
+        "appeal": 68,
+        "appeal_per_hectare": 117.2,
+        "dominance": 76,
+        "height": 1.1,
+        "length": 3,
+        "weight": 75
+      },
+      "juvenile": {
+        "appeal": 34,
+        "appeal_per_hectare": 58.6,
+        "dominance": 38,
+        "height": 0.55,
+        "length": 1.5,
+        "weight": 37
+      }
+    }
+  },
+  {
+    "id": "herrerasaurus",
+    "name": "Herrerasaurus",
+    "release_version": "Base Game",
+    "era": "Late Triassic",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.17,
+      "pasture": 0.73,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 82,
+        "appeal_per_hectare": 207.7,
+        "dominance": 76,
+        "height": 1.1,
+        "length": 4.5,
+        "weight": 200
+      },
+      "male": {
+        "appeal": 82,
+        "appeal_per_hectare": 207.7,
+        "dominance": 76,
+        "height": 1.1,
+        "length": 4.5,
+        "weight": 200
+      },
+      "juvenile": {
+        "appeal": 41,
+        "appeal_per_hectare": 103.8,
+        "dominance": 38,
+        "height": 0.55,
+        "length": 2.25,
+        "weight": 100
+      }
+    }
+  },
+  {
+    "id": "homalocephale",
+    "name": "Homalocephale",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Pachy",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": ["Sauropod"],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.34,
+      "pasture": 0.34,
+      "wetland": 0.16,
+      "water": 0.16,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 15,
+        "appeal_per_hectare": 253,
+        "dominance": 2,
+        "height": 0.9,
+        "length": 2.3,
+        "weight": 43
+      },
+      "male": {
+        "appeal": 15,
+        "appeal_per_hectare": 253,
+        "dominance": 2,
+        "height": 0.9,
+        "length": 2.3,
+        "weight": 43
+      },
+      "juvenile": {
+        "appeal": 7,
+        "appeal_per_hectare": 126.5,
+        "dominance": 1,
+        "height": 0.45,
+        "length": 1.15,
+        "weight": 21
+      }
+    }
+  },
+  {
+    "id": "hypsilophodon",
+    "name": "Hypsilophodon",
+    "release_version": "Wetlands Pack",
+    "era": "Early Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ornithomimosaurid",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": [
+      "Sauropod",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Stegosaurid"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.1,
+      "pasture": 0.39,
+      "wetland": 0.11,
+      "water": 0.39,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 25,
+        "appeal_per_hectare": 513.1,
+        "dominance": 2,
+        "height": 0.9,
+        "length": 1.8,
+        "weight": 20
+      },
+      "male": {
+        "appeal": 25,
+        "appeal_per_hectare": 513.1,
+        "dominance": 2,
+        "height": 0.9,
+        "length": 1.8,
+        "weight": 20
+      },
+      "juvenile": {
+        "appeal": 12,
+        "appeal_per_hectare": 256.5,
+        "dominance": 1,
+        "height": 0.45,
+        "length": 0.9,
+        "weight": 10
+      }
+    }
+  },
+  {
+    "id": "iguanodon",
+    "name": "Iguanodon",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Hadrosaur",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": [
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Stegosaurid",
+      "Scavenger"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.07,
+      "pasture": 0.54,
+      "wetland": 0.1,
+      "water": 0.29,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 155,
+        "appeal_per_hectare": 211.8,
+        "dominance": 85,
+        "height": 2,
+        "length": 8,
+        "weight": 3200
+      },
+      "male": {
+        "appeal": 155,
+        "appeal_per_hectare": 211.8,
+        "dominance": 85,
+        "height": 2,
+        "length": 8,
+        "weight": 3200
+      },
+      "juvenile": {
+        "appeal": 77,
+        "appeal_per_hectare": 105.9,
+        "dominance": 42,
+        "height": 1,
+        "length": 4,
+        "weight": 1600
+      }
+    }
+  },
+  {
+    "id": "indominus_rex",
+    "name": "Indominus rex",
+    "release_version": "Base Game",
+    "era": "Holocene",
+    "diet": "Carnivore",
+    "family": "Hybrid Carnivore",
+    "size": "Large",
+    "is_hybrid": true,
+    "security_rating": 6,
+    "likes": ["Velociraptor"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.23,
+      "pasture": 0.67,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": false,
+      "has_juveniles": false
+    },
+    "variants": {
+      "female": {
+        "appeal": 1514,
+        "appeal_per_hectare": 775.1,
+        "dominance": 150,
+        "height": 6.7,
+        "length": 16.9,
+        "weight": 0
+      }
+    }
+  },
+  {
+    "id": "indoraptor",
+    "name": "Indoraptor",
+    "release_version": "Base Game",
+    "era": "Holocene",
+    "diet": "Carnivore",
+    "family": "Hybrid Carnivore",
+    "size": "Medium",
+    "is_hybrid": true,
+    "security_rating": 6,
+    "likes": [],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.1,
+      "pasture": 0.72,
+      "wetland": 0.18,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": false,
+      "has_juveniles": false
+    },
+    "variants": {
+      "female": {
+        "appeal": 1592,
+        "appeal_per_hectare": 1033.8,
+        "dominance": 137,
+        "height": 3.1,
+        "length": 7.3,
+        "weight": 1100
+      }
+    }
+  },
+  {
+    "id": "irritator",
+    "name": "Irritator",
+    "release_version": "Wetlands Pack",
+    "era": "Early Cretaceous",
+    "diet": "Piscivore / Carnivore",
+    "family": "Carnivore",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": ["Baryonyx", "Suchomimus", "Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.12,
+      "pasture": 0.22,
+      "wetland": 0.3,
+      "water": 0.36,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 485,
+        "appeal_per_hectare": 752.4,
+        "dominance": 107,
+        "height": 2.1,
+        "length": 8,
+        "weight": 1000
+      },
+      "male": {
+        "appeal": 485,
+        "appeal_per_hectare": 752.4,
+        "dominance": 107,
+        "height": 2.1,
+        "length": 8,
+        "weight": 1000
+      },
+      "juvenile": {
+        "appeal": 242,
+        "appeal_per_hectare": 376.2,
+        "dominance": 53,
+        "height": 1.05,
+        "length": 4,
+        "weight": 500
+      }
+    }
+  },
+  {
+    "id": "kentrosaurus",
+    "name": "Kentrosaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Ground Palaeobotany",
+    "family": "Stegosaurid",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 2,
+    "likes": [
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Hardrosaur",
+      "Pachycephalosaurid",
+      "Ceratopsid"
+    ],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.12,
+      "pasture": 0.1,
+      "wetland": 0.78,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 57,
+        "appeal_per_hectare": 221.8,
+        "dominance": 95,
+        "height": 1.9,
+        "length": 5.1,
+        "weight": 1300
+      },
+      "male": {
+        "appeal": 57,
+        "appeal_per_hectare": 221.8,
+        "dominance": 95,
+        "height": 1.9,
+        "length": 5.1,
+        "weight": 1300
+      },
+      "juvenile": {
+        "appeal": 28,
+        "appeal_per_hectare": 110.9,
+        "dominance": 47,
+        "height": 0.95,
+        "length": 2.55,
+        "weight": 650
+      }
+    }
+  },
+  {
+    "id": "lokiceratops",
+    "name": "Lokiceratops",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ceratops",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": ["Microceratus"],
+    "dislikes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Scavenger",
+      "Stegoceratops",
+      "Stegosaurid"
+    ],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.14,
+      "pasture": 0.36,
+      "wetland": 0.1,
+      "water": 0.4,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 63,
+        "appeal_per_hectare": 375.3,
+        "dominance": 59,
+        "height": 1.9,
+        "length": 6,
+        "weight": 5000
+      },
+      "male": {
+        "appeal": 63,
+        "appeal_per_hectare": 375.3,
+        "dominance": 59,
+        "height": 1.9,
+        "length": 6,
+        "weight": 5000
+      },
+      "juvenile": {
+        "appeal": 31,
+        "appeal_per_hectare": 187.6,
+        "dominance": 29,
+        "height": 0.95,
+        "length": 3,
+        "weight": 2500
+      }
+    }
+  },
+  {
+    "id": "lystrosaurus",
+    "name": "Lystrosaurus",
+    "release_version": "Base Game",
+    "era": "Late Permian",
+    "diet": "Ground Palaeobotany",
+    "family": "Therapsid",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": ["Microceratus", "Oviraptor"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0.57,
+      "barren": 0,
+      "cover": 0.11,
+      "pasture": 0.17,
+      "wetland": 0.17,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 37,
+        "appeal_per_hectare": 771.5,
+        "dominance": 54,
+        "height": 0.4,
+        "length": 1,
+        "weight": 90
+      },
+      "male": {
+        "appeal": 37,
+        "appeal_per_hectare": 771.5,
+        "dominance": 54,
+        "height": 0.4,
+        "length": 1,
+        "weight": 90
+      },
+      "juvenile": {
+        "appeal": 18,
+        "appeal_per_hectare": 385.7,
+        "dominance": 27,
+        "height": 0.2,
+        "length": 0.5,
+        "weight": 45
+      }
+    }
+  },
+  {
+    "id": "maiasaura",
+    "name": "Maiasaura",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Hadrosaur",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 2,
+    "likes": ["Parasaurolophus", "Sauropod", "Ornithomimosaurid", "Ceratops"],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.6,
+      "pasture": 0.1,
+      "wetland": 0.15,
+      "water": 0.15,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 43,
+        "appeal_per_hectare": 196.4,
+        "dominance": 40,
+        "height": 3,
+        "length": 9,
+        "weight": 907
+      },
+      "male": {
+        "appeal": 43,
+        "appeal_per_hectare": 196.4,
+        "dominance": 40,
+        "height": 3,
+        "length": 9,
+        "weight": 907
+      },
+      "juvenile": {
+        "appeal": 21,
+        "appeal_per_hectare": 98.2,
+        "dominance": 20,
+        "height": 1.5,
+        "length": 4.5,
+        "weight": 453
+      }
+    }
+  },
+  {
+    "id": "mamenchisaurus",
+    "name": "Mamenchisaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Tall Palaeobotany",
+    "family": "Sauropod",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": [
+      "Ankylodocus",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Sauropod"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.16,
+      "pasture": 0.33,
+      "wetland": 0.1,
+      "water": 0.41,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 373,
+        "appeal_per_hectare": 313.6,
+        "dominance": 145,
+        "height": 8,
+        "length": 21,
+        "weight": 14000
+      },
+      "male": {
+        "appeal": 373,
+        "appeal_per_hectare": 313.6,
+        "dominance": 145,
+        "height": 8,
+        "length": 21,
+        "weight": 14000
+      },
+      "juvenile": {
+        "appeal": 186,
+        "appeal_per_hectare": 156.8,
+        "dominance": 72,
+        "height": 4,
+        "length": 10.5,
+        "weight": 7000
+      }
+    }
+  },
+  {
+    "id": "metriacanthosaurus",
+    "name": "Metriacanthosaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": ["Allosaurus", "Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.08,
+      "pasture": 0.82,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 510,
+        "appeal_per_hectare": 764.7,
+        "dominance": 97,
+        "height": 2,
+        "length": 7.6,
+        "weight": 1000
+      },
+      "male": {
+        "appeal": 510,
+        "appeal_per_hectare": 764.7,
+        "dominance": 97,
+        "height": 2,
+        "length": 7.6,
+        "weight": 1000
+      },
+      "juvenile": {
+        "appeal": 255,
+        "appeal_per_hectare": 382.3,
+        "dominance": 48,
+        "height": 1,
+        "length": 3.8,
+        "weight": 500
+      }
+    }
+  },
+  {
+    "id": "microceratus",
+    "name": "Microceratus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ceratops",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": ["Lystrosaurus"],
+    "dislikes": ["Ceratops"],
+    "terrain_percentages": {
+      "arid": 0.55,
+      "barren": 0,
+      "cover": 0.1,
+      "pasture": 0.21,
+      "wetland": 0.14,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 28,
+        "appeal_per_hectare": 737.6,
+        "dominance": 16,
+        "height": 0.35,
+        "length": 0.8,
+        "weight": 6.3
+      },
+      "male": {
+        "appeal": 28,
+        "appeal_per_hectare": 737.6,
+        "dominance": 16,
+        "height": 0.35,
+        "length": 0.8,
+        "weight": 6.3
+      },
+      "juvenile": {
+        "appeal": 14,
+        "appeal_per_hectare": 368.8,
+        "dominance": 8,
+        "height": 0.17,
+        "length": 0.4,
+        "weight": 3.1
+      }
+    }
+  },
+  {
+    "id": "moros_intrepidus",
+    "name": "Moros Intrepidus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Carnivore Feeder",
+    "family": "Scavenger",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": [
+      "Carnivores",
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Therizinosaurs",
+      "Scavenger"
+    ],
+    "dislikes": ["Indominus rex", "Indoraptor", "Scorpios rex"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.3,
+      "pasture": 0.6,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 33,
+        "appeal_per_hectare": 255.9,
+        "dominance": 14,
+        "height": 0.37,
+        "length": 0.85,
+        "weight": 60
+      },
+      "male": {
+        "appeal": 33,
+        "appeal_per_hectare": 255.9,
+        "dominance": 14,
+        "height": 0.37,
+        "length": 0.85,
+        "weight": 60
+      },
+      "juvenile": {
+        "appeal": 16,
+        "appeal_per_hectare": 127.9,
+        "dominance": 7,
+        "height": 0.18,
+        "length": 0.42,
+        "weight": 30
+      }
+    }
+  },
+  {
+    "id": "muttaburrasaurus",
+    "name": "Muttaburrasaurus",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Hadrosaur",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 2,
+    "likes": [
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Stegosaurid"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.28,
+      "pasture": 0.18,
+      "wetland": 0.55,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 35,
+        "appeal_per_hectare": 144.8,
+        "dominance": 50,
+        "height": 3,
+        "length": 8.7,
+        "weight": 3100
+      },
+      "male": {
+        "appeal": 35,
+        "appeal_per_hectare": 144.8,
+        "dominance": 50,
+        "height": 3,
+        "length": 8.7,
+        "weight": 3100
+      },
+      "juvenile": {
+        "appeal": 17,
+        "appeal_per_hectare": 72.4,
+        "dominance": 25,
+        "height": 1.5,
+        "length": 4.35,
+        "weight": 1550
+      }
+    }
+  },
+  {
+    "id": "nasutoceratops",
+    "name": "Nasutoceratops",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ceratops",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Microceratus"],
+    "dislikes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Scavenger",
+      "Stegoceratops",
+      "Stegosaurid"
+    ],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.31,
+      "pasture": 0.1,
+      "wetland": 0.59,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 68,
+        "appeal_per_hectare": 280.9,
+        "dominance": 90,
+        "height": 3.4,
+        "length": 7.6,
+        "weight": 1700
+      },
+      "male": {
+        "appeal": 68,
+        "appeal_per_hectare": 280.9,
+        "dominance": 90,
+        "height": 3.4,
+        "length": 7.6,
+        "weight": 1700
+      },
+      "juvenile": {
+        "appeal": 34,
+        "appeal_per_hectare": 140.4,
+        "dominance": 45,
+        "height": 1.7,
+        "length": 3.8,
+        "weight": 850
+      }
+    }
+  },
+  {
+    "id": "nodosaurus",
+    "name": "Nodosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ankylosaurid",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": [
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Hadrosaur",
+      "Pachy"
+    ],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0.45,
+      "barren": 0,
+      "cover": 0.1,
+      "pasture": 0.45,
+      "wetland": 0,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 76,
+        "appeal_per_hectare": 871.9,
+        "dominance": 78,
+        "height": 1.9,
+        "length": 6.1,
+        "weight": 3900
+      },
+      "male": {
+        "appeal": 76,
+        "appeal_per_hectare": 871.9,
+        "dominance": 78,
+        "height": 1.9,
+        "length": 6.1,
+        "weight": 3900
+      },
+      "juvenile": {
+        "appeal": 38,
+        "appeal_per_hectare": 435.9,
+        "dominance": 39,
+        "height": 0.95,
+        "length": 3.05,
+        "weight": 1950
+      }
+    }
+  },
+  {
+    "id": "olorotitan",
+    "name": "Olorotitan",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Hadrosaur",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": ["Sauropod", "Ornithomimosaurid", "Ceratops"],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.3,
+      "pasture": 0.1,
+      "wetland": 0.6,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 56,
+        "appeal_per_hectare": 252,
+        "dominance": 60,
+        "height": 4.3,
+        "length": 10,
+        "weight": 3500
+      },
+      "male": {
+        "appeal": 56,
+        "appeal_per_hectare": 252,
+        "dominance": 60,
+        "height": 4.3,
+        "length": 10,
+        "weight": 3500
+      },
+      "juvenile": {
+        "appeal": 28,
+        "appeal_per_hectare": 126,
+        "dominance": 30,
+        "height": 2.15,
+        "length": 5,
+        "weight": 1750
+      }
+    }
+  },
+  {
+    "id": "ornithomimus",
+    "name": "Ornithomimus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ornithomimosaurid",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": ["Sauropod", "Ceratops"],
+    "dislikes": ["Ankylosaurid", "Hadrosaur", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.07,
+      "pasture": 0.14,
+      "wetland": 0.09,
+      "water": 0.53,
+      "deep_water": 0.18
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 27,
+        "appeal_per_hectare": 115.8,
+        "dominance": 8,
+        "height": 3,
+        "length": 3.8,
+        "weight": 350
+      },
+      "male": {
+        "appeal": 27,
+        "appeal_per_hectare": 115.8,
+        "dominance": 8,
+        "height": 3,
+        "length": 3.8,
+        "weight": 350
+      },
+      "juvenile": {
+        "appeal": 13,
+        "appeal_per_hectare": 57.9,
+        "dominance": 4,
+        "height": 1.5,
+        "length": 1.9,
+        "weight": 175
+      }
+    }
+  },
+  {
+    "id": "oviraptor",
+    "name": "Oviraptor",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Omnivore",
+    "family": "Scavenger",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": [
+      "Carnivores",
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Therizinosaurs",
+      "Scavenger"
+    ],
+    "dislikes": ["Indominus rex", "Indoraptor", "Scorpios rex", "Lystrosaurus"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.15,
+      "pasture": 0.1,
+      "wetland": 0.75,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 30,
+        "appeal_per_hectare": 344.4,
+        "dominance": 8,
+        "height": 0.8,
+        "length": 1.3,
+        "weight": 30
+      },
+      "male": {
+        "appeal": 30,
+        "appeal_per_hectare": 344.4,
+        "dominance": 8,
+        "height": 0.8,
+        "length": 1.3,
+        "weight": 30
+      },
+      "juvenile": {
+        "appeal": 15,
+        "appeal_per_hectare": 172.2,
+        "dominance": 4,
+        "height": 0.4,
+        "length": 0.65,
+        "weight": 15
+      }
+    }
+  },
+  {
+    "id": "pachycephalosaurus",
+    "name": "Pachycephalosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Pachy",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": ["Sauropod"],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.6,
+      "pasture": 0.1,
+      "wetland": 0.3,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 36,
+        "appeal_per_hectare": 165,
+        "dominance": 72,
+        "height": 1.5,
+        "length": 4.5,
+        "weight": 450
+      },
+      "male": {
+        "appeal": 36,
+        "appeal_per_hectare": 165,
+        "dominance": 72,
+        "height": 1.5,
+        "length": 4.5,
+        "weight": 450
+      },
+      "juvenile": {
+        "appeal": 18,
+        "appeal_per_hectare": 82.5,
+        "dominance": 36,
+        "height": 0.75,
+        "length": 2.25,
+        "weight": 225
+      }
+    }
+  },
+  {
+    "id": "parasaurolophus",
+    "name": "Parasaurolophus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Hadrosaur",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": ["Maiasaura", "Sauropod", "Ornithomimosaurid", "Ceratops"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.31,
+      "pasture": 0.4,
+      "wetland": 0.19,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 38,
+        "appeal_per_hectare": 166.8,
+        "dominance": 60,
+        "height": 3,
+        "length": 7.5,
+        "weight": 2600
+      },
+      "male": {
+        "appeal": 38,
+        "appeal_per_hectare": 166.8,
+        "dominance": 60,
+        "height": 3,
+        "length": 7.5,
+        "weight": 2600
+      },
+      "juvenile": {
+        "appeal": 19,
+        "appeal_per_hectare": 83.4,
+        "dominance": 30,
+        "height": 1.5,
+        "length": 3.75,
+        "weight": 1300
+      }
+    }
+  },
+  {
+    "id": "patagotitan",
+    "name": "Patagotitan",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Tall Palaeobotany",
+    "family": "Sauropod",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": [
+      "Ankylodocus",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Stegosaurid",
+      "Sauropod"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.13,
+      "pasture": 0.29,
+      "wetland": 0.1,
+      "water": 0.32,
+      "deep_water": 0.16
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 363,
+        "appeal_per_hectare": 319.6,
+        "dominance": 167,
+        "height": 13.4,
+        "length": 30,
+        "weight": 50000
+      },
+      "male": {
+        "appeal": 363,
+        "appeal_per_hectare": 319.6,
+        "dominance": 167,
+        "height": 13.4,
+        "length": 30,
+        "weight": 50000
+      },
+      "juvenile": {
+        "appeal": 181,
+        "appeal_per_hectare": 159.8,
+        "dominance": 83,
+        "height": 6.7,
+        "length": 15,
+        "weight": 25000
+      }
+    }
+  },
+  {
+    "id": "proceratosaurus",
+    "name": "Proceratosaurus",
+    "release_version": "Base Game",
+    "era": "Middle Jurassic",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.17,
+      "pasture": 0.73,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 117,
+        "appeal_per_hectare": 335.9,
+        "dominance": 43,
+        "height": 1.4,
+        "length": 4,
+        "weight": 40
+      },
+      "male": {
+        "appeal": 117,
+        "appeal_per_hectare": 335.9,
+        "dominance": 43,
+        "height": 1.4,
+        "length": 4,
+        "weight": 40
+      },
+      "juvenile": {
+        "appeal": 58,
+        "appeal_per_hectare": 167.9,
+        "dominance": 21,
+        "height": 0.7,
+        "length": 2,
+        "weight": 20
+      }
+    }
+  },
+  {
+    "id": "protoceratops",
+    "name": "Protoceratops",
+    "release_version": "Deluxe Upgrade",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ceratops",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": ["Microceratus"],
+    "dislikes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Scavenger",
+      "Stegoceratops",
+      "Stegosaurid"
+    ],
+    "terrain_percentages": {
+      "arid": 0.25,
+      "barren": 0,
+      "cover": 0.1,
+      "pasture": 0.19,
+      "wetland": 0.47,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 54,
+        "appeal_per_hectare": 376.6,
+        "dominance": 78,
+        "height": 0.9,
+        "length": 2.5,
+        "weight": 100
+      },
+      "male": {
+        "appeal": 54,
+        "appeal_per_hectare": 376.6,
+        "dominance": 78,
+        "height": 0.9,
+        "length": 2.5,
+        "weight": 100
+      },
+      "juvenile": {
+        "appeal": 27,
+        "appeal_per_hectare": 188.3,
+        "dominance": 39,
+        "height": 0.45,
+        "length": 1.25,
+        "weight": 50
+      }
+    }
+  },
+  {
+    "id": "psittacosaurus",
+    "name": "Psittacosaurus",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ceratops",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Stegosaurid"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0.25,
+      "barren": 0,
+      "cover": 0.34,
+      "pasture": 0.34,
+      "wetland": 0.31,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 16,
+        "appeal_per_hectare": 268,
+        "dominance": 90,
+        "height": 0.7,
+        "length": 2,
+        "weight": 45
+      },
+      "male": {
+        "appeal": 16,
+        "appeal_per_hectare": 268,
+        "dominance": 90,
+        "height": 0.7,
+        "length": 2,
+        "weight": 45
+      },
+      "juvenile": {
+        "appeal": 8,
+        "appeal_per_hectare": 134,
+        "dominance": 45,
+        "height": 0.35,
+        "length": 1,
+        "weight": 22
+      }
+    }
+  },
+  {
+    "id": "pyroraptor",
+    "name": "Pyroraptor",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.1,
+      "pasture": 0.8,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 113,
+        "appeal_per_hectare": 209.8,
+        "dominance": 56,
+        "height": 1.7,
+        "length": 2.4,
+        "weight": 180
+      },
+      "male": {
+        "appeal": 113,
+        "appeal_per_hectare": 209.8,
+        "dominance": 56,
+        "height": 1.7,
+        "length": 2.4,
+        "weight": 180
+      },
+      "juvenile": {
+        "appeal": 56,
+        "appeal_per_hectare": 104.9,
+        "dominance": 28,
+        "height": 0.85,
+        "length": 1.2,
+        "weight": 90
+      }
+    }
+  },
+  {
+    "id": "qianzhousaurus",
+    "name": "Qianzhousaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.06,
+      "pasture": 0.03,
+      "wetland": 0.74,
+      "water": 0.18,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 223,
+        "appeal_per_hectare": 578.6,
+        "dominance": 111,
+        "height": 3.5,
+        "length": 10,
+        "weight": 7900
+      },
+      "male": {
+        "appeal": 223,
+        "appeal_per_hectare": 578.6,
+        "dominance": 111,
+        "height": 3.5,
+        "length": 10,
+        "weight": 7900
+      },
+      "juvenile": {
+        "appeal": 111,
+        "appeal_per_hectare": 289.3,
+        "dominance": 55,
+        "height": 1.75,
+        "length": 5,
+        "weight": 3950
+      }
+    }
+  },
+  {
+    "id": "sauropelta",
+    "name": "Sauropelta",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ankylosaurid",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 2,
+    "likes": [
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Hadrosaur",
+      "Pachy",
+      "Ankylosaurid",
+      "Stegosaurid"
+    ],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0.3,
+      "barren": 0,
+      "cover": 0.1,
+      "pasture": 0.3,
+      "wetland": 0.3,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 110,
+        "appeal_per_hectare": 660.3,
+        "dominance": 96,
+        "height": 2.1,
+        "length": 8,
+        "weight": 1500
+      },
+      "male": {
+        "appeal": 110,
+        "appeal_per_hectare": 660.3,
+        "dominance": 96,
+        "height": 2.1,
+        "length": 8,
+        "weight": 1500
+      },
+      "juvenile": {
+        "appeal": 55,
+        "appeal_per_hectare": 330.1,
+        "dominance": 48,
+        "height": 1.05,
+        "length": 4,
+        "weight": 750
+      }
+    }
+  },
+  {
+    "id": "scorpios_rex",
+    "name": "Scorpios rex",
+    "release_version": "Base Game",
+    "era": "Holocene",
+    "diet": "Carnivore",
+    "family": "Hybrid Carnivore",
+    "size": "Medium",
+    "is_hybrid": true,
+    "security_rating": 5,
+    "likes": [],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.2,
+      "pasture": 0.67,
+      "wetland": 0.13,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": false,
+      "has_juveniles": false
+    },
+    "variants": {
+      "female": {
+        "appeal": 1268,
+        "appeal_per_hectare": 924.5,
+        "dominance": 123,
+        "height": 2,
+        "length": 8,
+        "weight": 0
+      }
+    }
+  },
+  {
+    "id": "sinoceratops",
+    "name": "Sinoceratops",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ceratops",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": ["Microceratus"],
+    "dislikes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Scavenger",
+      "Triceratops",
+      "Styracosaurus",
+      "Stegosaurid"
+    ],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.12,
+      "pasture": 0.06,
+      "wetland": 0.1,
+      "water": 0.71,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 95,
+        "appeal_per_hectare": 302.7,
+        "dominance": 90,
+        "height": 2.4,
+        "length": 5.5,
+        "weight": 2000
+      },
+      "male": {
+        "appeal": 95,
+        "appeal_per_hectare": 302.7,
+        "dominance": 90,
+        "height": 2.4,
+        "length": 5.5,
+        "weight": 2000
+      },
+      "juvenile": {
+        "appeal": 47,
+        "appeal_per_hectare": 151.3,
+        "dominance": 45,
+        "height": 1.2,
+        "length": 2.75,
+        "weight": 1000
+      }
+    }
+  },
+  {
+    "id": "spinoceratops",
+    "name": "Spinoceratops",
+    "release_version": "Base Game",
+    "era": "Holocene",
+    "diet": "Omnivore",
+    "family": "Hybrid Ceratops",
+    "size": "Medium",
+    "is_hybrid": true,
+    "security_rating": 4,
+    "likes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Scavenger",
+      "Chasmosaurus"
+    ],
+    "dislikes": ["Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.07,
+      "pasture": 0.26,
+      "wetland": 0.39,
+      "water": 0.28,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": false,
+      "has_juveniles": false
+    },
+    "variants": {
+      "female": {
+        "appeal": 108,
+        "appeal_per_hectare": 323.7,
+        "dominance": 129,
+        "height": 4.9,
+        "length": 10,
+        "weight": 6000
+      }
+    }
+  },
+  {
+    "id": "spinoraptor",
+    "name": "Spinoraptor",
+    "release_version": "Base Game",
+    "era": "Holocene",
+    "diet": "Piscivore / Carnivore",
+    "family": "Hybrid Carnivore",
+    "size": "Medium",
+    "is_hybrid": true,
+    "security_rating": 5,
+    "likes": ["Velociraptor", "Indominus rex"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.14,
+      "pasture": 0.56,
+      "wetland": 0.3,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": false,
+      "has_juveniles": false
+    },
+    "variants": {
+      "female": {
+        "appeal": 184,
+        "appeal_per_hectare": 234.4,
+        "dominance": 114,
+        "height": 2.8,
+        "length": 6.5,
+        "weight": 800
+      }
+    }
+  },
+  {
+    "id": "spinosaurus",
+    "name": "Spinosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Piscivore / Carnivore",
+    "family": "Carnivore",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 6,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.25,
+      "pasture": 0.25,
+      "wetland": 0.5,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 1159,
+        "appeal_per_hectare": 1093.4,
+        "dominance": 138,
+        "height": 6.4,
+        "length": 15,
+        "weight": 4000
+      },
+      "male": {
+        "appeal": 1159,
+        "appeal_per_hectare": 1093.4,
+        "dominance": 138,
+        "height": 6.4,
+        "length": 15,
+        "weight": 4000
+      },
+      "juvenile": {
+        "appeal": 579,
+        "appeal_per_hectare": 546.7,
+        "dominance": 69,
+        "height": 3.2,
+        "length": 7.5,
+        "weight": 2000
+      }
+    }
+  },
+  {
+    "id": "stegoceratops",
+    "name": "Stegoceratops",
+    "release_version": "Base Game",
+    "era": "Holocene",
+    "diet": "Ground Palaeobotany",
+    "family": "Hybrid Stegoceratops",
+    "size": "Medium",
+    "is_hybrid": true,
+    "security_rating": 4,
+    "likes": [
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Ceratopsid",
+      "Hadrosaur",
+      "Pachy",
+      "Scavenger",
+      "Nasutoceratops"
+    ],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0.1,
+      "cover": 0.16,
+      "pasture": 0.42,
+      "wetland": 0.32,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": false,
+      "has_juveniles": false
+    },
+    "variants": {
+      "female": {
+        "appeal": 116,
+        "appeal_per_hectare": 263.3,
+        "dominance": 124,
+        "height": 5.2,
+        "length": 11.6,
+        "weight": 4000
+      }
+    }
+  },
+  {
+    "id": "stegosaurus",
+    "name": "Stegosaurus",
+    "release_version": "Base Game",
+    "era": "Late Jurassic",
+    "diet": "Ground Palaeobotany",
+    "family": "Stegosaurid",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": [
+      "Stegoceratops",
+      "Sauropod",
+      "Ornithomimosaurid",
+      "Hadrosaur",
+      "Pachy",
+      "Scavenger"
+    ],
+    "dislikes": ["Ceratopsid", "Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.14,
+      "pasture": 0.1,
+      "wetland": 0.41,
+      "water": 0.35,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 110,
+        "appeal_per_hectare": 273.5,
+        "dominance": 135,
+        "height": 5,
+        "length": 10.1,
+        "weight": 3500
+      },
+      "male": {
+        "appeal": 110,
+        "appeal_per_hectare": 273.5,
+        "dominance": 135,
+        "height": 5,
+        "length": 10.1,
+        "weight": 3500
+      },
+      "juvenile": {
+        "appeal": 55,
+        "appeal_per_hectare": 136.7,
+        "dominance": 67,
+        "height": 2.5,
+        "length": 5.05,
+        "weight": 1750
+      }
+    }
+  },
+  {
+    "id": "struthiomimus",
+    "name": "Struthiomimus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ornithomimosaurid",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": ["Sauropod", "Ceratops"],
+    "dislikes": ["Ankylosaurid", "Hadrosaur", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.15,
+      "pasture": 0.1,
+      "wetland": 0.75,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 17,
+        "appeal_per_hectare": 87.2,
+        "dominance": 6,
+        "height": 2.3,
+        "length": 4.3,
+        "weight": 150
+      },
+      "male": {
+        "appeal": 17,
+        "appeal_per_hectare": 87.2,
+        "dominance": 6,
+        "height": 2.3,
+        "length": 4.3,
+        "weight": 150
+      },
+      "juvenile": {
+        "appeal": 8,
+        "appeal_per_hectare": 43.6,
+        "dominance": 3,
+        "height": 1.15,
+        "length": 2.15,
+        "weight": 75
+      }
+    }
+  },
+  {
+    "id": "stygimoloch",
+    "name": "Stygimoloch",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Pachy",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": ["Sauropod"],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.15,
+      "pasture": 0.1,
+      "wetland": 0.75,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 51,
+        "appeal_per_hectare": 228.9,
+        "dominance": 52,
+        "height": 1.7,
+        "length": 3.5,
+        "weight": 78
+      },
+      "male": {
+        "appeal": 51,
+        "appeal_per_hectare": 228.9,
+        "dominance": 52,
+        "height": 1.7,
+        "length": 3.5,
+        "weight": 78
+      },
+      "juvenile": {
+        "appeal": 25,
+        "appeal_per_hectare": 114.4,
+        "dominance": 26,
+        "height": 0.85,
+        "length": 1.75,
+        "weight": 39
+      }
+    }
+  },
+  {
+    "id": "styracosaurus",
+    "name": "Styracosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ceratops",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": ["Microceratus", "Chasmosaurus"],
+    "dislikes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Triceratops",
+      "Sinoceratops",
+      "Stegosaurid"
+    ],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.12,
+      "pasture": 0.25,
+      "wetland": 0.1,
+      "water": 0.53,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 76,
+        "appeal_per_hectare": 318,
+        "dominance": 59,
+        "height": 2.7,
+        "length": 5.5,
+        "weight": 2500
+      },
+      "male": {
+        "appeal": 76,
+        "appeal_per_hectare": 318,
+        "dominance": 59,
+        "height": 2.7,
+        "length": 5.5,
+        "weight": 2500
+      },
+      "juvenile": {
+        "appeal": 38,
+        "appeal_per_hectare": 159,
+        "dominance": 29,
+        "height": 1.35,
+        "length": 2.75,
+        "weight": 1250
+      }
+    }
+  },
+  {
+    "id": "suchomimus",
+    "name": "Suchomimus",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Piscivore / Carnivore",
+    "family": "Carnivore",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Irritator", "Baryonyx", "Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.16,
+      "pasture": 0.22,
+      "wetland": 0.62,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 639,
+        "appeal_per_hectare": 1609.7,
+        "dominance": 112,
+        "height": 3,
+        "length": 9.5,
+        "weight": 2500
+      },
+      "male": {
+        "appeal": 639,
+        "appeal_per_hectare": 1609.7,
+        "dominance": 112,
+        "height": 3,
+        "length": 9.5,
+        "weight": 2500
+      },
+      "juvenile": {
+        "appeal": 319,
+        "appeal_per_hectare": 804.8,
+        "dominance": 56,
+        "height": 1.5,
+        "length": 4.75,
+        "weight": 1250
+      }
+    }
+  },
+  {
+    "id": "therizinosaurus",
+    "name": "Therizinosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Therizinosaurus",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Scavenger"],
+    "dislikes": ["Everything"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.15,
+      "pasture": 0.1,
+      "wetland": 0.75,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 1135,
+        "appeal_per_hectare": 2252,
+        "dominance": 122,
+        "height": 5,
+        "length": 10,
+        "weight": 5000
+      },
+      "male": {
+        "appeal": 1135,
+        "appeal_per_hectare": 2252,
+        "dominance": 122,
+        "height": 5,
+        "length": 10,
+        "weight": 5000
+      },
+      "juvenile": {
+        "appeal": 567,
+        "appeal_per_hectare": 1126,
+        "dominance": 61,
+        "height": 2.5,
+        "length": 5,
+        "weight": 2500
+      }
+    }
+  },
+  {
+    "id": "torosaurus",
+    "name": "Torosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ceratops",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": ["Microceratus"],
+    "dislikes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Scavenger",
+      "Stegoceratops",
+      "Stegosaurid"
+    ],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.19,
+      "pasture": 0.2,
+      "wetland": 0.1,
+      "water": 0.51,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 78,
+        "appeal_per_hectare": 376.9,
+        "dominance": 94,
+        "height": 3.6,
+        "length": 7.9,
+        "weight": 6000
+      },
+      "male": {
+        "appeal": 78,
+        "appeal_per_hectare": 376.9,
+        "dominance": 94,
+        "height": 3.6,
+        "length": 7.9,
+        "weight": 6000
+      },
+      "juvenile": {
+        "appeal": 39,
+        "appeal_per_hectare": 188.4,
+        "dominance": 47,
+        "height": 1.8,
+        "length": 3.95,
+        "weight": 3000
+      }
+    }
+  },
+  {
+    "id": "triceratops",
+    "name": "Triceratops",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Ceratops",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": ["Stegoceratops", "Microceratus"],
+    "dislikes": [
+      "Ornithomimosaurid",
+      "Ceratops",
+      "Ankylosaurid",
+      "Hadrosaur",
+      "Scavenger",
+      "Styracosaurus",
+      "Sinoceratops",
+      "Stegosaurid"
+    ],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.19,
+      "pasture": 0.2,
+      "wetland": 0.1,
+      "water": 0.51,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 109,
+        "appeal_per_hectare": 361.2,
+        "dominance": 114,
+        "height": 3.6,
+        "length": 8.9,
+        "weight": 12000
+      },
+      "male": {
+        "appeal": 109,
+        "appeal_per_hectare": 361.2,
+        "dominance": 114,
+        "height": 3.6,
+        "length": 8.9,
+        "weight": 12000
+      },
+      "juvenile": {
+        "appeal": 54,
+        "appeal_per_hectare": 180.6,
+        "dominance": 57,
+        "height": 1.8,
+        "length": 4.45,
+        "weight": 6000
+      }
+    }
+  },
+  {
+    "id": "troodon",
+    "name": "Troodon",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 1,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.15,
+      "pasture": 0.75,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 56,
+        "appeal_per_hectare": 244.9,
+        "dominance": 39,
+        "height": 1,
+        "length": 2.5,
+        "weight": 35
+      },
+      "male": {
+        "appeal": 56,
+        "appeal_per_hectare": 244.9,
+        "dominance": 39,
+        "height": 1,
+        "length": 2.5,
+        "weight": 35
+      },
+      "juvenile": {
+        "appeal": 28,
+        "appeal_per_hectare": 122.4,
+        "dominance": 19,
+        "height": 0.5,
+        "length": 1.25,
+        "weight": 17
+      }
+    }
+  },
+  {
+    "id": "tsintaosaurus",
+    "name": "Tsintaosaurus",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Ground Palaeobotany",
+    "family": "Hadrosaur",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "likes": ["Sauropod", "Ornithomimosaurid", "Ceratops"],
+    "dislikes": ["Ankylosaurid", "Stegosaurid"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.6,
+      "pasture": 0.1,
+      "wetland": 0.3,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 46,
+        "appeal_per_hectare": 246.1,
+        "dominance": 60,
+        "height": 3.9,
+        "length": 10,
+        "weight": 3000
+      },
+      "male": {
+        "appeal": 46,
+        "appeal_per_hectare": 246.1,
+        "dominance": 60,
+        "height": 3.9,
+        "length": 10,
+        "weight": 3000
+      },
+      "juvenile": {
+        "appeal": 23,
+        "appeal_per_hectare": 123,
+        "dominance": 30,
+        "height": 1.95,
+        "length": 5,
+        "weight": 1500
+      }
+    }
+  },
+  {
+    "id": "tyrannosaurus_rex",
+    "name": "Tyrannosaurus rex",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 6,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.15,
+      "pasture": 0.13,
+      "wetland": 0.62,
+      "water": 0.1,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 1135,
+        "appeal_per_hectare": 715.7,
+        "dominance": 139,
+        "height": 5.2,
+        "length": 13.5,
+        "weight": 8400
+      },
+      "male": {
+        "appeal": 1135,
+        "appeal_per_hectare": 715.7,
+        "dominance": 139,
+        "height": 5.2,
+        "length": 13.5,
+        "weight": 8400
+      },
+      "juvenile": {
+        "appeal": 567,
+        "appeal_per_hectare": 357.8,
+        "dominance": 69,
+        "height": 2.6,
+        "length": 6.75,
+        "weight": 4200
+      }
+    }
+  },
+  {
+    "id": "utahraptor",
+    "name": "Utahraptor",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.22,
+      "pasture": 0.49,
+      "wetland": 0.19,
+      "water": 0.1,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 237,
+        "appeal_per_hectare": 353.8,
+        "dominance": 85,
+        "height": 1.5,
+        "length": 5,
+        "weight": 300
+      },
+      "male": {
+        "appeal": 237,
+        "appeal_per_hectare": 353.8,
+        "dominance": 85,
+        "height": 1.5,
+        "length": 5,
+        "weight": 300
+      },
+      "juvenile": {
+        "appeal": 118,
+        "appeal_per_hectare": 176.9,
+        "dominance": 42,
+        "height": 0.75,
+        "length": 2.5,
+        "weight": 150
+      }
+    }
+  },
+  {
+    "id": "velociraptor",
+    "name": "Velociraptor",
+    "release_version": "Base Game",
+    "era": "Late Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "small",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "likes": ["Indominus rex", "Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.16,
+      "pasture": 0.74,
+      "wetland": 0.1,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 149,
+        "appeal_per_hectare": 220.5,
+        "dominance": 63,
+        "height": 1.7,
+        "length": 3.9,
+        "weight": 226
+      },
+      "male": {
+        "appeal": 149,
+        "appeal_per_hectare": 220.5,
+        "dominance": 63,
+        "height": 1.7,
+        "length": 3.9,
+        "weight": 226
+      },
+      "juvenile": {
+        "appeal": 74,
+        "appeal_per_hectare": 110.2,
+        "dominance": 31,
+        "height": 0.85,
+        "length": 1.95,
+        "weight": 113
+      }
+    }
+  },
+  {
+    "id": "yutyrannus",
+    "name": "Yutyrannus",
+    "release_version": "Base Game",
+    "era": "Early Cretaceous",
+    "diet": "Carnivore",
+    "family": "Carnivore",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 4,
+    "likes": ["Scavenger"],
+    "dislikes": ["Therizinosaurs & Carnivores"],
+    "terrain_percentages": {
+      "arid": 0,
+      "barren": 0,
+      "cover": 0.3,
+      "pasture": 0.51,
+      "wetland": 0.19,
+      "water": 0,
+      "deep_water": 0
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 256,
+        "appeal_per_hectare": 765.4,
+        "dominance": 97,
+        "height": 2.5,
+        "length": 8.25,
+        "weight": 1300
+      },
+      "male": {
+        "appeal": 256,
+        "appeal_per_hectare": 765.4,
+        "dominance": 97,
+        "height": 2.5,
+        "length": 8.25,
+        "weight": 1300
+      },
+      "juvenile": {
+        "appeal": 128,
+        "appeal_per_hectare": 382.7,
+        "dominance": 48,
+        "height": 1.25,
+        "length": 4.125,
+        "weight": 650
+      }
+    }
+  }
+]
