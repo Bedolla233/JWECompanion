@@ -96,6 +96,26 @@ export default function App() {
         padding: '20px',
       }}
     >
+
+      <style>{`
+        .app-grid {
+          display: grid;
+          grid-template-columns: 1fr 340px;
+          gap: 25px;
+          align-items: start;
+        }
+        @media (max-width: 850px) {
+          .app-grid {
+            display: flex;
+            flex-direction: column-reverse; 
+          }
+          .dashboard-col {
+            position: static !important; 
+            margin-bottom: 20px;
+          }
+        }
+      `}</style>
+
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* HEADER */}
         <header
@@ -431,7 +451,7 @@ export default function App() {
           </div>
 
           {/* RIGHT COLUMN: STICKY DASHBOARD & RECOMMENDER */}
-          <div style={{ position: 'sticky', top: '20px' }}>
+          <div className="dashboard-col" style={{ position: 'sticky', top: '20px' }}>
             {/* Live Summary Card */}
             <div
               style={{
@@ -865,8 +885,9 @@ const stepperBtnStyle = {
   color: '#fff',
   border: 'none',
   borderRadius: '4px',
-  width: '24px',
-  height: '24px',
+  width: '36px',       
+  height: '36px',      
+  fontSize: '18px',    
   fontWeight: 'bold',
   cursor: 'pointer',
   display: 'inline-flex',
