@@ -1,6 +1,6 @@
 # JWE3 Habitat Planner (PWA Companion)
 
-A Progressive Web App and companion tool designed for *Jurassic World Evolution 3*. It provides real-time paddock optimization, multi-species cohabitation checking, and precise space calculations for park builders.
+A high-performance Progressive Web App (PWA) and min-maxing companion tool designed for *Jurassic World Evolution 3* (similar in utility to paleo.gg). It provides real-time paddock optimization, multi-species cohabitation checking, and precise space calculations for park builders.
 
 ---
 

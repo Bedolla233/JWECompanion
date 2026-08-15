@@ -55,20 +55,18 @@ export function dinoHatesTarget(dinoA, dinoB) {
   const nameB = (dinoB.name || '').toLowerCase();
 
   // 1. SCAVENGER IMMUNITY
-  // Medium/Large Carnivores and Herbivores IGNORE Scavengers
   if (isScavenger(dinoB)) {
     const isSmallCarnivoreA =
       familyA.includes('small carnivore') || familyA.includes('raptor');
-    if (!isSmallCarnivoreA) return false; // Safe!
+    if (!isSmallCarnivoreA) return false;
   }
 
   // 2. SAUROPOD DEFENSE
-  // Carnivores don't attack giant Sauropods unless explicitly set in dislikes
   if (isSauropod(dinoB) && isCarnivore(dinoA)) {
     const explicitlyHatesSauropod = dislikesA.some(
       (d) => d.includes('sauropod') || d === 'everything'
     );
-    if (!explicitlyHatesSauropod) return false; // Safe!
+    if (!explicitlyHatesSauropod) return false;
   }
 
   // 3. EXPLICIT LIKES OVERRIDE
@@ -78,7 +76,7 @@ export function dinoHatesTarget(dinoA, dinoB) {
 
   // 4. CARNIVORE VS HERBIVORE (Predation)
   if (isCarnivore(dinoA) && isHerbivore(dinoB) && !isSauropod(dinoB)) {
-    return true; // Carnivores hunt non-sauropod herbivores!
+    return true;
   }
 
   // 5. CARNIVORE VS CARNIVORE (Rivalry)
@@ -89,7 +87,7 @@ export function dinoHatesTarget(dinoA, dinoB) {
     !isScavenger(dinoB)
   ) {
     if (nameA !== nameB) {
-      return true; // Different carnivores fight each other!
+      return true;
     }
   }
 
@@ -105,7 +103,8 @@ export function dinoHatesTarget(dinoA, dinoB) {
 }
 
 /**
- * Scans dataset to find top compatible tankmates for the active paddock
+ * Scans dataset to find top compatible tankmates for the active paddock,
+ * strictly restricted by habitat type (Terrestrial, Aerial, or Aquatic).
  */
 export function findOptimalTankmates(paddockGroup) {
   const activeSpecies = paddockGroup
@@ -114,7 +113,11 @@ export function findOptimalTankmates(paddockGroup) {
 
   if (activeSpecies.length === 0) return [];
 
+  // Determine active paddock habitat (default to 'terrestrial' if unspecified)
+  const activeHabitat = activeSpecies[0].habitat || 'terrestrial';
+
   return speciesData
+    .filter((target) => target.habitat === activeHabitat) // Strict habitat match restriction
     .filter((target) => !paddockGroup.some((p) => p.speciesId === target.id))
     .filter((target) => {
       return activeSpecies.every(
@@ -128,17 +131,17 @@ export function findOptimalTankmates(paddockGroup) {
       const hectares = femaleVar.appeal_per_hectare
         ? appeal / femaleVar.appeal_per_hectare
         : 1;
-      const density = appeal / (hectares * 10000);
+      const appealDensityHa = hectares > 0 ? Math.round(appeal / hectares) : 0;
       return {
         id: target.id,
         name: target.name,
         family: target.family,
         diet: target.diet,
         appeal,
-        density: density.toFixed(3),
+        density: appealDensityHa,
       };
     })
-    .sort((a, b) => parseFloat(b.density) - parseFloat(a.density))
+    .sort((a, b) => b.density - a.density)
     .slice(0, 4);
 }
 
@@ -146,15 +149,8 @@ export function findOptimalTankmates(paddockGroup) {
  * Main Calculation & Compatibility Engine
  */
 export function calculatePaddockSpace(paddockGroup) {
-  const maxEnv = {
-    cover: 0,
-    pasture: 0,
-    water: 0,
-    deep_water: 0,
-    arid: 0,
-    barren: 0,
-    wetland: 0,
-  };
+  // Use a dynamic object to capture all 21 sparse terrain/palaeobotany/feed keys correctly
+  const maxEnv = {};
   const maxFeeders = { meat: 0, fish: 0 };
   let totalAppeal = 0;
   let totalDominance = 0;
@@ -222,8 +218,9 @@ export function calculatePaddockSpace(paddockGroup) {
   );
 
   const totalAreaM2 = Object.values(maxEnv).reduce((sum, val) => sum + val, 0);
-  const appealDensity =
-    totalAreaM2 > 0 ? (totalAppeal / totalAreaM2).toFixed(3) : '0';
+  
+  const totalAreaHa = totalAreaM2 / 10000;
+  const appealDensityHa = totalAreaHa > 0 ? Math.round(totalAppeal / totalAreaHa) : 0;
 
   const envPercentages = {};
   if (totalAreaM2 > 0) {
@@ -240,7 +237,7 @@ export function calculatePaddockSpace(paddockGroup) {
     .map((p) => speciesData.find((s) => s.id === p.speciesId))
     .filter(Boolean);
 
-  let synergyStatus = { code: 'GREEN', badge: '🟢 Perfect Compatibility' };
+  let synergyStatus = { code: 'GREEN', badge: 'Perfect Compatibility' };
 
   for (let i = 0; i < activeSpecies.length; i++) {
     for (let j = i + 1; j < activeSpecies.length; j++) {
@@ -250,7 +247,7 @@ export function calculatePaddockSpace(paddockGroup) {
       if (dinoHatesTarget(dinoA, dinoB) || dinoHatesTarget(dinoB, dinoA)) {
         synergyStatus = {
           code: 'RED',
-          badge: '🔴 Conflict Alert (Dinos Will Fight)',
+          badge: 'Conflict Alert (Dinos Will Fight)',
         };
         break;
       }
@@ -259,13 +256,14 @@ export function calculatePaddockSpace(paddockGroup) {
   }
 
   return {
-    totalAreaM2,
-    envBreakdownM2: maxEnv,
-    envPercentages,
-    feederBreakdown: maxFeeders,
     totalAppeal,
     totalDominance,
-    appealDensity,
+    totalAreaM2,
+    totalAreaHa: parseFloat(totalAreaHa.toFixed(2)),
+    appealDensity: appealDensityHa,
+    feederBreakdown: maxFeeders,
+    envPercentages,
+    envBreakdownM2: maxEnv,
     synergyStatus,
   };
 }

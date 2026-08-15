@@ -1,12 +1,13 @@
+import MasterTable from './components/MasterTable';
 import React, { useState, useEffect } from 'react';
 import speciesData from './data/jwe3_species.json';
+import GenomeHub from './components/GenomeHub';
 import {
   calculatePaddockSpace,
   findOptimalTankmates,
 } from './utils/logicEngine';
 
 export default function App() {
-  // LocalStorage Persistence
   const [paddock, setPaddock] = useState(() => {
     const saved = localStorage.getItem('jwe3_paddock');
     if (saved) {
@@ -17,7 +18,7 @@ export default function App() {
     return [
       { speciesId: 'baryonyx', femaleCount: 1, maleCount: 1, juvenileCount: 2 },
       {
-        speciesId: 'morosintrepidus',
+        speciesId: 'moros_intrepidus',
         femaleCount: 3,
         maleCount: 0,
         juvenileCount: 0,
@@ -31,14 +32,33 @@ export default function App() {
     ];
   });
 
-  // Modal / Drawer State
+  const [activeView, setActiveView] = useState('planner'); 
+
+  const [userGenomes, setUserGenomes] = useState(() => {
+    const saved = localStorage.getItem('jwe3_user_genomes');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {}
+    }
+    return {};
+  });
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [familyFilter, setFamilyFilter] = useState('');
+  const [hideUnsynthesizable, setHideUnsynthesizable] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('jwe3_paddock', JSON.stringify(paddock));
   }, [paddock]);
+
+  useEffect(() => {
+    localStorage.setItem('jwe3_user_genomes', JSON.stringify(userGenomes));
+  }, [userGenomes]);
+
+  const getGenome = (id) => userGenomes[id] || 0;
+  const isSynthesizable = (id) => getGenome(id) >= 50;
 
   const handleAddSpecies = (speciesId) => {
     if (paddock.some((item) => item.speciesId === speciesId)) return;
@@ -70,21 +90,29 @@ export default function App() {
     }
   };
 
-  const summary = calculatePaddockSpace(paddock);
-  const recommendations = findOptimalTankmates(paddock);
+  const summary = calculatePaddockSpace(paddock) || {};
+  const recommendations = findOptimalTankmates(paddock) || [];
 
-  // Filter species for modal
   const filteredSpecies = speciesData.filter((s) => {
-    const matchesSearch = s.name
+    const matchesSearch = (s.name || "")
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
     const matchesFamily =
       !familyFilter ||
-      s.family.toLowerCase().includes(familyFilter.toLowerCase());
-    return matchesSearch && matchesFamily;
+      (s.family || "").toLowerCase().includes(familyFilter.toLowerCase());
+    const matchesGenome = !hideUnsynthesizable || isSynthesizable(s.id);
+    return matchesSearch && matchesFamily && matchesGenome;
   });
 
-  const families = Array.from(new Set(speciesData.map((s) => s.family))).sort();
+  const families = Array.from(new Set(speciesData.map((s) => s.family || "Unknown"))).sort();
+
+  const formatTerrainBreakdown = (terrainPercentages) => {
+    if (!terrainPercentages) return 'None specified';
+    return Object.entries(terrainPercentages)
+      .filter(([_, ratio]) => ratio > 0)
+      .map(([terrain, ratio]) => `${Math.round(ratio * 100)}% ${terrain.replace('_', ' ')}`)
+      .join(', ');
+  };
 
   return (
     <div
@@ -96,7 +124,6 @@ export default function App() {
         padding: '20px',
       }}
     >
-
       <style>{`
         .app-grid {
           display: grid;
@@ -117,7 +144,6 @@ export default function App() {
       `}</style>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        {/* HEADER */}
         <header
           style={{
             display: 'flex',
@@ -130,7 +156,7 @@ export default function App() {
         >
           <div>
             <h1 style={{ margin: 0, color: '#14b8a6', fontSize: '28px' }}>
-              🦖 JWE3 Habitat Planner
+              JWE3 Habitat Planner
             </h1>
             <p
               style={{
@@ -142,577 +168,631 @@ export default function App() {
               Dark HUD Edition • Offline PWA
             </p>
           </div>
-          <button
-            onClick={handleReset}
-            style={{
-              background: '#374151',
-              color: '#ef4444',
-              border: '1px solid #4b5563',
-              padding: '8px 16px',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-            }}
-          >
-            🗑️ Clear Enclosure
-          </button>
-        </header>
-
-        {/* MAIN COMMAND CENTER GRID */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-            gap: '25px',
-            alignItems: 'start',
-          }}
-        >
-          {/* LEFT COLUMN: Population Controls */}
-          <div>
-            {/* Open Drawer Button */}
+          <div style={{ display: 'flex', gap: '10px' }}>
             <button
-              onClick={() => setIsModalOpen(true)}
-              style={{
-                width: '100%',
-                background: '#14b8a6',
-                color: '#111827',
-                border: 'none',
-                padding: '14px',
-                borderRadius: '8px',
-                fontSize: '16px',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                marginBottom: '20px',
-                boxShadow: '0 4px 12px rgba(20, 184, 166, 0.3)',
-              }}
-            >
-              ➕ Add Dinosaur (Search & Filter Database)
-            </button>
-
-            <h2
-              style={{
-                fontSize: '20px',
-                margin: '0 0 15px 0',
-                color: '#e5e7eb',
-              }}
-            >
-              Current Population
-            </h2>
-
-            {paddock.length === 0 ? (
-              <div
-                style={{
-                  background: '#1f2937',
-                  padding: '30px',
-                  borderRadius: '8px',
-                  textAlign: 'center',
-                  color: '#9ca3af',
-                }}
-              >
-                <p style={{ margin: 0 }}>Enclosure is currently empty.</p>
-                <p style={{ fontSize: '13px', margin: '8px 0 0 0' }}>
-                  Click "Add Dinosaur" above to begin planning your habitat.
-                </p>
-              </div>
-            ) : (
-              paddock.map(
-                ({ speciesId, femaleCount, maleCount, juvenileCount }) => {
-                  const species = speciesData.find((s) => s.id === speciesId);
-                  if (!species) return null;
-
-                  return (
-                    <div
-                      key={speciesId}
-                      style={{
-                        background: '#1f2937',
-                        border: '1px solid #374151',
-                        borderRadius: '8px',
-                        padding: '16px',
-                        marginBottom: '15px',
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          marginBottom: '12px',
-                        }}
-                      >
-                        <div>
-                          <h3
-                            style={{
-                              margin: 0,
-                              fontSize: '18px',
-                              color: '#f3f4f6',
-                            }}
-                          >
-                            {species.name}
-                          </h3>
-                          <span
-                            style={{
-                              fontSize: '12px',
-                              color: '#14b8a6',
-                              fontWeight: 'bold',
-                            }}
-                          >
-                            {species.family}
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => handleRemove(speciesId)}
-                          style={{
-                            background: '#ef444422',
-                            color: '#ef4444',
-                            border: '1px solid #ef4444',
-                            borderRadius: '4px',
-                            padding: '4px 10px',
-                            cursor: 'pointer',
-                            fontSize: '12px',
-                            fontWeight: 'bold',
-                          }}
-                        >
-                          Remove
-                        </button>
-                      </div>
-
-                      {/* TOUCH STEPPER CONTROLS */}
-                      <div
-                        style={{
-                          display: 'flex',
-                          gap: '15px',
-                          flexWrap: 'wrap',
-                        }}
-                      >
-                        {/* Females */}
-                        <div
-                          style={{
-                            background: '#111827',
-                            padding: '6px 12px',
-                            borderRadius: '6px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                          }}
-                        >
-                          <span style={{ fontSize: '13px', color: '#9ca3af' }}>
-                            Females:
-                          </span>
-                          <button
-                            onClick={() =>
-                              handleCountChange(speciesId, 'femaleCount', -1)
-                            }
-                            style={stepperBtnStyle}
-                          >
-                            -
-                          </button>
-                          <span
-                            style={{
-                              fontWeight: 'bold',
-                              minWidth: '18px',
-                              textAlign: 'center',
-                            }}
-                          >
-                            {femaleCount}
-                          </span>
-                          <button
-                            onClick={() =>
-                              handleCountChange(speciesId, 'femaleCount', 1)
-                            }
-                            style={stepperBtnStyle}
-                          >
-                            +
-                          </button>
-                        </div>
-
-                        {/* Males */}
-                        {species.restrictions?.has_males ? (
-                          <div
-                            style={{
-                              background: '#111827',
-                              padding: '6px 12px',
-                              borderRadius: '6px',
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '8px',
-                            }}
-                          >
-                            <span
-                              style={{ fontSize: '13px', color: '#9ca3af' }}
-                            >
-                              Male:
-                            </span>
-                            <button
-                              onClick={() =>
-                                handleCountChange(speciesId, 'maleCount', -1)
-                              }
-                              style={stepperBtnStyle}
-                            >
-                              -
-                            </button>
-                            <span
-                              style={{
-                                fontWeight: 'bold',
-                                minWidth: '18px',
-                                textAlign: 'center',
-                              }}
-                            >
-                              {maleCount}
-                            </span>
-                            <button
-                              onClick={() =>
-                                handleCountChange(speciesId, 'maleCount', 1)
-                              }
-                              style={stepperBtnStyle}
-                            >
-                              +
-                            </button>
-                          </div>
-                        ) : (
-                          <div
-                            style={{
-                              background: '#111827',
-                              padding: '6px 12px',
-                              borderRadius: '6px',
-                              fontSize: '12px',
-                              color: '#6b7280',
-                            }}
-                          >
-                            Female Only
-                          </div>
-                        )}
-
-                        {/* Juveniles */}
-                        {species.restrictions?.has_juveniles ? (
-                          <div
-                            style={{
-                              background: '#111827',
-                              padding: '6px 12px',
-                              borderRadius: '6px',
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '8px',
-                            }}
-                          >
-                            <span
-                              style={{ fontSize: '13px', color: '#9ca3af' }}
-                            >
-                              Juvinile:
-                            </span>
-                            <button
-                              onClick={() =>
-                                handleCountChange(
-                                  speciesId,
-                                  'juvenileCount',
-                                  -1
-                                )
-                              }
-                              style={stepperBtnStyle}
-                            >
-                              -
-                            </button>
-                            <span
-                              style={{
-                                fontWeight: 'bold',
-                                minWidth: '18px',
-                                textAlign: 'center',
-                              }}
-                            >
-                              {juvenileCount}
-                            </span>
-                            <button
-                              onClick={() =>
-                                handleCountChange(speciesId, 'juvenileCount', 1)
-                              }
-                              style={stepperBtnStyle}
-                            >
-                              +
-                            </button>
-                          </div>
-                        ) : (
-                          <div
-                            style={{
-                              background: '#111827',
-                              padding: '6px 12px',
-                              borderRadius: '6px',
-                              fontSize: '12px',
-                              color: '#6b7280',
-                            }}
-                          >
-                            No Juveniles
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                }
-              )
-            )}
-          </div>
-
-          {/* RIGHT COLUMN: STICKY DASHBOARD & RECOMMENDER */}
-          <div className="dashboard-col" style={{ position: 'sticky', top: '20px' }}>
-            {/* Live Summary Card */}
-            <div
+              onClick={() => setActiveView('table')}
               style={{
                 background: '#1f2937',
+                color: '#14b8a6',
                 border: '1px solid #374151',
-                padding: '20px',
-                borderRadius: '10px',
-                marginBottom: '20px',
+                padding: '8px 16px',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
               }}
             >
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  gap: '10px',
-                  marginBottom: '15px',
-                }}
-              >
-                <h2 style={{ margin: 0, fontSize: '20px' }}>
-                  📊 Live Enclosure Summary
-                </h2>
-                <span
-                  style={{
-                    background:
-                      summary.synergyStatus.code === 'RED'
-                        ? '#ef4444'
-                        : '#22c55e',
-                    color: '#111827',
-                    padding: '4px 10px',
-                    borderRadius: '20px',
-                    fontWeight: 'bold',
-                    fontSize: '12px',
-                  }}
-                >
-                  {summary.synergyStatus.badge}
-                </span>
-              </div>
+              Master Table
+            </button>
+            <button
+              onClick={() => setActiveView('genomes')}
+              style={{
+                background: '#1f2937',
+                color: '#14b8a6',
+                border: '1px solid #374151',
+                padding: '8px 16px',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+              }}
+            >
+              Genome Hub
+            </button>
+            <button
+              onClick={handleReset}
+              style={{
+                background: '#374151',
+                color: '#ef4444',
+                border: '1px solid #4b5563',
+                padding: '8px 16px',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+              }}
+            >
+              Clear Enclosure
+            </button>
+          </div>
+        </header>
 
-              <div
+        {activeView === 'genomes' ? (
+          <GenomeHub
+            userGenomes={userGenomes}
+            setUserGenomes={setUserGenomes}
+            onClose={() => setActiveView('planner')}
+          />
+        ) : activeView === 'table' ? (
+          <MasterTable
+            paddock={paddock}
+            onAddSpecies={(id) => {
+              handleAddSpecies(id);
+              setActiveView('planner');
+            }}
+            onClose={() => setActiveView('planner')}
+          />
+        ) : (
+          <div className="app-grid">
+            <div>
+              <button
+                onClick={() => setIsModalOpen(true)}
                 style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '12px',
-                  background: '#111827',
+                  width: '100%',
+                  background: '#14b8a6',
+                  color: '#111827',
+                  border: 'none',
                   padding: '14px',
                   borderRadius: '8px',
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  marginBottom: '20px',
+                  boxShadow: '0 4px 12px rgba(20, 184, 166, 0.3)',
                 }}
               >
-                <div>
-                  <p
-                    style={{
-                      margin: '4px 0',
-                      fontSize: '14px',
-                      color: '#9ca3af',
-                    }}
-                  >
-                    Total Appeal:{' '}
-                    <b style={{ color: '#fff' }}>{summary.totalAppeal}</b>
-                  </p>
-                  <p
-                    style={{
-                      margin: '4px 0',
-                      fontSize: '14px',
-                      color: '#9ca3af',
-                    }}
-                  >
-                    Dominance:{' '}
-                    <b style={{ color: '#fff' }}>{summary.totalDominance}</b>
-                  </p>
-                  <p
-                    style={{
-                      margin: '4px 0',
-                      fontSize: '14px',
-                      color: '#9ca3af',
-                    }}
-                  >
-                    Area:{' '}
-                    <b style={{ color: '#fff' }}>
-                      {summary.totalAreaM2.toLocaleString()} m²
-                    </b>
-                  </p>
-                </div>
-                <div>
-                  <p
-                    style={{
-                      margin: '4px 0',
-                      fontSize: '14px',
-                      color: '#9ca3af',
-                    }}
-                  >
-                    Meat Feeders:{' '}
-                    <b style={{ color: '#fff' }}>
-                      {summary.feederBreakdown.meat}
-                    </b>
-                  </p>
-                  <p
-                    style={{
-                      margin: '4px 0',
-                      fontSize: '14px',
-                      color: '#9ca3af',
-                    }}
-                  >
-                    Fish Feeders:{' '}
-                    <b style={{ color: '#fff' }}>
-                      {summary.feederBreakdown.fish}
-                    </b>
-                  </p>
-                  <p
-                    style={{
-                      margin: '4px 0',
-                      fontSize: '14px',
-                      color: '#f59e0b',
-                    }}
-                  >
-                    ⚡ Density: <b>{summary.appealDensity}</b>{' '}
-                    <small>Appeal/m²</small>
-                  </p>
-                </div>
-              </div>
+                + Add Dinosaur (Search & Filter Database)
+              </button>
 
-              {/* Terrain Progress Bars */}
-              {summary.totalAreaM2 > 0 && (
-                <div style={{ marginTop: '18px' }}>
-                  <h4
-                    style={{
-                      margin: '0 0 10px 0',
-                      color: '#9ca3af',
-                      fontSize: '13px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px',
-                    }}
-                  >
-                    Terrain Needs:
-                  </h4>
-                  {Object.entries(summary.envPercentages).map(
-                    ([terrain, percent]) => (
-                      <div key={terrain} style={{ marginBottom: '8px' }}>
+              <h2
+                style={{
+                  fontSize: '20px',
+                  margin: '0 0 15px 0',
+                  color: '#e5e7eb',
+                }}
+              >
+                Current Population
+              </h2>
+
+              {paddock.length === 0 ? (
+                <div
+                  style={{
+                    background: '#1f2937',
+                    padding: '30px',
+                    borderRadius: '8px',
+                    textAlign: 'center',
+                    color: '#9ca3af',
+                  }}
+                >
+                  <p style={{ margin: 0 }}>Enclosure is currently empty.</p>
+                  <p style={{ fontSize: '13px', margin: '8px 0 0 0' }}>
+                    Click "+ Add Dinosaur" above to begin planning your habitat.
+                  </p>
+                </div>
+              ) : (
+                paddock.map(
+                  ({ speciesId, femaleCount, maleCount, juvenileCount }) => {
+                    const species = speciesData.find((s) => s.id === speciesId);
+                    if (!species) return null;
+
+                    return (
+                      <div
+                        key={speciesId}
+                        style={{
+                          background: '#1f2937',
+                          border: '1px solid #374151',
+                          borderRadius: '8px',
+                          padding: '16px',
+                          marginBottom: '15px',
+                        }}
+                      >
                         <div
                           style={{
                             display: 'flex',
                             justifyContent: 'space-between',
-                            fontSize: '12px',
-                            marginBottom: '3px',
-                            textTransform: 'capitalize',
+                            alignItems: 'center',
+                            marginBottom: '12px',
                           }}
                         >
-                          <span>
-                            {terrain} (
-                            {summary.envBreakdownM2[terrain].toLocaleString()}{' '}
-                            m²)
-                          </span>
-                          <span
-                            style={{ fontWeight: 'bold', color: '#14b8a6' }}
+                          <div>
+                            <h3
+                              style={{
+                                margin: 0,
+                                fontSize: '18px',
+                                color: '#f3f4f6',
+                                display: 'flex',
+                                alignItems: 'center'
+                              }}
+                            >
+                              {species.name}
+                              {!isSynthesizable(speciesId) && (
+                                <span
+                                  style={{
+                                    fontSize: '11px',
+                                    background: '#f59e0b',
+                                    color: '#111827',
+                                    padding: '2px 6px',
+                                    borderRadius: '4px',
+                                    marginLeft: '10px',
+                                    fontWeight: 'bold',
+                                  }}
+                                >
+                                  Needs 50% Genome
+                                </span>
+                              )}
+                            </h3>
+                            <span
+                              style={{
+                                fontSize: '12px',
+                                color: '#14b8a6',
+                                fontWeight: 'bold',
+                              }}
+                            >
+                              {species.family}
+                            </span>
+                          </div>
+                          <button
+                            onClick={() => handleRemove(speciesId)}
+                            style={{
+                              background: '#ef444422',
+                              color: '#ef4444',
+                              border: '1px solid #ef4444',
+                              borderRadius: '4px',
+                              padding: '4px 10px',
+                              cursor: 'pointer',
+                              fontSize: '12px',
+                              fontWeight: 'bold',
+                            }}
                           >
-                            {percent}%
-                          </span>
+                            Remove
+                          </button>
                         </div>
+
                         <div
                           style={{
-                            background: '#111827',
-                            borderRadius: '4px',
-                            height: '6px',
-                            overflow: 'hidden',
+                            display: 'flex',
+                            gap: '15px',
+                            flexWrap: 'wrap',
+                            marginBottom: '12px',
                           }}
                         >
                           <div
                             style={{
-                              background: '#14b8a6',
-                              width: `${percent}%`,
-                              height: '100%',
+                              background: '#111827',
+                              padding: '6px 12px',
+                              borderRadius: '6px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '8px',
                             }}
-                          />
+                          >
+                            <span style={{ fontSize: '13px', color: '#9ca3af' }}>
+                              Females:
+                            </span>
+                            <button
+                              onClick={() =>
+                                handleCountChange(speciesId, 'femaleCount', -1)
+                              }
+                              style={stepperBtnStyle}
+                            >
+                              -
+                            </button>
+                            <span
+                              style={{
+                                fontWeight: 'bold',
+                                minWidth: '18px',
+                                textAlign: 'center',
+                              }}
+                            >
+                              {femaleCount}
+                            </span>
+                            <button
+                              onClick={() =>
+                                handleCountChange(speciesId, 'femaleCount', 1)
+                              }
+                              style={stepperBtnStyle}
+                            >
+                              +
+                            </button>
+                          </div>
+
+                          {species.restrictions?.has_males ? (
+                            <div
+                              style={{
+                                background: '#111827',
+                                padding: '6px 12px',
+                                borderRadius: '6px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                              }}
+                            >
+                              <span
+                                style={{ fontSize: '13px', color: '#9ca3af' }}
+                              >
+                                Male:
+                              </span>
+                              <button
+                                onClick={() =>
+                                  handleCountChange(speciesId, 'maleCount', -1)
+                                }
+                                style={stepperBtnStyle}
+                              >
+                                -
+                              </button>
+                              <span
+                                style={{
+                                  fontWeight: 'bold',
+                                  minWidth: '18px',
+                                  textAlign: 'center',
+                                }}
+                              >
+                                {maleCount}
+                              </span>
+                              <button
+                                onClick={() =>
+                                  handleCountChange(speciesId, 'maleCount', 1)
+                                }
+                                style={stepperBtnStyle}
+                              >
+                                +
+                              </button>
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                background: '#111827',
+                                padding: '6px 12px',
+                                borderRadius: '6px',
+                                fontSize: '12px',
+                                color: '#6b7280',
+                              }}
+                            >
+                              Female Only
+                            </div>
+                          )}
+
+                          {species.restrictions?.has_juveniles ? (
+                            <div
+                              style={{
+                                background: '#111827',
+                                padding: '6px 12px',
+                                borderRadius: '6px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                              }}
+                            >
+                              <span
+                                style={{ fontSize: '13px', color: '#9ca3af' }}
+                              >
+                                Juvenile:
+                              </span>
+                              <button
+                                onClick={() =>
+                                  handleCountChange(
+                                    speciesId,
+                                    'juvenileCount',
+                                    -1
+                                  )
+                                }
+                                style={stepperBtnStyle}
+                              >
+                                -
+                              </button>
+                              <span
+                                style={{
+                                  fontWeight: 'bold',
+                                  minWidth: '18px',
+                                  textAlign: 'center',
+                                }}
+                              >
+                                {juvenileCount}
+                              </span>
+                              <button
+                                onClick={() =>
+                                  handleCountChange(speciesId, 'juvenileCount', 1)
+                                }
+                                style={stepperBtnStyle}
+                              >
+                                +
+                              </button>
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                background: '#111827',
+                                padding: '6px 12px',
+                                borderRadius: '6px',
+                                fontSize: '12px',
+                                color: '#6b7280',
+                              }}
+                            >
+                              No Juveniles
+                            </div>
+                          )}
                         </div>
+
+                        {/* Variant & Space Contribution Footer */}
+                        <div style={{ background: '#111827', padding: '10px', borderRadius: '6px', fontSize: '12px', color: '#9ca3af', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                          <div style={{ color: '#f3f4f6', fontWeight: 'bold', marginBottom: '2px' }}>Variant Growth & Space Contribution:</div>
+                          {femaleCount > 0 && species.variants?.female && (
+                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                              <span>Females ({femaleCount}): {species.variants.female.appeal * femaleCount} Appeal</span>
+                              <span style={{ color: '#14b8a6' }}>{(((species.variants.female.appeal / (species.variants.female.appeal_per_hectare || 1)) * femaleCount)).toFixed(2)} ha</span>
+                            </div>
+                          )}
+                          {maleCount > 0 && species.variants?.male && species.restrictions?.has_males && (
+                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                              <span>Males ({maleCount}): {species.variants.male.appeal * maleCount} Appeal</span>
+                              <span style={{ color: '#14b8a6' }}>{(((species.variants.male.appeal / (species.variants.male.appeal_per_hectare || 1)) * maleCount)).toFixed(2)} ha</span>
+                            </div>
+                          )}
+                          {juvenileCount > 0 && species.variants?.juvenile && species.restrictions?.has_juveniles && (
+                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                              <span>Juveniles ({juvenileCount}): {species.variants.juvenile.appeal * juvenileCount} Appeal</span>
+                              <span style={{ color: '#14b8a6' }}>{(((species.variants.juvenile.appeal / (species.variants.juvenile.appeal_per_hectare || 1)) * juvenileCount)).toFixed(2)} ha</span>
+                            </div>
+                          )}
+                        </div>
+
                       </div>
-                    )
-                  )}
-                </div>
+                    );
+                  }
+                )
               )}
             </div>
 
-            {/* 💡 SMART TANKMATE RECOMMENDER */}
-            {paddock.length > 0 && recommendations.length > 0 && (
+            <div className="dashboard-col" style={{ position: 'sticky', top: '20px' }}>
               <div
                 style={{
                   background: '#1f2937',
                   border: '1px solid #374151',
-                  padding: '18px',
+                  padding: '20px',
                   borderRadius: '10px',
+                  marginBottom: '20px',
                 }}
               >
-                <h3
-                  style={{
-                    margin: '0 0 12px 0',
-                    fontSize: '16px',
-                    color: '#f59e0b',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                  }}
-                >
-                  💡 Recommended Compatible Tankmates
-                </h3>
                 <div
                   style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    gap: '8px',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                    gap: '10px',
+                    marginBottom: '15px',
                   }}
                 >
-                  {recommendations.map((rec) => (
-                    <div
-                      key={rec.id}
+                  <h2 style={{ margin: 0, fontSize: '20px' }}>
+                    Live Enclosure Summary
+                  </h2>
+                  <span
+                    style={{
+                      background:
+                        summary?.synergyStatus?.code === 'RED'
+                          ? '#ef4444'
+                          : '#22c55e',
+                      color: '#111827',
+                      padding: '4px 10px',
+                      borderRadius: '20px',
+                      fontWeight: 'bold',
+                      fontSize: '12px',
+                    }}
+                  >
+                    {summary?.synergyStatus?.badge || 'Pending'}
+                  </span>
+                </div>
+
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '12px',
+                    background: '#111827',
+                    padding: '14px',
+                    borderRadius: '8px',
+                  }}
+                >
+                  <div>
+                    <p
                       style={{
-                        background: '#111827',
-                        padding: '10px 12px',
-                        borderRadius: '6px',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
+                        margin: '4px 0',
+                        fontSize: '14px',
+                        color: '#9ca3af',
                       }}
                     >
-                      <div>
-                        <div
-                          style={{
-                            fontWeight: 'bold',
-                            fontSize: '14px',
-                            color: '#f3f4f6',
-                          }}
-                        >
-                          {rec.name}
+                      Total Appeal:{' '}
+                      <b style={{ color: '#fff' }}>{summary?.totalAppeal || 0}</b>
+                    </p>
+                    <p
+                      style={{
+                        margin: '4px 0',
+                        fontSize: '14px',
+                        color: '#9ca3af',
+                      }}
+                    >
+                      Dominance:{' '}
+                      <b style={{ color: '#fff' }}>{summary?.totalDominance || 0}</b>
+                    </p>
+                    <p style={{ margin: '4px 0', fontSize: '14px', color: '#9ca3af' }}>
+                      Area: <b style={{ color: '#fff' }}>{summary?.totalAreaHa || 0} ha</b> <small>({(summary?.totalAreaM2 || 0).toLocaleString()} m²)</small>
+                    </p>
+                  </div>
+                  <div>
+                    <p
+                      style={{
+                        margin: '4px 0',
+                        fontSize: '14px',
+                        color: '#9ca3af',
+                      }}
+                    >
+                      Meat Feeders:{' '}
+                      <b style={{ color: '#fff' }}>
+                        {summary?.feederBreakdown?.meat || 0}
+                      </b>
+                    </p>
+                    <p
+                      style={{
+                        margin: '4px 0',
+                        fontSize: '14px',
+                        color: '#9ca3af',
+                      }}
+                    >
+                      Fish Feeders:{' '}
+                      <b style={{ color: '#fff' }}>
+                        {summary?.feederBreakdown?.fish || 0}
+                      </b>
+                    </p>
+                    <p style={{ margin: '4px 0', fontSize: '14px', color: '#f59e0b' }}>
+                      Efficiency: <b>{summary?.appealDensity || 0}</b> <small>Appeal/ha</small>
+                    </p>
+                  </div>
+                </div>
+
+                {summary?.totalAreaM2 > 0 && summary?.envPercentages && (
+                  <div style={{ marginTop: '18px' }}>
+                    <h4
+                      style={{
+                        margin: '0 0 10px 0',
+                        color: '#9ca3af',
+                        fontSize: '13px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px',
+                      }}
+                    >
+                      Terrain Needs:
+                    </h4>
+                    {Object.entries(summary.envPercentages).map(
+                      ([terrain, percent]) => (
+                        <div key={terrain} style={{ marginBottom: '8px' }}>
+                          <div
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              fontSize: '12px',
+                              marginBottom: '3px',
+                              textTransform: 'capitalize',
+                            }}
+                          >
+                            <span>
+                              {terrain} (
+                              {summary.envBreakdownM2[terrain].toLocaleString()}{' '}
+                              m²)
+                            </span>
+                            <span
+                              style={{ fontWeight: 'bold', color: '#14b8a6' }}
+                            >
+                              {percent}%
+                            </span>
+                          </div>
+                          <div
+                            style={{
+                              background: '#111827',
+                              borderRadius: '4px',
+                              height: '6px',
+                              overflow: 'hidden',
+                            }}
+                          >
+                            <div
+                              style={{
+                                background: '#14b8a6',
+                                width: `${percent}%`,
+                                height: '100%',
+                              }}
+                            />
+                          </div>
                         </div>
-                        <div style={{ fontSize: '11px', color: '#9ca3af' }}>
-                          {rec.family} • {rec.density} Appeal/m²
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => handleAddSpecies(rec.id)}
+                      )
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {paddock.length > 0 && recommendations.length > 0 && (
+                <div
+                  style={{
+                    background: '#1f2937',
+                    border: '1px solid #374151',
+                    padding: '18px',
+                    borderRadius: '10px',
+                  }}
+                >
+                  <h3
+                    style={{
+                      margin: '0 0 12px 0',
+                      fontSize: '16px',
+                      color: '#f59e0b',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                    }}
+                  >
+                    Recommended Compatible Tankmates
+                  </h3>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '8px',
+                    }}
+                  >
+                    {recommendations.map((rec) => (
+                      <div
+                        key={rec.id}
                         style={{
-                          background: '#14b8a622',
-                          color: '#14b8a6',
-                          border: '1px solid #14b8a6',
-                          padding: '4px 10px',
-                          borderRadius: '4px',
-                          cursor: 'pointer',
-                          fontWeight: 'bold',
-                          fontSize: '12px',
+                          background: '#111827',
+                          padding: '10px 12px',
+                          borderRadius: '6px',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
                         }}
                       >
-                        + Add
-                      </button>
-                    </div>
-                  ))}
+                        <div>
+                          <div
+                            style={{
+                              fontWeight: 'bold',
+                              fontSize: '14px',
+                              color: '#f3f4f6',
+                            }}
+                          >
+                            {rec.name}
+                          </div>
+                          <div style={{ fontSize: '11px', color: '#9ca3af' }}>
+                            {rec.family} • {rec.density || 0} Appeal/ha
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => handleAddSpecies(rec.id)}
+                          style={{
+                            background: '#14b8a622',
+                            color: '#14b8a6',
+                            border: '1px solid #14b8a6',
+                            padding: '4px 10px',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontWeight: 'bold',
+                            fontSize: '12px',
+                          }}
+                        >
+                          + Add
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* 🔍 SEARCH & FILTER DRAWER MODAL */}
         {isModalOpen && (
           <div
             style={{
@@ -734,7 +814,7 @@ export default function App() {
                 background: '#1f2937',
                 border: '1px solid #374151',
                 width: '100%',
-                maxWidth: '600px',
+                maxWidth: '650px',
                 maxHeight: '80vh',
                 borderRadius: '12px',
                 display: 'flex',
@@ -742,7 +822,6 @@ export default function App() {
                 overflow: 'hidden',
               }}
             >
-              {/* Modal Header */}
               <div
                 style={{
                   padding: '16px 20px',
@@ -765,54 +844,64 @@ export default function App() {
                     cursor: 'pointer',
                   }}
                 >
-                  ✖
+                  X
                 </button>
               </div>
 
-              {/* Filters Bar */}
               <div
                 style={{
                   padding: '15px 20px',
                   background: '#111827',
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
+                  display: 'flex',
+                  flexDirection: 'column',
                   gap: '10px',
                 }}
               >
-                <input
-                  type="text"
-                  placeholder="Search species name..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  style={{
-                    background: '#1f2937',
-                    border: '1px solid #374151',
-                    color: '#fff',
-                    padding: '8px 12px',
-                    borderRadius: '6px',
-                  }}
-                />
-                <select
-                  value={familyFilter}
-                  onChange={(e) => setFamilyFilter(e.target.value)}
-                  style={{
-                    background: '#1f2937',
-                    border: '1px solid #374151',
-                    color: '#fff',
-                    padding: '8px 12px',
-                    borderRadius: '6px',
-                  }}
-                >
-                  <option value="">All Categories</option>
-                  {families.map((fam) => (
-                    <option key={fam} value={fam}>
-                      {fam}
-                    </option>
-                  ))}
-                </select>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                  <input
+                    type="text"
+                    placeholder="Search species name..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    style={{
+                      background: '#1f2937',
+                      border: '1px solid #374151',
+                      color: '#fff',
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                    }}
+                  />
+                  <select
+                    value={familyFilter}
+                    onChange={(e) => setFamilyFilter(e.target.value)}
+                    style={{
+                      background: '#1f2937',
+                      border: '1px solid #374151',
+                      color: '#fff',
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                    }}
+                  >
+                    <option value="">All Categories</option>
+                    {families.map((fam) => (
+                      <option key={fam} value={fam}>
+                        {fam}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#9ca3af', fontSize: '14px', cursor: 'pointer' }}>
+                  <input 
+                    type="checkbox" 
+                    checked={hideUnsynthesizable} 
+                    onChange={(e) => setHideUnsynthesizable(e.target.checked)} 
+                    style={{ width: '16px', height: '16px', accentColor: '#14b8a6' }}
+                  />
+                  Hide Un-Synthesizable (&lt; 50% Genome)
+                </label>
               </div>
 
-              {/* Species List */}
               <div
                 style={{
                   overflowY: 'auto',
@@ -824,6 +913,9 @@ export default function App() {
               >
                 {filteredSpecies.map((s) => {
                   const inPaddock = paddock.some((p) => p.speciesId === s.id);
+                  const femaleApp = s.variants?.female?.appeal || 0;
+                  const secRating = s.security_rating || 1;
+                  const habitatStr = formatTerrainBreakdown(s.terrain_percentages);
 
                   return (
                     <div
@@ -835,19 +927,22 @@ export default function App() {
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
+                        gap: '15px',
                       }}
                     >
-                      <div>
-                        <b style={{ color: '#f3f4f6' }}>{s.name}</b>
-                        <span
-                          style={{
-                            fontSize: '12px',
-                            color: '#9ca3af',
-                            marginLeft: '10px',
-                          }}
-                        >
-                          ({s.family})
-                        </span>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                          <b style={{ color: '#f3f4f6', fontSize: '15px' }}>{s.name}</b>
+                          <span style={{ fontSize: '12px', color: '#14b8a6', fontWeight: 'bold' }}>{s.family}</span>
+                        </div>
+                        <div style={{ display: 'flex', gap: '15px', fontSize: '12px', color: '#9ca3af', flexWrap: 'wrap', marginBottom: '4px' }}>
+                          <span>Diet: <strong style={{ color: '#d1d5db' }}>{s.diet || 'Unknown'}</strong></span>
+                          <span>Security: <strong style={{ color: '#f59e0b' }}>Lv. {secRating}</strong></span>
+                          <span>Appeal: <strong style={{ color: '#14b8a6' }}>{femaleApp}</strong></span>
+                        </div>
+                        <div style={{ fontSize: '11px', color: '#38bdf8' }}>
+                          <span>Habitat: </span><span style={{ color: '#94a3b8' }}>{habitatStr}</span>
+                        </div>
                       </div>
                       <button
                         disabled={inPaddock}
@@ -863,6 +958,7 @@ export default function App() {
                           borderRadius: '4px',
                           fontWeight: 'bold',
                           cursor: inPaddock ? 'not-allowed' : 'pointer',
+                          whiteSpace: 'nowrap'
                         }}
                       >
                         {inPaddock ? 'In Enclosure' : '+ Add'}
@@ -879,7 +975,6 @@ export default function App() {
   );
 }
 
-// Stepper Button Style helper
 const stepperBtnStyle = {
   background: '#374151',
   color: '#fff',
