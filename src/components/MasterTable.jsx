@@ -122,136 +122,189 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   }, [searchTerm, sortConfig, paddock]);
 
   const SortIcon = ({ columnKey }) => {
-    if (sortConfig.key !== columnKey) return <span style={{ opacity: 0.3 }}> ↕</span>;
+    if (sortConfig.key !== columnKey) return <span className="opacity-30"> ↕</span>;
     return <span>{sortConfig.direction === 'asc' ? ' ↑' : ' ↓'}</span>;
   };
 
   return (
-    <div style={{ background: '#1f2937', padding: '20px', borderRadius: '10px', border: '1px solid #374151' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '15px' }}>
+    <div className="bg-gray-800 p-4 md:p-5 rounded-xl border border-gray-700 w-full text-left">
+      
+      {/* HEADER & CONTROLS */}
+      <div className="flex flex-col md:flex-row justify-between md:items-center mb-5 gap-4">
         <div>
-          <h2 style={{ margin: 0, color: '#14b8a6', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <h2 className="m-0 text-teal-400 flex items-center gap-2 text-xl font-bold">
             Master Species Spreadsheet
           </h2>
-          <p style={{ margin: '4px 0 0 0', color: '#9ca3af', fontSize: '14px' }}>
+          <p className="mt-1 text-gray-400 text-sm">
             Compare base stats, security ratings, cohabitation, and area efficiency in Hectares (ha).
           </p>
         </div>
         
-        <div style={{ display: 'flex', gap: '15px' }}>
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
             placeholder="Search name, family, diet..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-              background: '#111827',
-              border: '1px solid #374151',
-              color: '#fff',
-              padding: '8px 16px',
-              borderRadius: '6px',
-            }}
+            className="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full sm:w-auto"
           />
           <button
             onClick={onClose}
-            style={{
-              background: '#374151',
-              color: '#f3f4f6',
-              border: '1px solid #4b5563',
-              padding: '8px 16px',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-            }}
+            className="bg-gray-700 text-gray-100 border border-gray-600 px-4 py-2 rounded-md font-bold hover:bg-gray-600 transition-colors whitespace-nowrap"
           >
             Return to Planner
           </button>
         </div>
       </div>
 
-      <div style={{ overflowX: 'auto', maxHeight: '70vh', borderRadius: '8px', border: '1px solid #374151' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '14px' }}>
-          <thead style={{ background: '#111827', position: 'sticky', top: 0, zIndex: 10 }}>
+      {/* MOBILE VIEW: STACKED CARDS */}
+      <div className="block md:hidden space-y-3 max-h-[75vh] overflow-y-auto pb-4 pr-1">
+        {sortedAndFilteredData.map((s, index) => {
+          const inPaddock = paddock.some((p) => p.speciesId === s.id);
+          return (
+            <div key={s.id || index} className="bg-gray-900 border border-gray-700 p-4 rounded-lg shadow-sm">
+              <div className="flex justify-between items-start mb-2">
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-1 flex items-center gap-2">
+                    {s.name}
+                    {s.isCompatible ? (
+                      <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
+                        OK
+                      </span>
+                    ) : (
+                      <span className="bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
+                        Fight
+                      </span>
+                    )}
+                  </h3>
+                  <p className="text-sm text-gray-400">{s.family} • {s.diet}</p>
+                </div>
+                
+                <button
+                  disabled={inPaddock}
+                  onClick={() => onAddSpecies(s.id)}
+                  className={`px-3 py-1.5 rounded-md font-bold text-sm min-w-[70px] ${
+                    inPaddock ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-teal-500 text-gray-900 cursor-pointer hover:bg-teal-400'
+                  }`}
+                >
+                  {inPaddock ? 'Added' : '+ Add'}
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-gray-800 text-sm">
+                <div>
+                  <span className="text-gray-500 block text-xs uppercase">Appeal</span>
+                  <span className="text-teal-400 font-bold">{s.baseAppeal}</span>
+                </div>
+                <div>
+                  <span className="text-gray-500 block text-xs uppercase">Density</span>
+                  <span className="text-amber-500 font-bold">{s.appealDensityHa.toLocaleString()} <span className="text-gray-500 text-xs">/ha</span></span>
+                </div>
+                <div>
+                  <span className="text-gray-500 block text-xs uppercase">Base Area</span>
+                  <span className="text-gray-300">{s.totalAreaHa.toFixed(2)} ha</span>
+                </div>
+                <div>
+                  <span className="text-gray-500 block text-xs uppercase">Security</span>
+                  <span className="text-amber-500">Lv. {s.securityRating}</span>
+                </div>
+              </div>
+
+              {/* Habitat & Cohab Info for Mobile */}
+              <div className="mt-3 bg-gray-800 rounded p-2 text-xs">
+                <p className="text-sky-400 leading-tight mb-1">
+                  <strong>Habitat:</strong> {s.habitatStr}
+                </p>
+                <div className="leading-tight">
+                  {s.likes.length > 0 && (
+                    <div className="text-green-400 mb-1"><strong>Likes:</strong> {s.likes.join(', ')}</div>
+                  )}
+                  {s.dislikes.length > 0 && (
+                    <div className="text-red-400"><strong>Fights:</strong> {s.dislikes.join(', ')}</div>
+                  )}
+                  {s.likes.length === 0 && s.dislikes.length === 0 && (
+                    <span className="text-gray-500">No specific preferences</span>
+                  )}
+                </div>
+              </div>
+
+            </div>
+          );
+        })}
+      </div>
+
+      {/* DESKTOP VIEW: STANDARD SPREADSHEET */}
+      <div className="hidden md:block overflow-x-auto max-h-[70vh] rounded-lg border border-gray-700 custom-scrollbar">
+        <table className="w-full border-collapse text-left text-sm whitespace-nowrap">
+          <thead className="bg-gray-900 sticky top-0 z-10 text-gray-100 border-b-2 border-gray-700">
             <tr>
-              <th onClick={() => handleSort('name')} style={thStyle}>Species <SortIcon columnKey="name" /></th>
-              <th onClick={() => handleSort('isCompatible')} style={thStyle}>Compatible <SortIcon columnKey="isCompatible" /></th>
-              <th onClick={() => handleSort('diet')} style={thStyle}>Diet <SortIcon columnKey="diet" /></th>
-              <th style={thStyle}>Habitat Needs</th>
-              <th style={thStyle}>Cohabitation & Interactions</th>
-              <th onClick={() => handleSort('family')} style={thStyle}>Family <SortIcon columnKey="family" /></th>
-              <th onClick={() => handleSort('baseAppeal')} style={thStyle}>Appeal <SortIcon columnKey="baseAppeal" /></th>
-              <th onClick={() => handleSort('securityRating')} style={thStyle}>Security <SortIcon columnKey="securityRating" /></th>
-              <th onClick={() => handleSort('totalAreaHa')} style={thStyle}>Base Area (ha) <SortIcon columnKey="totalAreaHa" /></th>
-              <th onClick={() => handleSort('appealDensityHa')} style={thStyle}>Appeal / ha <SortIcon columnKey="appealDensityHa" /></th>
+              <th onClick={() => handleSort('name')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Species <SortIcon columnKey="name" /></th>
+              <th onClick={() => handleSort('isCompatible')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Compatible <SortIcon columnKey="isCompatible" /></th>
+              <th onClick={() => handleSort('diet')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Diet <SortIcon columnKey="diet" /></th>
+              <th className="p-3">Habitat Needs</th>
+              <th className="p-3">Cohabitation & Interactions</th>
+              <th onClick={() => handleSort('family')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Family <SortIcon columnKey="family" /></th>
+              <th onClick={() => handleSort('baseAppeal')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Appeal <SortIcon columnKey="baseAppeal" /></th>
+              <th onClick={() => handleSort('securityRating')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Security <SortIcon columnKey="securityRating" /></th>
+              <th onClick={() => handleSort('totalAreaHa')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Base Area (ha) <SortIcon columnKey="totalAreaHa" /></th>
+              <th onClick={() => handleSort('appealDensityHa')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Appeal / ha <SortIcon columnKey="appealDensityHa" /></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-gray-700">
             {sortedAndFilteredData.map((s, index) => {
               const inPaddock = paddock.some((p) => p.speciesId === s.id);
               return (
-                <tr key={s.id || index} style={{ background: index % 2 === 0 ? '#1f2937' : '#111827', borderBottom: '1px solid #374151' }}>
-                  <td style={{ ...tdStyle, display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <tr key={s.id || index} className={`${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} hover:bg-gray-700 transition-colors`}>
+                  <td className="p-3 flex items-center gap-3">
                     <button
                       disabled={inPaddock}
                       onClick={() => onAddSpecies(s.id)}
-                      style={{
-                        background: inPaddock ? '#374151' : '#14b8a6',
-                        color: inPaddock ? '#9ca3af' : '#111827',
-                        border: 'none',
-                        padding: '6px 10px',
-                        borderRadius: '4px',
-                        fontWeight: 'bold',
-                        cursor: inPaddock ? 'not-allowed' : 'pointer',
-                        fontSize: '11px',
-                        minWidth: '65px'
-                      }}
+                      className={`px-2.5 py-1.5 rounded text-xs font-bold min-w-[65px] ${
+                        inPaddock ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-teal-500 text-gray-900 cursor-pointer hover:bg-teal-400'
+                      }`}
                     >
                       {inPaddock ? 'Added' : '+ Add'}
                     </button>
-                    <b>{s.name}</b>
+                    <b className="text-white">{s.name}</b>
                   </td>
 
-                  <td style={tdStyle}>
+                  <td className="p-3">
                     {s.isCompatible ? (
-                      <span style={{ background: '#22c55e22', color: '#4ade80', padding: '4px 8px', borderRadius: '4px', fontWeight: 'bold', fontSize: '12px' }}>
+                      <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs font-bold">
                         Yes
                       </span>
                     ) : (
-                      <span style={{ background: '#ef444422', color: '#f87171', padding: '4px 8px', borderRadius: '4px', fontWeight: 'bold', fontSize: '12px' }}>
+                      <span className="bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-bold">
                         No
                       </span>
                     )}
                   </td>
 
-                  <td style={{ ...tdStyle, color: '#d1d5db' }}>{s.diet}</td>
+                  <td className="p-3 text-gray-300">{s.diet}</td>
 
-                  <td style={{ ...tdStyle, fontSize: '12px', color: '#38bdf8', minWidth: '180px', whiteSpace: 'normal', lineHeight: '1.4' }}>
+                  <td className="p-3 text-sky-400 text-xs min-w-[180px] whitespace-normal leading-tight">
                     {s.habitatStr}
                   </td>
 
-                  <td style={{ ...tdStyle, fontSize: '12px', minWidth: '220px', whiteSpace: 'normal', lineHeight: '1.4' }}>
+                  <td className="p-3 text-xs min-w-[220px] whitespace-normal leading-tight">
                     {s.likes.length > 0 && (
-                      <div style={{ color: '#4ade80', marginBottom: '2px' }}>
-                        <strong>Likes:</strong> {s.likes.join(', ')}
-                      </div>
+                      <div className="text-green-400 mb-0.5"><strong>Likes:</strong> {s.likes.join(', ')}</div>
                     )}
                     {s.dislikes.length > 0 && (
-                      <div style={{ color: '#f87171' }}>
-                        <strong>Fights:</strong> {s.dislikes.join(', ')}
-                      </div>
+                      <div className="text-red-400"><strong>Fights:</strong> {s.dislikes.join(', ')}</div>
                     )}
                     {s.likes.length === 0 && s.dislikes.length === 0 && (
-                      <span style={{ color: '#6b7280' }}>No specific preferences</span>
+                      <span className="text-gray-500">No specific preferences</span>
                     )}
                   </td>
 
-                  <td style={{ ...tdStyle, color: '#9ca3af' }}>{s.family}</td>
-                  <td style={{ ...tdStyle, color: '#14b8a6', fontWeight: 'bold' }}>{s.baseAppeal}</td>
-                  <td style={{ ...tdStyle, color: '#f59e0b' }}>Lv. {s.securityRating}</td>
+                  <td className="p-3 text-gray-400">{s.family}</td>
+                  <td className="p-3 text-teal-400 font-bold">{s.baseAppeal}</td>
+                  <td className="p-3 text-amber-500">Lv. {s.securityRating}</td>
                   
-                  <td style={tdStyle}>{s.totalAreaHa.toFixed(2)} ha</td>
-                  <td style={{ ...tdStyle, color: '#f59e0b', fontWeight: 'bold' }}>
-                    {s.appealDensityHa.toLocaleString()} <small style={{ color: '#9ca3af' }}>/ha</small>
+                  <td className="p-3 text-gray-300">{s.totalAreaHa.toFixed(2)} ha</td>
+                  <td className="p-3 text-amber-500 font-bold">
+                    {s.appealDensityHa.toLocaleString()} <small className="text-gray-400">/ha</small>
                   </td>
                 </tr>
               );
@@ -262,19 +315,3 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
     </div>
   );
 }
-
-const thStyle = {
-  padding: '12px 16px',
-  color: '#f3f4f6',
-  cursor: 'pointer',
-  userSelect: 'none',
-  borderBottom: '2px solid #374151',
-  whiteSpace: 'nowrap',
-  verticalAlign: 'middle'
-};
-
-const tdStyle = {
-  padding: '12px 16px',
-  whiteSpace: 'nowrap',
-  verticalAlign: 'middle'
-};

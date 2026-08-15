@@ -1,3 +1,20 @@
+@import "tailwindcss";
+
+/* Custom scrollbar for the Dark HUD Desktop Spreadsheet */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1f2937; 
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #374151; 
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #4b5563; 
+}
 :root {
   --text: #6b6375;
   --text-h: #08060d;
