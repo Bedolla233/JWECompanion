@@ -1,4 +1,5 @@
 import speciesData from '../data/jwe3_species.json';
+import digSitesData from '../data/jwe3_dig_sites.json';
 
 // --- CLASSIFICATION HELPERS ---
 function isCarnivore(dino) {
@@ -430,4 +431,43 @@ export function calculatePaddockSpace(paddockGroup) {
     synergyStatus,
     comfortWarnings,
   };
+}
+
+// Logic for Dig sites
+
+export function calculateRequiredExpeditions(paddockGroup, completedSitesMap) {
+  const requiredSiteIds = new Set();
+  const activeSpeciesIds = paddockGroup.map((p) => p.speciesId);
+
+  const targetSites = digSitesData.filter((site) =>
+    site.species.some((sp) => activeSpeciesIds.includes(sp))
+  );
+
+  const traverseDependencies = (siteId) => {
+    if (!siteId || completedSitesMap[siteId]) return;
+    requiredSiteIds.add(siteId);
+    
+    const site = digSitesData.find((s) => s.id === siteId);
+    if (site && site.unlocks_after) {
+      traverseDependencies(site.unlocks_after);
+    }
+  };
+
+  targetSites.forEach((site) => traverseDependencies(site.id));
+
+  const sites = Array.from(requiredSiteIds)
+    .map((id) => digSitesData.find((s) => s.id === id))
+    .filter(Boolean);
+
+  let totalCost = 0;
+  let totalDuration = 0;
+  let maxLogistics = 0;
+
+  sites.forEach((s) => {
+    totalCost += s.cost || 0;
+    totalDuration += s.duration_seconds || 0;
+    if ((s.logistics || 0) > maxLogistics) maxLogistics = s.logistics;
+  });
+
+  return { sites, totalCost, totalDuration, maxLogistics };
 }

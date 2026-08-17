@@ -1,3 +1,4 @@
+import DigSites from './components/DigSites';
 import MasterTable from './components/MasterTable';
 import React, { useState, useEffect } from 'react';
 import speciesData from './data/jwe3_species.json';
@@ -43,6 +44,24 @@ export default function App() {
     }
     return {};
   });
+
+  const [completedSites, setCompletedSites] = useState(() => {
+    const saved = localStorage.getItem('jwe3_completed_sites');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {}
+    }
+    return {};
+  });
+
+  useEffect(() => {
+    localStorage.setItem('jwe3_completed_sites', JSON.stringify(completedSites));
+  }, [completedSites]);
+
+  const toggleSiteCompletion = (siteId) => {
+    setCompletedSites((prev) => ({ ...prev, [siteId]: !prev[siteId] }));
+  };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -223,6 +242,24 @@ export default function App() {
             </button>
 
             <button
+              onClick={() => setActiveView('digsites')}
+              style={{
+                flex: '1 1 auto',
+                background: activeView === 'digsites' ? '#14b8a6' : '#1f2937',
+                color: activeView === 'digsites' ? '#111827' : '#14b8a6',
+                border: activeView === 'digsites' ? '1px solid #14b8a6' : '1px solid #374151',
+                padding: '10px 16px',
+                borderRadius: '6px',
+                cursor: activeView === 'digsites' ? 'default' : 'pointer',
+                fontWeight: 'bold',
+                whiteSpace: 'nowrap',
+                textAlign: 'center'
+              }}
+            >
+              Dig Sites
+            </button>
+
+            <button
               onClick={handleReset}
               style={{
                 flex: '1 1 auto',
@@ -256,6 +293,12 @@ export default function App() {
               setActiveView('planner');
             }}
             onClose={() => setActiveView('planner')}
+          />
+        ) : activeView === 'digsites' ? (
+          <DigSites
+            paddock={paddock}
+            completedSites={completedSites}
+            toggleSiteCompletion={toggleSiteCompletion}
           />
         ) : (
           <div className="app-grid">
