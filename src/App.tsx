@@ -542,6 +542,31 @@ export default function App() {
                           )}
                         </div>
 
+                        {/* COMFORT WARNINGS UI */}
+                        {summary?.comfortWarnings?.[speciesId]?.length > 0 && (
+                          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '8px' }}>
+                            {summary.comfortWarnings[speciesId].map((warning, idx) => (
+                              <span
+                                key={idx}
+                                style={{
+                                  background: '#ef444422',
+                                  color: '#ef4444',
+                                  border: '1px solid #ef444455',
+                                  padding: '4px 8px',
+                                  borderRadius: '4px',
+                                  fontSize: '11px',
+                                  fontWeight: 'bold',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '4px'
+                                }}
+                              >
+                                ⚠️ {warning}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
                       </div>
                     );
                   }

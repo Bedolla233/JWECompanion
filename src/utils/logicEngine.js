@@ -214,6 +214,7 @@ export function findOptimalTankmates(paddockGroup) {
  */
 export function calculatePaddockSpace(paddockGroup) {
   const maxEnv = {};
+  const comfortWarnings = {};
   let totalAppeal = 0;
   let totalDominance = 0;
 
@@ -239,6 +240,43 @@ export function calculatePaddockSpace(paddockGroup) {
       const maleVariant = getMaleVariant(species);
       const juvenileVariant = getJuvenileVariant(species);
 
+      // --- COMFORT VALIDATOR ---
+      const warnings = [];
+      const minSocial = femaleVariant.social_group_min || 1;
+      const maxSocial = femaleVariant.social_group_max || 0;
+      
+      if (totalDinos < minSocial) {
+        warnings.push(`Lonely (Needs at least ${minSocial})`);
+      }
+      
+      if (maxSocial > 0 && totalDinos > maxSocial) {
+        warnings.push(`Overcrowded (Max ${maxSocial} total)`);
+      }
+
+      if (femaleVariant.pop_limit_max_male > 0 && validMales > femaleVariant.pop_limit_max_male) {
+        warnings.push(`Too many males (Max ${femaleVariant.pop_limit_max_male})`);
+      }
+      if (femaleVariant.pop_limit_max_female > 0 && validFemales > femaleVariant.pop_limit_max_female) {
+        warnings.push(`Too many females (Max ${femaleVariant.pop_limit_max_female})`);
+      }
+      if (femaleVariant.pop_limit_max_juvenile > 0 && validJuveniles > femaleVariant.pop_limit_max_juvenile) {
+        warnings.push(`Too many juveniles (Max ${femaleVariant.pop_limit_max_juvenile})`);
+      }
+      if (femaleVariant.pop_limit_min_male > 0 && validMales < femaleVariant.pop_limit_min_male) {
+        warnings.push(`Needs more males (Min ${femaleVariant.pop_limit_min_male})`);
+      }
+      if (femaleVariant.pop_limit_min_female > 0 && validFemales < femaleVariant.pop_limit_min_female) {
+        warnings.push(`Needs more females (Min ${femaleVariant.pop_limit_min_female})`);
+      }
+      if (femaleVariant.pop_limit_min_juvenile > 0 && validJuveniles < femaleVariant.pop_limit_min_juvenile) {
+        warnings.push(`Needs more juveniles (Min ${femaleVariant.pop_limit_min_juvenile})`);
+      }
+
+      if (warnings.length > 0) {
+        comfortWarnings[speciesId] = warnings;
+      }
+
+      // --- AREA SCALING ---
       const extraAdults = Math.max(0, totalAdults - 1);
       const adultMultiplier = 1 + extraAdults * 0.15;
 
@@ -380,5 +418,6 @@ export function calculatePaddockSpace(paddockGroup) {
     envPercentages,
     envBreakdownM2: maxEnv,
     synergyStatus,
+    comfortWarnings,
   };
 }
