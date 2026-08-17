@@ -144,69 +144,97 @@ export default function App() {
       `}</style>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <header
+      <header
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            flexDirection: 'column',
+            gap: '15px',
             marginBottom: '25px',
             borderBottom: '2px solid #1f2937',
             paddingBottom: '15px',
           }}
         >
-          <div>
-            <h1 style={{ margin: 0, color: '#14b8a6', fontSize: '28px' }}>
-            Unofficial JWE Companion
-            </h1>
-            <p
-              style={{
-                margin: '4px 0 0 0',
-                color: '#9ca3af',
-                fontSize: '14px',
-              }}
-            >
-              Website by Krabone
-            </p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <h1 style={{ margin: 0, color: '#14b8a6', fontSize: '28px', lineHeight: '1.2' }}>
+                Unofficial JWE Companion
+              </h1>
+            </div>
           </div>
-          <div style={{ display: 'flex', gap: '10px' }}>
+          
+          {/* Navigation Buttons Row - Uses flex-wrap for mobile safety */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+            
+            {/* Conditional Escape Hatch */}
+            {activeView !== 'planner' && (
+              <button
+                onClick={() => setActiveView('planner')}
+                style={{
+                  flex: '1 1 auto',
+                  background: '#14b8a6',
+                  color: '#111827',
+                  border: '1px solid #14b8a6',
+                  padding: '10px 16px',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  whiteSpace: 'nowrap',
+                  textAlign: 'center'
+                }}
+              >
+                ← Return to Planner
+              </button>
+            )}
+
             <button
               onClick={() => setActiveView('table')}
               style={{
-                background: '#1f2937',
-                color: '#14b8a6',
-                border: '1px solid #374151',
-                padding: '8px 16px',
+                flex: '1 1 auto',
+                background: activeView === 'table' ? '#14b8a6' : '#1f2937',
+                color: activeView === 'table' ? '#111827' : '#14b8a6',
+                border: activeView === 'table' ? '1px solid #14b8a6' : '1px solid #374151',
+                padding: '10px 16px',
                 borderRadius: '6px',
-                cursor: 'pointer',
+                cursor: activeView === 'table' ? 'default' : 'pointer',
                 fontWeight: 'bold',
+                whiteSpace: 'nowrap',
+                textAlign: 'center'
               }}
             >
               Master Table
             </button>
+
             <button
               onClick={() => setActiveView('genomes')}
               style={{
-                background: '#1f2937',
-                color: '#14b8a6',
-                border: '1px solid #374151',
-                padding: '8px 16px',
+                flex: '1 1 auto',
+                background: activeView === 'genomes' ? '#14b8a6' : '#1f2937',
+                color: activeView === 'genomes' ? '#111827' : '#14b8a6',
+                border: activeView === 'genomes' ? '1px solid #14b8a6' : '1px solid #374151',
+                padding: '10px 16px',
                 borderRadius: '6px',
-                cursor: 'pointer',
+                cursor: activeView === 'genomes' ? 'default' : 'pointer',
                 fontWeight: 'bold',
+                whiteSpace: 'nowrap',
+                textAlign: 'center'
               }}
             >
               Genome Hub
             </button>
+
             <button
               onClick={handleReset}
               style={{
+                flex: '1 1 auto',
                 background: '#374151',
                 color: '#ef4444',
                 border: '1px solid #4b5563',
-                padding: '8px 16px',
+                padding: '10px 16px',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 fontWeight: 'bold',
+                whiteSpace: 'nowrap',
+                textAlign: 'center'
               }}
             >
               Clear Enclosure

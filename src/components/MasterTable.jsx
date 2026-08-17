@@ -4,10 +4,17 @@ import speciesData from '../data/jwe3_species.json';
 export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   const [sortConfig, setSortConfig] = useState({ key: 'appealDensityHa', direction: 'desc' });
   const [searchTerm, setSearchTerm] = useState('');
+  const [familyFilter, setFamilyFilter] = useState('');
+  const [dietFilter, setDietFilter] = useState('');
 
   // Determine active paddock habitat based on first resident
   const activeResident = paddock.length > 0 ? speciesData.find(s => s.id === paddock[0].speciesId) : null;
   const activeHabitat = activeResident ? (activeResident.habitat || 'terrestrial') : null;
+
+  // Extract unique families for the dropdown
+  const families = Array.from(new Set(speciesData.map(s => s.family || "Unknown"))).sort();
+  // Clean, high-level diet categories for the dropdown
+  const dietCategories = ['Carnivore', 'Herbivore', 'Piscivore', 'Omnivore', 'Scavenger', 'Live Prey'];
 
   const checkCompatibility = (candidate) => {
     if (paddock.length === 0) return true;
@@ -62,14 +69,21 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   };
 
   const processSpeciesData = (species) => {
-    const femaleVariant = species.variants?.female || {};
-    const baseAppeal = femaleVariant.appeal || 0;
+    // If it's an array, grab female or first. If object, grab female or male.
+    let femaleVariant = {};
+    if (Array.isArray(species.variants)) {
+      femaleVariant = species.variants.find((v) => v.variant === 'female') || species.variants[0] || {};
+    } else {
+      femaleVariant = species.variants?.female || species.variants?.male || {};
+    }
+
+    const baseAppeal = femaleVariant.appeal || femaleVariant.prestige_base || 0;
     const appealPerHectare = femaleVariant.appeal_per_hectare || 1;
     
     const totalAreaM2 = appealPerHectare > 0 ? (baseAppeal / appealPerHectare) * 10000 : 0;
     const totalAreaHa = totalAreaM2 / 10000;
     const appealDensityHa = totalAreaHa > 0 ? Math.round(baseAppeal / totalAreaHa) : 0;
-    const habitatStr = formatHabitat(species.terrain_percentages);
+    const habitatStr = formatHabitat(species.terrain_percentages || femaleVariant.environment);
 
     // Hard physical boundary check against active enclosure habitat type
     const candidateHabitat = species.habitat || 'terrestrial';
@@ -82,7 +96,7 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
       family: species.family || "Unknown",
       diet: species.diet || "Unknown",
       baseAppeal,
-      securityRating: species.security_rating || 1,
+      securityRating: species.security_rating || femaleVariant.security_rating || 1,
       likes: species.likes || [],
       dislikes: species.dislikes || [],
       totalAreaM2,
@@ -106,9 +120,10 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
     let filtered = speciesData
       .map(processSpeciesData)
       .filter((s) => 
-        (s.name || "").toLowerCase().includes(searchTerm.toLowerCase()) || 
-        (s.family || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (s.diet || "").toLowerCase().includes(searchTerm.toLowerCase())
+        ((s.name || "").toLowerCase().includes(searchTerm.toLowerCase()) || 
+        (s.family || "").toLowerCase().includes(searchTerm.toLowerCase())) &&
+        (familyFilter === '' || (s.family || "").toLowerCase() === familyFilter.toLowerCase()) &&
+        (dietFilter === '' || (s.diet || "").toLowerCase().includes(dietFilter.toLowerCase()))
       );
 
     filtered.sort((a, b) => {
@@ -128,7 +143,7 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
     });
 
     return filtered;
-  }, [searchTerm, sortConfig, paddock]);
+  }, [searchTerm, familyFilter, dietFilter, sortConfig, paddock]);
 
   const SortIcon = ({ columnKey }) => {
     if (sortConfig.key !== columnKey) return <span className="opacity-30"> ↕</span>;
@@ -136,45 +151,91 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   };
 
   return (
-    <div className="bg-gray-800 p-4 md:p-5 rounded-xl border border-gray-700 w-full text-left">
+    <div className="bg-gray-800 p-4 md:p-5 rounded-xl border border-gray-700 w-full text-left flex flex-col h-full">
       
       {/* HEADER & CONTROLS */}
-      <div className="flex flex-col md:flex-row justify-between md:items-center mb-5 gap-4">
-        <div>
-          <h2 className="m-0 text-teal-400 flex items-center gap-2 text-xl font-bold">
-            Master Species Spreadsheet
-          </h2>
-          <p className="mt-1 text-gray-400 text-sm">
-            Compare base stats, security ratings, cohabitation, and area efficiency in Hectares (ha).
-          </p>
-        </div>
+      <div className="flex flex-col gap-4 mb-5">
         
-        <div className="flex flex-col sm:flex-row gap-3">
-          <input
-            type="text"
-            placeholder="Search name, family, diet..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="bg-gray-900 border border-gray-700 text-white px-4 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full sm:w-auto"
-          />
+        {/* Title & Return Button */}
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+          <div>
+            <h2 className="m-0 text-teal-400 flex items-center gap-2 text-xl font-bold">
+              Master Species Spreadsheet
+            </h2>
+            <p className="mt-1 text-gray-400 text-sm">
+              Compare base stats, security ratings, cohabitation, and area efficiency.
+            </p>
+          </div>
           <button
             onClick={onClose}
-            className="bg-gray-700 text-gray-100 border border-gray-600 px-4 py-2 rounded-md font-bold hover:bg-gray-600 transition-colors whitespace-nowrap"
+            className="bg-gray-700 w-full sm:w-auto text-gray-100 border border-gray-600 px-4 py-2 rounded-md font-bold hover:bg-gray-600 transition-colors whitespace-nowrap shadow-sm"
           >
             Return to Planner
           </button>
         </div>
+        
+        {/* Responsive Control Panel */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 bg-gray-900 p-3 rounded-lg border border-gray-700">
+          
+          <input
+            type="text"
+            placeholder="Search name..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="bg-gray-800 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full text-sm"
+          />
+          
+          <select 
+            value={familyFilter} 
+            onChange={(e) => setFamilyFilter(e.target.value)}
+            className="bg-gray-800 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full text-sm"
+          >
+            <option value="">All Families</option>
+            {families.map(f => <option key={f} value={f}>{f}</option>)}
+          </select>
+          
+          <select 
+            value={dietFilter} 
+            onChange={(e) => setDietFilter(e.target.value)}
+            className="bg-gray-800 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full text-sm"
+          >
+            <option value="">All Diets</option>
+            {dietCategories.map(d => <option key={d} value={d}>{d}</option>)}
+          </select>
+
+          {/* MOBILE ONLY: Sort Dropdown (Since Table Headers are hidden) */}
+          <div className="flex gap-2 md:hidden">
+            <select 
+              value={sortConfig.key} 
+              onChange={(e) => setSortConfig({...sortConfig, key: e.target.value})}
+              className="bg-gray-800 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full text-sm"
+            >
+              <option value="name">Sort: Name</option>
+              <option value="appealDensityHa">Sort: Density/ha</option>
+              <option value="baseAppeal">Sort: Base Appeal</option>
+              <option value="totalAreaHa">Sort: Base Area</option>
+              <option value="securityRating">Sort: Security</option>
+            </select>
+            <button 
+              onClick={() => setSortConfig({...sortConfig, direction: sortConfig.direction === 'asc' ? 'desc' : 'asc'})}
+              className="bg-gray-700 border border-gray-500 text-white px-3 py-2 rounded-md font-bold"
+            >
+              {sortConfig.direction === 'asc' ? '↑' : '↓'}
+            </button>
+          </div>
+
+        </div>
       </div>
 
       {/* MOBILE VIEW: STACKED CARDS */}
-      <div className="block md:hidden space-y-3 max-h-[75vh] overflow-y-auto pb-4 pr-1">
+      <div className="block md:hidden space-y-3 overflow-y-auto pb-4 pr-1" style={{ maxHeight: 'calc(100vh - 280px)' }}>
         {sortedAndFilteredData.map((s, index) => {
           const inPaddock = paddock.some((p) => p.speciesId === s.id);
           return (
             <div key={s.id || index} className="bg-gray-900 border border-gray-700 p-4 rounded-lg shadow-sm">
               <div className="flex justify-between items-start mb-2">
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-1 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-white mb-1 flex items-center flex-wrap gap-2">
                     {s.name}
                     {s.isCompatible ? (
                       <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
@@ -227,7 +288,6 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
                 </div>
               </div>
 
-              {/* Habitat & Cohab Info for Mobile */}
               <div className="mt-3 bg-gray-800 rounded p-2 text-xs">
                 <p className="text-sky-400 leading-tight mb-1">
                   <strong>Habitat:</strong> {s.habitatStr}
@@ -251,7 +311,7 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
       </div>
 
       {/* DESKTOP VIEW: STANDARD SPREADSHEET */}
-      <div className="hidden md:block overflow-x-auto max-h-[70vh] rounded-lg border border-gray-700 custom-scrollbar">
+      <div className="hidden md:block overflow-x-auto rounded-lg border border-gray-700 custom-scrollbar flex-grow" style={{ maxHeight: 'calc(100vh - 200px)' }}>
         <table className="w-full border-collapse text-left text-sm whitespace-nowrap">
           <thead className="bg-gray-900 sticky top-0 z-10 text-gray-100 border-b-2 border-gray-700">
             <tr>

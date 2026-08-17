@@ -102,7 +102,8 @@
       "off": 50,
       "tol": -50,
       "int": -75
-    }
+    },
+    "sociability": 0.35
   },
   {
     "id": "albertosaurus",
@@ -209,7 +210,8 @@
       "thr": -50,
       "tol": -50,
       "int": -50
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "allosaurus",
@@ -222,8 +224,8 @@
     "is_hybrid": false,
     "security_rating": 5,
     "likes": [
-      "Ceratosaurus",
-      "Scavenger"
+      "Scavenger",
+      "Therapod"
     ],
     "dislikes": [
       "Carnivore",
@@ -314,7 +316,8 @@
       "off": 25,
       "tol": -50,
       "int": -75
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "amargasaurus",
@@ -328,43 +331,14 @@
     "security_rating": 2,
     "likes": [
       "Ankylodocus",
-      "Ankylosaurus",
-      "Aquilops",
-      "Archaeornithomimus",
-      "Chasmosaurus",
-      "Chungkingosaurus",
-      "Corythosaurus",
+      "Ankylosaurid",
+      "Ceratops",
       "Deinocheirus",
-      "Dracorex",
-      "Edmontosaurus",
-      "Gallimimus",
-      "Gigantspinosaurus",
-      "Homalocephale",
-      "Hypsilophodon",
-      "Kentrosaurus",
-      "Lokiceratops",
-      "Maiasaura",
-      "Microceratus",
-      "Minmi",
-      "Nasutoceratops",
-      "Nodosaurus",
-      "Olorotitan",
-      "Ornithomimus",
-      "Pachycephalosaurus",
-      "Parasaurolophus",
-      "Protoceratops",
-      "Psittacosaurus",
-      "Sauropelta",
-      "Sinoceratops",
-      "Spinoceratops",
+      "Hadrosaur",
+      "Ornithomimosaurid",
+      "Pachy",
       "Stegoceratops",
-      "Stegosaurus",
-      "Struthiomimus",
-      "Stygimoloch",
-      "Styracosaurus",
-      "Torosaurus",
-      "Triceratops",
-      "Tsintaosaurus"
+      "Stegosaurid"
     ],
     "dislikes": [
       "Apatosaurus",
@@ -459,7 +433,8 @@
       "fit": 25,
       "noc": 2,
       "tol": 25
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "ankylodocus",
@@ -537,7 +512,8 @@
       "soc": -75,
       "thr": 25,
       "tol": -50
-    }
+    },
+    "sociability": 0.65
   },
   {
     "id": "ankylosaurus",
@@ -647,7 +623,8 @@
       "noc": 10,
       "res": 25,
       "skt": -50
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "apatosaurus",
@@ -755,7 +732,8 @@
       "met": 50,
       "noc": 4,
       "tol": 25
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "aquilops",
@@ -768,17 +746,7 @@
     "is_hybrid": false,
     "security_rating": 1,
     "likes": [
-      "Chasmosaurus",
-      "Lokiceratops",
-      "Microceratus",
-      "Nasutoceratops",
-      "Protoceratops",
-      "Psittacosaurus",
-      "Sinoceratops",
-      "Spinoceratops",
-      "Styracosaurus",
-      "Torosaurus",
-      "Triceratops"
+      "Ceratops"
     ],
     "dislikes": [
       "Acrocanthosaurus",
@@ -788,7 +756,6 @@
       "Austroraptor",
       "Baryonyx",
       "Carnotaurus",
-      "Ceratosaurus",
       "Concavenator",
       "Cryolophosaurus",
       "Deinonychus",
@@ -809,6 +776,7 @@
       "Spinoraptor",
       "Spinosaurus",
       "Suchomimus",
+      "Therapod",
       "Therizinosaurus",
       "Troodon",
       "Tyrannosaurus rex",
@@ -899,7 +867,8 @@
       "res": 50,
       "skt": -25,
       "soc": 25
-    }
+    },
+    "sociability": 0.65
   },
   {
     "id": "archaeornithomimus",
@@ -1004,7 +973,8 @@
       "res": 50,
       "skt": -50,
       "soc": 25
-    }
+    },
+    "sociability": 0.89
   },
   {
     "id": "atrociraptor",
@@ -1024,7 +994,6 @@
       "Austroraptor",
       "Baryonyx",
       "Carnotaurus",
-      "Ceratosaurus",
       "Concavenator",
       "Cryolophosaurus",
       "Deinonychus",
@@ -1045,6 +1014,7 @@
       "Spinoraptor",
       "Spinosaurus",
       "Suchomimus",
+      "Therapod",
       "Therizinosaurus",
       "Troodon",
       "Tyrannosaurus rex",
@@ -1136,7 +1106,8 @@
       "soc": 25,
       "tol": -50,
       "int": -75
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "attenborosaurus",
@@ -1233,7 +1204,8 @@
       "fit": -25,
       "hum": 50,
       "lif": 25
-    }
+    },
+    "sociability": 0.7
   },
   {
     "id": "austroraptor",
@@ -1337,7 +1309,8 @@
       "off": 50,
       "tol": -75,
       "int": -75
-    }
+    },
+    "sociability": 0.7
   },
   {
     "id": "baryonyx",
@@ -1442,7 +1415,8 @@
       "noc": 8,
       "thr": -25,
       "int": -50
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "brachiosaurus",
@@ -1550,7 +1524,8 @@
       "noc": 6,
       "soc": 25,
       "tol": 25
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "caiuajara",
@@ -1655,7 +1630,8 @@
       "noc": 12,
       "soc": 25,
       "tol": 25
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "carnotaurus",
@@ -1758,7 +1734,8 @@
       "noc": 16,
       "off": 25,
       "int": -75
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "cearadactylus",
@@ -1862,7 +1839,8 @@
       "noc": 8,
       "skt": -25,
       "thr": 50
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "ceratosaurus",
@@ -1966,7 +1944,8 @@
       "noc": 8,
       "res": -25,
       "int": -25
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "chasmosaurus",
@@ -2075,7 +2054,8 @@
       "noc": 4,
       "off": 50,
       "soc": 25
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "chungkingosaurus",
@@ -2182,7 +2162,8 @@
       "res": 50,
       "soc": 75,
       "tol": 50
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "coelophysis",
@@ -2290,7 +2271,8 @@
       "res": 25,
       "skt": -25,
       "soc": 25
-    }
+    },
+    "sociability": 0.86
   },
   {
     "id": "compsognathus",
@@ -2401,7 +2383,8 @@
       "skt": -25,
       "soc": 50,
       "tol": 25
-    }
+    },
+    "sociability": 0.89
   },
   {
     "id": "concavenator",
@@ -2504,7 +2487,8 @@
       "res": 25,
       "tol": -50,
       "int": -50
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "corythosaurus",
@@ -2608,7 +2592,8 @@
       "res": 50,
       "soc": 75,
       "thr": 25
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "cryolophosaurus",
@@ -2621,10 +2606,7 @@
     "is_hybrid": false,
     "security_rating": 5,
     "likes": [
-      "Coelophysis",
-      "Compsognathus",
-      "Moros Intrepidus",
-      "Oviraptor"
+      "Scavenger"
     ],
     "dislikes": [
       "Acrocanthosaurus",
@@ -2634,7 +2616,6 @@
       "Austroraptor",
       "Baryonyx",
       "Carnotaurus",
-      "Ceratosaurus",
       "Concavenator",
       "Deinonychus",
       "Dilophosaurus",
@@ -2653,6 +2634,7 @@
       "Scorpios rex",
       "Spinosaurus",
       "Suchomimus",
+      "Therapod",
       "Therizinosaurus",
       "Troodon",
       "Tyrannosaurus rex",
@@ -2745,14 +2727,15 @@
       "off": 25,
       "tol": -50,
       "int": -75
-    }
+    },
+    "sociability": 0.6
   },
   {
     "id": "deinocheirus",
     "name": "Deinocheirus",
     "release_version": "Base Game",
     "era": "Late Cretaceous",
-    "diet": "Omnivore Piscivore",
+    "diet": "Omnivore",
     "family": "Deinocheirus",
     "size": "Large",
     "is_hybrid": false,
@@ -2848,7 +2831,8 @@
       "noc": 4,
       "skt": -50,
       "soc": -25
-    }
+    },
+    "sociability": 0.4
   },
   {
     "id": "deinonychus",
@@ -2861,10 +2845,7 @@
     "is_hybrid": false,
     "security_rating": 5,
     "likes": [
-      "Coelophysis",
-      "Compsognathus",
-      "Moros Intrepidus",
-      "Oviraptor"
+      "Scavenger"
     ],
     "dislikes": [
       "Acrocanthosaurus",
@@ -2874,7 +2855,6 @@
       "Austroraptor",
       "Baryonyx",
       "Carnotaurus",
-      "Ceratosaurus",
       "Concavenator",
       "Cryolophosaurus",
       "Dilophosaurus",
@@ -2893,6 +2873,7 @@
       "Scorpios rex",
       "Spinosaurus",
       "Suchomimus",
+      "Therapod",
       "Therizinosaurus",
       "Troodon",
       "Tyrannosaurus rex",
@@ -2983,6 +2964,232 @@
       "off": 25,
       "tol": -50,
       "int": -75
+    },
+    "sociability": 0.75
+  },
+  {
+    "id": "deinosuchus",
+    "name": "Deinosuchus",
+    "release_version": "Crocodilia Coast",
+    "era": "Late Cretaceous",
+    "diet": "Piscivore, Carnivore, Live Prey",
+    "family": "Pseudosuchia",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 6,
+    "habitat": "terrestrial",
+    "max_mods": 12,
+    "comfort_thresholds": [
+      0.5,
+      0.7,
+      0.9
+    ],
+    "sociability": 0.85,
+    "likes": [
+      "Scavenger"
+    ],
+    "dislikes": [
+      "Acrocanthosaurus",
+      "Giganotosaurus",
+      "Indominus Rex",
+      "Indoraptor",
+      "Scorpios Rex",
+      "Spinoraptor",
+      "Spinosaurus",
+      "Therizinosaurus",
+      "Tyrannosaurus Rex"
+    ],
+    "traits": {
+      "hab": 5,
+      "agr": -15,
+      "hum": -25,
+      "met": -25,
+      "noc": 8,
+      "off": 25,
+      "tol": -25
+    },
+    "terrain_percentages": {
+      "wetland": 0.5,
+      "barren": 0.1,
+      "deep_water": 0.4
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 900,
+        "appeal_per_hectare": 2289.8,
+        "dominance": 109,
+        "security_rating": 6,
+        "height": 1.5,
+        "length": 10.0,
+        "weight": 5000,
+        "social_group_min": 3,
+        "social_group_max": 4,
+        "pop_limit_min": 1,
+        "pop_limit_min_male": 1,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 0,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 150
+      },
+      "male": {
+        "appeal": 900,
+        "appeal_per_hectare": 2289.8,
+        "dominance": 109,
+        "security_rating": 6,
+        "height": 1.5,
+        "length": 10.0,
+        "weight": 5000,
+        "social_group_min": 3,
+        "social_group_max": 4,
+        "pop_limit_min": 1,
+        "pop_limit_min_male": 0,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 0,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 150
+      },
+      "juvenile": {
+        "appeal": 1800,
+        "appeal_per_hectare": 8014.3,
+        "dominance": 47,
+        "security_rating": 4,
+        "height": null,
+        "length": null,
+        "weight": null,
+        "social_group_min": 3,
+        "social_group_max": 4,
+        "pop_limit_min": 0,
+        "pop_limit_min_male": 0,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 1,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 150
+      }
+    }
+  },
+  {
+    "id": "desmatosuchus",
+    "name": "Desmatosuchus",
+    "release_version": "Crocodilia Coast",
+    "era": "Late Triassic",
+    "diet": "Ground Palaeobotany",
+    "family": "Pseudosuchia",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 2,
+    "habitat": "terrestrial",
+    "max_mods": 8,
+    "comfort_thresholds": [
+      0.4,
+      0.6,
+      0.9
+    ],
+    "sociability": 0.65,
+    "likes": [
+      "Deinocheirus",
+      "Hadrosaur",
+      "Ornithomimosaurid",
+      "Pachy",
+      "Sauropod"
+    ],
+    "dislikes": [
+      "Ankylosaurid",
+      "Ceratops",
+      "Indominus Rex",
+      "Indoraptor",
+      "Scorpios Rex",
+      "Spinoraptor",
+      "Stegoceratops",
+      "Stegosaurid",
+      "Therizinosaurus"
+    ],
+    "traits": {
+      "hab": 9,
+      "fit": 25,
+      "lif": 25,
+      "noc": 2,
+      "skt": -25,
+      "soc": 25,
+      "tol": -25
+    },
+    "terrain_percentages": {
+      "cover": 0.225,
+      "wetland": 0.4,
+      "ground_fiber": 0.3,
+      "water": 0.075
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 92,
+        "appeal_per_hectare": 587.2,
+        "dominance": 78,
+        "security_rating": 2,
+        "height": 1.5,
+        "length": 5.0,
+        "weight": 300,
+        "social_group_min": 1,
+        "social_group_max": 2,
+        "pop_limit_min": 2,
+        "pop_limit_min_male": 2,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 0,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 125
+      },
+      "male": {
+        "appeal": 92,
+        "appeal_per_hectare": 587.2,
+        "dominance": 78,
+        "security_rating": 2,
+        "height": 1.5,
+        "length": 5.0,
+        "weight": 300,
+        "social_group_min": 1,
+        "social_group_max": 2,
+        "pop_limit_min": 2,
+        "pop_limit_min_male": 2,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 0,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 125
+      },
+      "juvenile": {
+        "appeal": 184,
+        "appeal_per_hectare": 2055.2,
+        "dominance": 34,
+        "security_rating": 1,
+        "height": null,
+        "length": null,
+        "weight": null,
+        "social_group_min": 1,
+        "social_group_max": 2,
+        "pop_limit_min": 0,
+        "pop_limit_min_male": 0,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 1,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 125
+      }
     }
   },
   {
@@ -3086,7 +3293,8 @@
       "res": 25,
       "soc": 25,
       "int": -75
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "dimetrodon",
@@ -3188,7 +3396,8 @@
       "noc": 8,
       "off": 50,
       "skt": -25
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "dimorphodon",
@@ -3290,7 +3499,8 @@
       "noc": 8,
       "res": 25,
       "tol": 25
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "diplodocus",
@@ -3398,7 +3608,8 @@
       "res": 25,
       "soc": 25,
       "thr": 50
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "distortusrex",
@@ -3412,111 +3623,29 @@
     "security_rating": 6,
     "likes": [],
     "dislikes": [
-      "Acrocanthosaurus",
-      "Albertosaurus",
-      "Allosaurus",
-      "Amargasaurus",
-      "Ankylodocus",
-      "Ankylosaurus",
-      "Apatosaurus",
-      "Aquilops",
-      "Archaeornithomimus",
-      "Atrociraptor",
+      "Ankylosaurid",
       "Attenborosaurus",
-      "Austroraptor",
-      "Baryonyx",
-      "Brachiosaurus",
-      "Caiuajara",
-      "Carnotaurus",
-      "Cearadactylus",
-      "Ceratosaurus",
-      "Chasmosaurus",
-      "Chungkingosaurus",
-      "Coelophysis",
-      "Compsognathus",
-      "Concavenator",
-      "Corythosaurus",
-      "Cryolophosaurus",
+      "Carnivore",
+      "Ceratops",
       "Deinocheirus",
-      "Deinonychus",
-      "Dilophosaurus",
       "Dimetrodon",
-      "Dimorphodon",
-      "Diplodocus",
-      "Dracorex",
-      "Dreadnoughtus",
-      "Dryosaurus",
       "Dunkleosteus",
-      "Edmontosaurus",
-      "Gallimimus",
-      "Geosternbergia",
-      "Giganotosaurus",
-      "Gigantspinosaurus",
-      "Guanlong",
-      "Herrerasaurus",
-      "Homalocephale",
-      "Hypsilophodon",
+      "Hadrosaur",
       "Ichthyosaurus",
-      "Iguanodon",
-      "Indominus rex",
-      "Indoraptor",
-      "Irritator",
-      "Kentrosaurus",
       "Kronosaurus",
       "Liopleurodon",
-      "Lokiceratops",
-      "Maiasaura",
-      "Majungasaurus",
-      "Mamenchisaurus",
       "Megalodon",
-      "Metriacanthosaurus",
-      "Microceratus",
-      "Minmi",
-      "Moros Intrepidus",
       "Mosasaurus",
-      "Mutadon",
-      "Muttaburrasaurus",
-      "Nasutoceratops",
-      "Nodosaurus",
-      "Olorotitan",
-      "Ornithomimus",
-      "Oviraptor",
-      "Pachycephalosaurus",
-      "Parasaurolophus",
-      "Patagotitan",
+      "Ornithomimosaurid",
+      "Pachy",
       "Plesiosaurus",
-      "Proceratosaurus",
-      "Protoceratops",
-      "Psittacosaurus",
-      "Pteranodon",
-      "Pyroraptor",
-      "Qianzhousaurus",
-      "Quetzalcoatlus",
-      "Sauropelta",
-      "Scorpios rex",
-      "Sinoceratops",
-      "Spinoceratops",
-      "Spinoraptor",
-      "Spinosaurus",
+      "Pterosaur",
+      "Sauropod",
+      "Scavenger",
       "Stegoceratops",
-      "Stegosaurus",
-      "Struthiomimus",
-      "Stygimoloch",
-      "Styracosaurus",
-      "Suchomimus",
-      "Tapejara",
-      "Thanatosdrakon",
-      "Therizinosaurus",
-      "Titanosaurus",
-      "Torosaurus",
-      "Triceratops",
-      "Troodon",
-      "Tropeognathus",
-      "Tsintaosaurus",
-      "Tyrannosaurus rex",
-      "Utahraptor",
-      "Velociraptor",
-      "Yutyrannus"
+      "Stegosaurid",
+      "Therapod",
+      "Therizinosaurus"
     ],
     "terrain_percentages": {
       "cover": 0.2498,
@@ -3571,7 +3700,8 @@
       "thr": -50,
       "tol": -50,
       "int": -100
-    }
+    },
+    "sociability": 0.1
   },
   {
     "id": "dracorex",
@@ -3584,24 +3714,10 @@
     "is_hybrid": false,
     "security_rating": 3,
     "likes": [
-      "Amargasaurus",
-      "Ankylodocus",
-      "Ankylosaurus",
-      "Apatosaurus",
-      "Brachiosaurus",
-      "Chungkingosaurus",
-      "Diplodocus",
-      "Dreadnoughtus",
-      "Gigantspinosaurus",
-      "Kentrosaurus",
-      "Mamenchisaurus",
-      "Minmi",
-      "Nodosaurus",
-      "Patagotitan",
-      "Sauropelta",
+      "Ankylosaurid",
+      "Sauropod",
       "Stegoceratops",
-      "Stegosaurus",
-      "Titanosaurus"
+      "Stegosaurid"
     ],
     "dislikes": [
       "Indominus rex",
@@ -3690,7 +3806,8 @@
       "fit": 25,
       "noc": 2,
       "soc": 50
-    }
+    },
+    "sociability": 0.9
   },
   {
     "id": "dreadnoughtus",
@@ -3799,7 +3916,8 @@
       "met": -25,
       "noc": 10,
       "tol": 50
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "dryosaurus",
@@ -3904,7 +4022,8 @@
       "met": 25,
       "noc": 4,
       "tol": 25
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "dunkleosteus",
@@ -4000,7 +4119,8 @@
       "lif": -25,
       "met": 25,
       "skt": 25
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "edmontosaurus",
@@ -4104,7 +4224,8 @@
       "def": 25,
       "noc": 4,
       "tol": 25
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "gallimimus",
@@ -4210,7 +4331,8 @@
       "skt": -50,
       "thr": 25,
       "tol": 25
-    }
+    },
+    "sociability": 0.86
   },
   {
     "id": "geosternbergia",
@@ -4315,7 +4437,8 @@
       "noc": 8,
       "off": 75,
       "tol": 25
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "giganotosaurus",
@@ -4419,7 +4542,8 @@
       "res": 25,
       "tol": -50,
       "int": -75
-    }
+    },
+    "sociability": 0.35
   },
   {
     "id": "gigantspinosaurus",
@@ -4525,7 +4649,8 @@
       "def": 25,
       "noc": 6,
       "soc": 25
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "guanlong",
@@ -4626,7 +4751,8 @@
       "noc": 16,
       "res": 50,
       "thr": 75
-    }
+    },
+    "sociability": 0
   },
   {
     "id": "herrerasaurus",
@@ -4729,7 +4855,8 @@
       "off": 25,
       "skt": -25,
       "int": -75
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "homalocephale",
@@ -4832,7 +4959,8 @@
       "res": 75,
       "soc": 25,
       "tol": 25
-    }
+    },
+    "sociability": 0.88
   },
   {
     "id": "hypsilophodon",
@@ -4936,7 +5064,8 @@
       "met": 25,
       "noc": 4,
       "tol": 25
-    }
+    },
+    "sociability": 0.88
   },
   {
     "id": "ichthyosaurus",
@@ -5028,7 +5157,8 @@
       "agr": -15,
       "met": 50,
       "off": 25
-    }
+    },
+    "sociability": 0.86
   },
   {
     "id": "iguanodon",
@@ -5135,7 +5265,8 @@
       "skt": -50,
       "soc": 25,
       "tol": 25
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "indominusrex",
@@ -5199,7 +5330,8 @@
       "res": -25,
       "tol": -75,
       "int": -100
-    }
+    },
+    "sociability": 0.25
   },
   {
     "id": "indoraptor",
@@ -5216,102 +5348,51 @@
       "Acrocanthosaurus",
       "Albertosaurus",
       "Allosaurus",
-      "Amargasaurus",
-      "Ankylodocus",
-      "Ankylosaurus",
-      "Apatosaurus",
-      "Aquilops",
-      "Archaeornithomimus",
+      "Ankylosaurid",
       "Atrociraptor",
       "Attenborosaurus",
       "Austroraptor",
       "Baryonyx",
-      "Brachiosaurus",
-      "Caiuajara",
       "Carnotaurus",
-      "Cearadactylus",
-      "Ceratosaurus",
-      "Chasmosaurus",
-      "Chungkingosaurus",
-      "Coelophysis",
-      "Compsognathus",
+      "Ceratops",
       "Concavenator",
-      "Corythosaurus",
       "Cryolophosaurus",
       "Deinocheirus",
       "Deinonychus",
       "Dilophosaurus",
       "Dimetrodon",
-      "Dimorphodon",
-      "Diplodocus",
-      "Dracorex",
-      "Dreadnoughtus",
-      "Dryosaurus",
       "Dunkleosteus",
-      "Edmontosaurus",
-      "Gallimimus",
-      "Geosternbergia",
       "Giganotosaurus",
-      "Gigantspinosaurus",
       "Guanlong",
+      "Hadrosaur",
       "Herrerasaurus",
-      "Homalocephale",
-      "Hypsilophodon",
       "Ichthyosaurus",
-      "Iguanodon",
       "Indominus rex",
       "Irritator",
-      "Kentrosaurus",
       "Kronosaurus",
       "Liopleurodon",
-      "Lokiceratops",
-      "Maiasaura",
       "Majungasaurus",
-      "Mamenchisaurus",
       "Megalodon",
       "Metriacanthosaurus",
-      "Microceratus",
-      "Minmi",
-      "Moros Intrepidus",
       "Mosasaurus",
-      "Muttaburrasaurus",
-      "Nasutoceratops",
-      "Nodosaurus",
-      "Olorotitan",
-      "Ornithomimus",
-      "Oviraptor",
-      "Pachycephalosaurus",
-      "Parasaurolophus",
-      "Patagotitan",
+      "Ornithomimosaurid",
+      "Pachy",
       "Plesiosaurus",
       "Proceratosaurus",
-      "Protoceratops",
-      "Psittacosaurus",
-      "Pteranodon",
+      "Pterosaur",
       "Pyroraptor",
       "Qianzhousaurus",
-      "Quetzalcoatlus",
-      "Sauropelta",
+      "Sauropod",
+      "Scavenger",
       "Scorpios rex",
-      "Sinoceratops",
-      "Spinoceratops",
       "Spinoraptor",
       "Spinosaurus",
       "Stegoceratops",
-      "Stegosaurus",
-      "Struthiomimus",
-      "Stygimoloch",
-      "Styracosaurus",
+      "Stegosaurid",
       "Suchomimus",
-      "Tapejara",
-      "Thanatosdrakon",
+      "Therapod",
       "Therizinosaurus",
-      "Titanosaurus",
-      "Torosaurus",
-      "Triceratops",
       "Troodon",
-      "Tropeognathus",
-      "Tsintaosaurus",
       "Tyrannosaurus rex",
       "Utahraptor",
       "Velociraptor",
@@ -5366,7 +5447,8 @@
       "res": -75,
       "tol": -75,
       "int": -100
-    }
+    },
+    "sociability": 0.3
   },
   {
     "id": "irritator",
@@ -5471,7 +5553,8 @@
       "noc": 8,
       "thr": -25,
       "int": -50
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "kentrosaurus",
@@ -5577,7 +5660,8 @@
       "noc": 8,
       "off": 25,
       "tol": -25
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "kronosaurus",
@@ -5673,7 +5757,8 @@
       "hum": -50,
       "off": 25,
       "tol": -50
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "liopleurodon",
@@ -5766,7 +5851,8 @@
       "fit": 25,
       "lif": -50,
       "met": -25
-    }
+    },
+    "sociability": 0.7
   },
   {
     "id": "lokiceratops",
@@ -5874,7 +5960,8 @@
       "fit": 50,
       "noc": 4,
       "off": 25
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "lystrosaurus",
@@ -5975,7 +6062,8 @@
       "skt": -50,
       "soc": 25,
       "tol": 25
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "maiasaura",
@@ -6082,7 +6170,8 @@
       "skt": -25,
       "soc": 50,
       "tol": 50
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "majungasaurus",
@@ -6096,11 +6185,8 @@
     "security_rating": 4,
     "likes": [
       "Carnotaurus",
-      "Coelophysis",
-      "Compsognathus",
-      "Moros Intrepidus",
-      "Oviraptor",
-      "Qianzhousaurus"
+      "Qianzhousaurus",
+      "Scavenger"
     ],
     "dislikes": [
       "Acrocanthosaurus",
@@ -6110,7 +6196,6 @@
       "Austroraptor",
       "Baryonyx",
       "Carnotaurus",
-      "Ceratosaurus",
       "Concavenator",
       "Cryolophosaurus",
       "Deinonychus",
@@ -6129,6 +6214,7 @@
       "Scorpios rex",
       "Spinosaurus",
       "Suchomimus",
+      "Therapod",
       "Therizinosaurus",
       "Troodon",
       "Tyrannosaurus rex",
@@ -6220,7 +6306,8 @@
       "noc": 16,
       "off": 25,
       "int": -75
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "mamenchisaurus",
@@ -6327,7 +6414,8 @@
       "met": -50,
       "noc": 8,
       "thr": -25
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "megalodon",
@@ -6428,7 +6516,8 @@
       "res": -25,
       "skt": 25,
       "tol": -75
-    }
+    },
+    "sociability": 0.3
   },
   {
     "id": "metriacanthosaurus",
@@ -6533,7 +6622,8 @@
       "thr": -25,
       "tol": -75,
       "int": -50
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "microceratus",
@@ -6546,8 +6636,8 @@
     "is_hybrid": false,
     "security_rating": 1,
     "likes": [
-      "Lystrosaurus",
-      "Ceratops"
+      "Ceratops",
+      "Therapsid"
     ],
     "dislikes": [
       "Carnivore",
@@ -6637,7 +6727,8 @@
       "skt": -25,
       "soc": 25,
       "thr": 25
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "minmi",
@@ -6650,56 +6741,20 @@
     "is_hybrid": false,
     "security_rating": 2,
     "likes": [
-      "Amargasaurus",
-      "Ankylodocus",
-      "Apatosaurus",
-      "Aquilops",
-      "Archaeornithomimus",
-      "Brachiosaurus",
-      "Chasmosaurus",
-      "Corythosaurus",
+      "Ceratops",
       "Deinocheirus",
-      "Diplodocus",
-      "Dracorex",
-      "Dreadnoughtus",
-      "Edmontosaurus",
-      "Gallimimus",
-      "Homalocephale",
-      "Hypsilophodon",
-      "Lokiceratops",
-      "Maiasaura",
-      "Mamenchisaurus",
-      "Microceratus",
-      "Nasutoceratops",
-      "Olorotitan",
-      "Ornithomimus",
-      "Pachycephalosaurus",
-      "Parasaurolophus",
-      "Patagotitan",
-      "Protoceratops",
-      "Psittacosaurus",
-      "Sinoceratops",
-      "Spinoceratops",
-      "Struthiomimus",
-      "Stygimoloch",
-      "Styracosaurus",
-      "Titanosaurus",
-      "Torosaurus",
-      "Triceratops",
-      "Tsintaosaurus"
+      "Hadrosaur",
+      "Ornithomimosaurid",
+      "Pachy",
+      "Sauropod"
     ],
     "dislikes": [
-      "Ankylosaurus",
-      "Chungkingosaurus",
-      "Gigantspinosaurus",
+      "Ankylosaurid",
       "Indominus rex",
       "Indoraptor",
-      "Kentrosaurus",
-      "Nodosaurus",
-      "Sauropelta",
       "Scorpios rex",
       "Stegoceratops",
-      "Stegosaurus",
+      "Stegosaurid",
       "Therizinosaurus"
     ],
     "terrain_percentages": {
@@ -6783,7 +6838,8 @@
       "met": 25,
       "noc": 8,
       "thr": 50
-    }
+    },
+    "sociability": 0.6
   },
   {
     "id": "morosintrepidus",
@@ -6896,7 +6952,8 @@
       "off": 50,
       "res": 25,
       "skt": -25
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "mosasaurus",
@@ -6994,7 +7051,8 @@
       "met": -75,
       "off": 75,
       "res": -50
-    }
+    },
+    "sociability": 0.65
   },
   {
     "id": "mutadon",
@@ -7008,111 +7066,29 @@
     "security_rating": 5,
     "likes": [],
     "dislikes": [
-      "Acrocanthosaurus",
-      "Albertosaurus",
-      "Allosaurus",
-      "Amargasaurus",
-      "Ankylodocus",
-      "Ankylosaurus",
-      "Apatosaurus",
-      "Aquilops",
-      "Archaeornithomimus",
-      "Atrociraptor",
+      "Ankylosaurid",
       "Attenborosaurus",
-      "Austroraptor",
-      "Baryonyx",
-      "Brachiosaurus",
-      "Caiuajara",
-      "Carnotaurus",
-      "Cearadactylus",
-      "Ceratosaurus",
-      "Chasmosaurus",
-      "Chungkingosaurus",
-      "Coelophysis",
-      "Compsognathus",
-      "Concavenator",
-      "Corythosaurus",
-      "Cryolophosaurus",
+      "Carnivore",
+      "Ceratops",
       "Deinocheirus",
-      "Deinonychus",
-      "Dilophosaurus",
       "Dimetrodon",
-      "Dimorphodon",
-      "Diplodocus",
-      "Distortus rex",
-      "Dracorex",
-      "Dreadnoughtus",
-      "Dryosaurus",
       "Dunkleosteus",
-      "Edmontosaurus",
-      "Gallimimus",
-      "Geosternbergia",
-      "Giganotosaurus",
-      "Gigantspinosaurus",
-      "Guanlong",
-      "Herrerasaurus",
-      "Homalocephale",
-      "Hypsilophodon",
+      "Hadrosaur",
       "Ichthyosaurus",
-      "Iguanodon",
-      "Indominus rex",
-      "Indoraptor",
-      "Irritator",
-      "Kentrosaurus",
       "Kronosaurus",
       "Liopleurodon",
-      "Lokiceratops",
-      "Maiasaura",
-      "Majungasaurus",
-      "Mamenchisaurus",
       "Megalodon",
-      "Metriacanthosaurus",
-      "Microceratus",
-      "Minmi",
-      "Moros Intrepidus",
       "Mosasaurus",
-      "Muttaburrasaurus",
-      "Nasutoceratops",
-      "Nodosaurus",
-      "Olorotitan",
-      "Ornithomimus",
-      "Oviraptor",
-      "Pachycephalosaurus",
-      "Parasaurolophus",
-      "Patagotitan",
+      "Ornithomimosaurid",
+      "Pachy",
       "Plesiosaurus",
-      "Proceratosaurus",
-      "Protoceratops",
-      "Psittacosaurus",
-      "Pteranodon",
-      "Pyroraptor",
-      "Qianzhousaurus",
-      "Quetzalcoatlus",
-      "Sauropelta",
-      "Scorpios rex",
-      "Sinoceratops",
-      "Spinoceratops",
-      "Spinoraptor",
-      "Spinosaurus",
+      "Pterosaur",
+      "Sauropod",
+      "Scavenger",
       "Stegoceratops",
-      "Stegosaurus",
-      "Struthiomimus",
-      "Stygimoloch",
-      "Styracosaurus",
-      "Suchomimus",
-      "Tapejara",
-      "Thanatosdrakon",
-      "Therizinosaurus",
-      "Titanosaurus",
-      "Torosaurus",
-      "Triceratops",
-      "Troodon",
-      "Tropeognathus",
-      "Tsintaosaurus",
-      "Tyrannosaurus rex",
-      "Utahraptor",
-      "Velociraptor",
-      "Yutyrannus"
+      "Stegosaurid",
+      "Therapod",
+      "Therizinosaurus"
     ],
     "terrain_percentages": {
       "cover": 0.106,
@@ -7162,7 +7138,8 @@
       "off": 75,
       "tol": -75,
       "int": -75
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "muttaburrasaurus",
@@ -7267,7 +7244,8 @@
       "skt": -25,
       "soc": 25,
       "tol": 25
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "nasutoceratops",
@@ -7374,7 +7352,8 @@
       "noc": 2,
       "res": 25,
       "soc": 25
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "nodosaurus",
@@ -7480,7 +7459,8 @@
       "fit": 25,
       "noc": 2,
       "soc": 25
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "olorotitan",
@@ -7584,7 +7564,8 @@
       "res": 25,
       "skt": -25,
       "soc": 25
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "ornithomimus",
@@ -7692,7 +7673,8 @@
       "res": 25,
       "skt": -50,
       "soc": 25
-    }
+    },
+    "sociability": 0.86
   },
   {
     "id": "oviraptor",
@@ -7705,22 +7687,22 @@
     "is_hybrid": false,
     "security_rating": 1,
     "likes": [
-      "Carnivore",
-      "Sauropod",
-      "Ornithomimosaurid",
-      "Ceratops",
       "Ankylosaurid",
+      "Carnivore",
+      "Ceratops",
       "Hadrosaur",
+      "Ornithomimosaurid",
       "Pachy",
+      "Sauropod",
+      "Scavenger",
       "Stegosaurid",
-      "Therizinosaurid",
-      "Scavenger"
+      "Therizinosaurid"
     ],
     "dislikes": [
       "Indominus rex",
       "Indoraptor",
       "Scorpios rex",
-      "Lystrosaurus"
+      "Therapsid"
     ],
     "terrain_percentages": {
       "cover": 0.1522,
@@ -7804,7 +7786,8 @@
       "noc": 4,
       "off": 50,
       "thr": 25
-    }
+    },
+    "sociability": 0.86
   },
   {
     "id": "pachycephalosaurus",
@@ -7906,7 +7889,8 @@
       "hum": 50,
       "noc": 4,
       "off": 25
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "parasaurolophus",
@@ -8010,7 +7994,8 @@
       "noc": 4,
       "soc": 75,
       "tol": 25
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "patagotitan",
@@ -8119,7 +8104,8 @@
       "noc": 6,
       "res": -25,
       "tol": 25
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "plesiosaurus",
@@ -8211,6 +8197,145 @@
       "fit": -25,
       "met": 25,
       "soc": 50
+    },
+    "sociability": 0.75
+  },
+  {
+    "id": "postosuchus",
+    "name": "Postosuchus",
+    "release_version": "Crocodilia Coast",
+    "era": "Late Triassic",
+    "diet": "Carnivore, Live Prey",
+    "family": "Pseudosuchia",
+    "size": "Small",
+    "is_hybrid": false,
+    "security_rating": 5,
+    "habitat": "terrestrial",
+    "max_mods": 10,
+    "comfort_thresholds": [
+      0.5,
+      0.7,
+      0.9
+    ],
+    "sociability": 0.67,
+    "likes": [
+      "Scavenger"
+    ],
+    "dislikes": [
+      "Acrocanthosaurus",
+      "Albertosaurus",
+      "Allosaurus",
+      "Atrociraptor",
+      "Austroraptor",
+      "Baryonyx",
+      "Carnotaurus",
+      "Concavenator",
+      "Cryolophosaurus",
+      "Deinonychus",
+      "Deinosuchus",
+      "Dilophosaurus",
+      "Dimetrodon",
+      "Giganotosaurus",
+      "Guanlong",
+      "Herrerasaurus",
+      "Indominus Rex",
+      "Indoraptor",
+      "Irritator",
+      "Majungasaurus",
+      "Metriacanthosaurus",
+      "Proceratosaurus",
+      "Pyroraptor",
+      "Qianzhousaurus",
+      "Scorpios Rex",
+      "Spinoraptor",
+      "Spinosaurus",
+      "Suchomimus",
+      "Therapod",
+      "Therizinosaurus",
+      "Troodon",
+      "Tyrannosaurus Rex",
+      "Utahraptor",
+      "Velociraptor",
+      "Yutyrannus"
+    ],
+    "traits": {
+      "hab": 4,
+      "agr": -25,
+      "fit": -25,
+      "int": -75,
+      "noc": 16,
+      "off": 25,
+      "skt": -25,
+      "soc": 25,
+      "tol": -25
+    },
+    "terrain_percentages": {
+      "wetland": 0.677,
+      "arid": 0.188,
+      "water": 0.135
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 160,
+        "appeal_per_hectare": 278.6,
+        "dominance": 69,
+        "security_rating": 5,
+        "height": 1.1,
+        "length": 4.5,
+        "weight": 200,
+        "social_group_min": 2,
+        "social_group_max": 3,
+        "pop_limit_min": 2,
+        "pop_limit_min_male": 0,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 0,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 50
+      },
+      "male": {
+        "appeal": 160,
+        "appeal_per_hectare": 278.6,
+        "dominance": 69,
+        "security_rating": 5,
+        "height": 1.1,
+        "length": 4.5,
+        "weight": 200,
+        "social_group_min": 2,
+        "social_group_max": 3,
+        "pop_limit_min": 2,
+        "pop_limit_min_male": 0,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 0,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 50
+      },
+      "juvenile": {
+        "appeal": 320,
+        "appeal_per_hectare": 975.1,
+        "dominance": 30,
+        "security_rating": 3,
+        "height": null,
+        "length": null,
+        "weight": null,
+        "social_group_min": 2,
+        "social_group_max": 3,
+        "pop_limit_min": 0,
+        "pop_limit_min_male": 0,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 1,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 50
+      }
     }
   },
   {
@@ -8314,7 +8439,8 @@
       "off": 25,
       "tol": -50,
       "int": -75
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "protoceratops",
@@ -8420,7 +8546,8 @@
       "noc": 6,
       "off": 50,
       "soc": 25
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "psittacosaurus",
@@ -8525,7 +8652,8 @@
       "met": 25,
       "noc": 6,
       "thr": 25
-    }
+    },
+    "sociability": 0
   },
   {
     "id": "pteranodon",
@@ -8629,7 +8757,8 @@
       "noc": 16,
       "res": 25,
       "soc": 50
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "pyroraptor",
@@ -8732,7 +8861,8 @@
       "soc": 25,
       "tol": -75,
       "int": -75
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "qianzhousaurus",
@@ -8836,7 +8966,8 @@
       "off": 75,
       "tol": -75,
       "int": -50
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "quetzalcoatlus",
@@ -8947,7 +9078,8 @@
       "noc": 24,
       "off": 25,
       "tol": -50
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "sauropelta",
@@ -9054,7 +9186,8 @@
       "noc": 6,
       "off": -50,
       "tol": 25
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "scorpiosrex",
@@ -9071,102 +9204,51 @@
       "Acrocanthosaurus",
       "Albertosaurus",
       "Allosaurus",
-      "Amargasaurus",
-      "Ankylodocus",
-      "Ankylosaurus",
-      "Apatosaurus",
-      "Aquilops",
-      "Archaeornithomimus",
+      "Ankylosaurid",
       "Atrociraptor",
       "Attenborosaurus",
       "Austroraptor",
       "Baryonyx",
-      "Brachiosaurus",
-      "Caiuajara",
       "Carnotaurus",
-      "Cearadactylus",
-      "Ceratosaurus",
-      "Chasmosaurus",
-      "Chungkingosaurus",
-      "Coelophysis",
-      "Compsognathus",
+      "Ceratops",
       "Concavenator",
-      "Corythosaurus",
       "Cryolophosaurus",
       "Deinocheirus",
       "Deinonychus",
       "Dilophosaurus",
       "Dimetrodon",
-      "Dimorphodon",
-      "Diplodocus",
-      "Dracorex",
-      "Dreadnoughtus",
-      "Dryosaurus",
       "Dunkleosteus",
-      "Edmontosaurus",
-      "Gallimimus",
-      "Geosternbergia",
       "Giganotosaurus",
-      "Gigantspinosaurus",
       "Guanlong",
+      "Hadrosaur",
       "Herrerasaurus",
-      "Homalocephale",
-      "Hypsilophodon",
       "Ichthyosaurus",
-      "Iguanodon",
       "Indominus rex",
       "Indoraptor",
       "Irritator",
-      "Kentrosaurus",
       "Kronosaurus",
       "Liopleurodon",
-      "Lokiceratops",
-      "Maiasaura",
       "Majungasaurus",
-      "Mamenchisaurus",
       "Megalodon",
       "Metriacanthosaurus",
-      "Microceratus",
-      "Minmi",
-      "Moros Intrepidus",
       "Mosasaurus",
-      "Muttaburrasaurus",
-      "Nasutoceratops",
-      "Nodosaurus",
-      "Olorotitan",
-      "Ornithomimus",
-      "Oviraptor",
-      "Pachycephalosaurus",
-      "Parasaurolophus",
-      "Patagotitan",
+      "Ornithomimosaurid",
+      "Pachy",
       "Plesiosaurus",
       "Proceratosaurus",
-      "Protoceratops",
-      "Psittacosaurus",
-      "Pteranodon",
+      "Pterosaur",
       "Pyroraptor",
       "Qianzhousaurus",
-      "Quetzalcoatlus",
-      "Sauropelta",
-      "Sinoceratops",
-      "Spinoceratops",
+      "Sauropod",
+      "Scavenger",
       "Spinoraptor",
       "Spinosaurus",
       "Stegoceratops",
-      "Stegosaurus",
-      "Struthiomimus",
-      "Stygimoloch",
-      "Styracosaurus",
+      "Stegosaurid",
       "Suchomimus",
-      "Tapejara",
-      "Thanatosdrakon",
+      "Therapod",
       "Therizinosaurus",
-      "Titanosaurus",
-      "Torosaurus",
-      "Triceratops",
       "Troodon",
-      "Tropeognathus",
-      "Tsintaosaurus",
       "Tyrannosaurus rex",
       "Utahraptor",
       "Velociraptor",
@@ -9221,6 +9303,103 @@
       "res": -25,
       "tol": -100,
       "int": -75
+    },
+    "sociability": 0.25
+  },
+  {
+    "id": "shonisaurus",
+    "name": "Shonisaurus",
+    "release_version": "Crocodilia Coast",
+    "era": "Late Triassic",
+    "diet": "Shoal",
+    "family": "Marine",
+    "size": "Large",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "habitat": "aquatic",
+    "max_mods": 13,
+    "comfort_thresholds": [
+      0.5,
+      0.7,
+      0.9
+    ],
+    "sociability": 0.8,
+    "likes": [],
+    "dislikes": [],
+    "traits": {
+      "fit": -25,
+      "hum": 50,
+      "lif": -50,
+      "met": -50,
+      "res": 25,
+      "soc": -25
+    },
+    "terrain_percentages": {
+      "open_water": 0.9995,
+      "fish": 0.0005
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 1280,
+        "appeal_per_hectare": 1578.9,
+        "dominance": 137,
+        "security_rating": 3,
+        "height": 3.5,
+        "length": 15.0,
+        "weight": 29000,
+        "social_group_min": 2,
+        "social_group_max": 7,
+        "pop_limit_min": 2,
+        "pop_limit_min_male": 2,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 0,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 250
+      },
+      "male": {
+        "appeal": 1280,
+        "appeal_per_hectare": 1578.9,
+        "dominance": 137,
+        "security_rating": 3,
+        "height": 3.5,
+        "length": 15.0,
+        "weight": 29000,
+        "social_group_min": 2,
+        "social_group_max": 7,
+        "pop_limit_min": 2,
+        "pop_limit_min_male": 2,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 0,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 250
+      },
+      "juvenile": {
+        "appeal": 2560,
+        "appeal_per_hectare": 5526.15,
+        "dominance": 59,
+        "security_rating": 1,
+        "height": null,
+        "length": null,
+        "weight": null,
+        "social_group_min": 2,
+        "social_group_max": 7,
+        "pop_limit_min": 0,
+        "pop_limit_min_male": 0,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 1,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 250
+      }
     }
   },
   {
@@ -9328,7 +9507,8 @@
       "noc": 8,
       "res": 75,
       "soc": 25
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "spinoceratops",
@@ -9406,7 +9586,8 @@
       "thr": -50,
       "tol": -75,
       "int": -25
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "spinoraptor",
@@ -9475,7 +9656,8 @@
       "thr": -25,
       "tol": -50,
       "int": -50
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "spinosaurus",
@@ -9483,7 +9665,7 @@
     "release_version": "Base Game",
     "era": "Late Cretaceous",
     "diet": "Piscivore, Carnivore, Live Prey",
-    "family": "Piscivore",
+    "family": "Carnivore",
     "size": "Large",
     "is_hybrid": false,
     "security_rating": 6,
@@ -9580,7 +9762,8 @@
       "res": -25,
       "tol": -50,
       "int": -75
-    }
+    },
+    "sociability": 0.35
   },
   {
     "id": "stegoceratops",
@@ -9659,7 +9842,8 @@
       "skt": -25,
       "thr": -25,
       "tol": -75
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "stegosaurus",
@@ -9770,7 +9954,8 @@
       "skt": -25,
       "soc": 25,
       "tol": -50
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "struthiomimus",
@@ -9875,7 +10060,8 @@
       "res": 25,
       "skt": -50,
       "soc": 50
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "stygimoloch",
@@ -9977,7 +10163,8 @@
       "noc": 4,
       "thr": 25,
       "tol": 25
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "styracosaurus",
@@ -10087,6 +10274,105 @@
       "noc": 4,
       "off": 25,
       "soc": 75
+    },
+    "sociability": 0.67
+  },
+  {
+    "id": "styxosaurus",
+    "name": "Styxosaurus",
+    "release_version": "Crocodilia Coast",
+    "era": "Late Cretaceous",
+    "diet": "Shoal",
+    "family": "Plesiosaur",
+    "size": "Medium",
+    "is_hybrid": false,
+    "security_rating": 3,
+    "habitat": "aquatic",
+    "max_mods": 13,
+    "comfort_thresholds": [
+      0.5,
+      0.7,
+      0.9
+    ],
+    "sociability": 0.85,
+    "likes": [
+      "Ichthyosaurus",
+      "Plesiosaurus"
+    ],
+    "dislikes": [],
+    "traits": {
+      "agr": -25,
+      "fit": -25,
+      "met": -25,
+      "res": 25,
+      "tol": -50
+    },
+    "terrain_percentages": {
+      "open_water": 0.9996,
+      "fish": 0.0004
+    },
+    "restrictions": {
+      "has_males": true,
+      "has_juveniles": true
+    },
+    "variants": {
+      "female": {
+        "appeal": 789,
+        "appeal_per_hectare": 650.0,
+        "dominance": 140,
+        "security_rating": 3,
+        "height": 1.8,
+        "length": 11.0,
+        "weight": 3100,
+        "social_group_min": 2,
+        "social_group_max": 4,
+        "pop_limit_min": 3,
+        "pop_limit_min_male": 0,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 0,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 100
+      },
+      "male": {
+        "appeal": 789,
+        "appeal_per_hectare": 650.0,
+        "dominance": 140,
+        "security_rating": 3,
+        "height": 1.8,
+        "length": 11.0,
+        "weight": 3100,
+        "social_group_min": 2,
+        "social_group_max": 4,
+        "pop_limit_min": 3,
+        "pop_limit_min_male": 0,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 0,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 100
+      },
+      "juvenile": {
+        "appeal": 1578,
+        "appeal_per_hectare": 2275.0,
+        "dominance": 60,
+        "security_rating": 1,
+        "height": null,
+        "length": null,
+        "weight": null,
+        "social_group_min": 2,
+        "social_group_max": 4,
+        "pop_limit_min": 0,
+        "pop_limit_min_male": 0,
+        "pop_limit_min_female": 0,
+        "pop_limit_min_juvenile": 1,
+        "pop_limit_max_male": 0,
+        "pop_limit_max_female": 0,
+        "pop_limit_max_juvenile": 0,
+        "appetite": 100
+      }
     }
   },
   {
@@ -10196,7 +10482,8 @@
       "thr": -25,
       "tol": -50,
       "int": -75
-    }
+    },
+    "sociability": 0.75
   },
   {
     "id": "tapejara",
@@ -10301,7 +10588,8 @@
       "res": 25,
       "soc": 25,
       "tol": 50
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "thanatosdrakon",
@@ -10406,7 +10694,8 @@
       "met": 25,
       "noc": 16,
       "skt": 25
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "therizinosaurus",
@@ -10510,7 +10799,8 @@
       "noc": 4,
       "skt": -50,
       "tol": -50
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "titanosaurus",
@@ -10523,11 +10813,8 @@
     "is_hybrid": false,
     "security_rating": 4,
     "likes": [
-      "Coelophysis",
-      "Compsognathus",
-      "Moros Intrepidus",
-      "Oviraptor",
-      "Patagotitan"
+      "Patagotitan",
+      "Scavenger"
     ],
     "dislikes": [
       "Acrocanthosaurus",
@@ -10537,7 +10824,6 @@
       "Austroraptor",
       "Baryonyx",
       "Carnotaurus",
-      "Ceratosaurus",
       "Concavenator",
       "Cryolophosaurus",
       "Deinonychus",
@@ -10557,6 +10843,7 @@
       "Scorpios rex",
       "Spinosaurus",
       "Suchomimus",
+      "Therapod",
       "Therizinosaurus",
       "Troodon",
       "Tyrannosaurus rex",
@@ -10648,7 +10935,8 @@
       "met": -25,
       "noc": 6,
       "res": 50
-    }
+    },
+    "sociability": 0.9
   },
   {
     "id": "torosaurus",
@@ -10661,36 +10949,12 @@
     "is_hybrid": false,
     "security_rating": 4,
     "likes": [
-      "Ankylosaurus",
-      "Aquilops",
-      "Archaeornithomimus",
-      "Chasmosaurus",
-      "Coelophysis",
-      "Compsognathus",
-      "Corythosaurus",
+      "Ankylosaurid",
+      "Ceratops",
       "Deinocheirus",
-      "Edmontosaurus",
-      "Gallimimus",
-      "Lokiceratops",
-      "Maiasaura",
-      "Microceratus",
-      "Minmi",
-      "Moros Intrepidus",
-      "Nasutoceratops",
-      "Nodosaurus",
-      "Olorotitan",
-      "Ornithomimus",
-      "Oviraptor",
-      "Parasaurolophus",
-      "Protoceratops",
-      "Psittacosaurus",
-      "Sauropelta",
-      "Sinoceratops",
-      "Spinoceratops",
-      "Struthiomimus",
-      "Styracosaurus",
-      "Triceratops",
-      "Tsintaosaurus"
+      "Hadrosaur",
+      "Ornithomimosaurid",
+      "Scavenger"
     ],
     "dislikes": [
       "Acrocanthosaurus",
@@ -10700,21 +10964,17 @@
       "Austroraptor",
       "Baryonyx",
       "Carnotaurus",
-      "Ceratosaurus",
-      "Chungkingosaurus",
       "Concavenator",
       "Cryolophosaurus",
       "Deinonychus",
       "Dilophosaurus",
       "Dimetrodon",
       "Giganotosaurus",
-      "Gigantspinosaurus",
       "Guanlong",
       "Herrerasaurus",
       "Indominus rex",
       "Indoraptor",
       "Irritator",
-      "Kentrosaurus",
       "Majungasaurus",
       "Metriacanthosaurus",
       "Proceratosaurus",
@@ -10724,9 +10984,10 @@
       "Sinoceratops",
       "Spinosaurus",
       "Stegoceratops",
-      "Stegosaurus",
+      "Stegosaurid",
       "Styracosaurus",
       "Suchomimus",
+      "Therapod",
       "Therizinosaurus",
       "Triceratops",
       "Troodon",
@@ -10816,7 +11077,8 @@
       "def": 25,
       "noc": 4,
       "tol": 50
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "triceratops",
@@ -10924,7 +11186,8 @@
       "noc": 6,
       "off": 25,
       "tol": -75
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "troodon",
@@ -11024,7 +11287,8 @@
       "fit": 25,
       "hum": 50,
       "noc": 8
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "tropeognathus",
@@ -11126,7 +11390,8 @@
       "hum": 25,
       "noc": 16,
       "thr": 25
-    }
+    },
+    "sociability": 0.5
   },
   {
     "id": "tsintaosaurus",
@@ -11230,7 +11495,8 @@
       "fit": 50,
       "noc": 8,
       "off": 75
-    }
+    },
+    "sociability": 0.8
   },
   {
     "id": "tyrannosaurusrex",
@@ -11339,7 +11605,8 @@
       "thr": -50,
       "tol": -50,
       "int": -100
-    }
+    },
+    "sociability": 0.25
   },
   {
     "id": "utahraptor",
@@ -11443,7 +11710,8 @@
       "noc": 24,
       "tol": -50,
       "int": -50
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "velociraptor",
@@ -11546,7 +11814,8 @@
       "off": 75,
       "tol": -75,
       "int": -75
-    }
+    },
+    "sociability": 0.67
   },
   {
     "id": "yutyrannus",
@@ -11648,6 +11917,7 @@
       "off": 75,
       "tol": -50,
       "int": -25
-    }
+    },
+    "sociability": 0.75
   }
 ]

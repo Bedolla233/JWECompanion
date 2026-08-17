@@ -1,0 +1,1337 @@
+[
+  {
+    "id": "aguja_formation",
+    "name": "Aguja Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Texas",
+    "logistics": 10,
+    "duration_seconds": 390,
+    "cost": 500000,
+    "species": [
+      "deinosuchus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "allen_formation",
+    "name": "Allen Formation",
+    "region": "South America",
+    "country": "Argentina",
+    "sub_location": "Neuquén Province",
+    "logistics": 5,
+    "duration_seconds": 180,
+    "cost": 150000,
+    "species": [
+      "austroraptor"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "antlers_formation",
+    "name": "Antlers Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Oklahoma",
+    "logistics": 8,
+    "duration_seconds": 360,
+    "cost": 1270000,
+    "species": [
+      "acrocanthosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "bahariya_formation",
+    "name": "Bahariya Formation",
+    "region": "Africa",
+    "country": "Egypt",
+    "sub_location": "Gebel El-Dist",
+    "logistics": 8,
+    "duration_seconds": 330,
+    "cost": 989000,
+    "species": [
+      "spinosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "bayan_mandahu_formation",
+    "name": "Bayan Mandahu Formation",
+    "region": "Asia",
+    "country": "Mongolia",
+    "sub_location": "Gobi Desert",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 122000,
+    "species": [
+      "protoceratops"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "baynshire_formation",
+    "name": "Baynshire Formation",
+    "region": "Asia",
+    "country": "Mongolia",
+    "sub_location": "Gobi Desert",
+    "logistics": 10,
+    "duration_seconds": 300,
+    "cost": 1338000,
+    "species": [
+      "deinocheirus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "bissekty_formation",
+    "name": "Bissekty Formation",
+    "region": "Asia",
+    "country": "Uzbekistan",
+    "sub_location": "Kyzyl Kum",
+    "logistics": 1,
+    "duration_seconds": 150,
+    "cost": 27000,
+    "species": [
+      "archaeornithomimus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "blythesdale_formation",
+    "name": "Blythesdale Formation",
+    "region": "Australia",
+    "country": "Australia",
+    "sub_location": "Queensland",
+    "logistics": 4,
+    "duration_seconds": 510,
+    "cost": 180000,
+    "species": [
+      "minmi"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "bone_valley_formation",
+    "name": "Bone Valley Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Florida",
+    "logistics": 13,
+    "duration_seconds": 450,
+    "cost": 3928000,
+    "species": [
+      "megalodon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "caiua_group",
+    "name": "Caiuá Group",
+    "region": "South America",
+    "country": "Brazil",
+    "sub_location": "Caiuá Group",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 99000,
+    "species": [
+      "caiuajara"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "candeleros_formation",
+    "name": "Candeleros Formation",
+    "region": "South America",
+    "country": "Argentina",
+    "sub_location": "Neuquén Province",
+    "logistics": 9,
+    "duration_seconds": 360,
+    "cost": 1295000,
+    "species": [
+      "giganotosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "canjuers",
+    "name": "Canjuers",
+    "region": "Europe",
+    "country": "France",
+    "sub_location": "Canjuers",
+    "logistics": 1,
+    "duration_seconds": 150,
+    "cost": 21000,
+    "species": [
+      "compsognathus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "carbon_county",
+    "name": "Carbon County",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Montana",
+    "logistics": 5,
+    "duration_seconds": 260,
+    "cost": 257000,
+    "species": [
+      "aquilops"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "cedar_mountain_formation",
+    "name": "Cedar Mountain Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Eastern Utah",
+    "logistics": 4,
+    "duration_seconds": 270,
+    "cost": 304000,
+    "species": [
+      "sauropelta",
+      "morosintrepidus",
+      "deinonychus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "cedar_mountain_formation_b",
+    "name": "Cedar Mountain Formation B",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Eastern Utah",
+    "logistics": 6,
+    "duration_seconds": 300,
+    "cost": 560000,
+    "species": [
+      "utahraptor"
+    ],
+    "unlocks_after": "cedar_mountain_formation"
+  },
+  {
+    "id": "cerro_barcino_formation",
+    "name": "Cerro Barcino Formation",
+    "region": "South America",
+    "country": "Argentina",
+    "sub_location": "Chubut Province",
+    "logistics": 7,
+    "duration_seconds": 330,
+    "cost": 794000,
+    "species": [
+      "patagotitan"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "cerro_fortaleza_formation",
+    "name": "Cerro Fortaleza Formation",
+    "region": "South America",
+    "country": "Argentina",
+    "sub_location": "Santa Cruz Province",
+    "logistics": 8,
+    "duration_seconds": 360,
+    "cost": 1137000,
+    "species": [
+      "dreadnoughtus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "chenini_formation",
+    "name": "Chenini Formation",
+    "region": "Africa",
+    "country": "Tunisia",
+    "sub_location": "Tataouine",
+    "logistics": 9,
+    "duration_seconds": 360,
+    "cost": 1597000,
+    "species": [
+      "spinosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "cleveland_lloyd_dinosaur_quarry_a",
+    "name": "Cleveland Lloyd Dinosaur Quarry A",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Utah",
+    "logistics": 4,
+    "duration_seconds": 270,
+    "cost": 352000,
+    "species": [
+      "brachiosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "cleveland_lloyd_dinosaur_quarry_b",
+    "name": "Cleveland Lloyd Dinosaur Quarry B",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Utah",
+    "logistics": 7,
+    "duration_seconds": 330,
+    "cost": 904000,
+    "species": [
+      "stegosaurus",
+      "allosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "cloverly_formation",
+    "name": "Cloverly Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Utah",
+    "logistics": 4,
+    "duration_seconds": 240,
+    "cost": 256000,
+    "species": [
+      "sauropelta",
+      "deinonychus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "coal_oil_canyon",
+    "name": "Coal Oil Canyon",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Kansas",
+    "logistics": 1,
+    "duration_seconds": 150,
+    "cost": 27000,
+    "species": [
+      "styxosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "dinosaur_national_monument_a",
+    "name": "Dinosaur National Monument A",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Uinta Mountains",
+    "logistics": 4,
+    "duration_seconds": 270,
+    "cost": 340000,
+    "species": [
+      "apatosaurus",
+      "diplodocus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "dinosaur_national_monument_b",
+    "name": "Dinosaur National Monument B",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Uinta Mountains",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 106000,
+    "species": [
+      "stegosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "dinosaur_park_formation_a",
+    "name": "Dinosaur Park Formation A",
+    "region": "North America",
+    "country": "Canada",
+    "sub_location": "Alberta",
+    "logistics": 1,
+    "duration_seconds": 180,
+    "cost": 63000,
+    "species": [
+      "struthiomimus",
+      "ornithomimus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "dinosaur_park_formation_b",
+    "name": "Dinosaur Park Formation B",
+    "region": "North America",
+    "country": "Canada",
+    "sub_location": "Alberta",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 124000,
+    "species": [
+      "parasaurolophus",
+      "chasmosaurus",
+      "corythosaurus"
+    ],
+    "unlocks_after": "dinosaur_park_formation_a"
+  },
+  {
+    "id": "djadochta_formation",
+    "name": "Djadochta Formation",
+    "region": "Asia",
+    "country": "Mongolia",
+    "sub_location": "Gobi Desert",
+    "logistics": 1,
+    "duration_seconds": 150,
+    "cost": 40000,
+    "species": [
+      "oviraptor"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "egg_mountain",
+    "name": "Egg Mountain",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Montana",
+    "logistics": 2,
+    "duration_seconds": 45,
+    "cost": 101000,
+    "species": [
+      "maiasaura"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "fox_hills_formation",
+    "name": "Fox Hills Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "South Dakota",
+    "logistics": 9,
+    "duration_seconds": 360,
+    "cost": 1508000,
+    "species": [
+      "mosasaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "frenchman_formation_a",
+    "name": "Frenchman Formation A",
+    "region": "North America",
+    "country": "Canada",
+    "sub_location": "Saskatchewan",
+    "logistics": 2,
+    "duration_seconds": 180,
+    "cost": 83000,
+    "species": [
+      "dracorex",
+      "torosaurus",
+      "stygimoloch"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "frenchman_formation_b",
+    "name": "Frenchman Formation B",
+    "region": "North America",
+    "country": "Canada",
+    "sub_location": "Saskatchewan",
+    "logistics": 9,
+    "duration_seconds": 360,
+    "cost": 1564000,
+    "species": [
+      "tyrannosaurusrex"
+    ],
+    "unlocks_after": "frenchman_formation_a"
+  },
+  {
+    "id": "garden_park",
+    "name": "Garden Park",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Colorado",
+    "logistics": 6,
+    "duration_seconds": 300,
+    "cost": 550000,
+    "species": [
+      "brachiosaurus",
+      "diplodocus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "ghost_ranch",
+    "name": "Ghost Ranch",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "New Mexico",
+    "logistics": 1,
+    "duration_seconds": 150,
+    "cost": 40000,
+    "species": [
+      "coelophysis"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "guodikeng_formation",
+    "name": "Guodikeng Formation",
+    "region": "Asia",
+    "country": "China",
+    "sub_location": "Xinjiang",
+    "logistics": 2,
+    "duration_seconds": 180,
+    "cost": 84000,
+    "species": [
+      "lystrosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "hanson_formation",
+    "name": "Hanson Formation",
+    "region": "Antarctica",
+    "country": "Antarctica",
+    "sub_location": "Mount Kirkpatrick",
+    "logistics": 10,
+    "duration_seconds": 420,
+    "cost": 340000,
+    "species": [
+      "cryolophosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "hell_creek_formation_a",
+    "name": "Hell Creek Formation A",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Montana",
+    "logistics": 1,
+    "duration_seconds": 180,
+    "cost": 56000,
+    "species": [
+      "dracorex",
+      "pachycephalosaurus",
+      "torosaurus",
+      "styxosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "hell_creek_formation_b",
+    "name": "Hell Creek Formation B",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Montana",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 136000,
+    "species": [
+      "triceratops"
+    ],
+    "unlocks_after": "hell_creek_formation_a"
+  },
+  {
+    "id": "hell_creek_formation_c",
+    "name": "Hell Creek Formation C",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Montana",
+    "logistics": 8,
+    "duration_seconds": 330,
+    "cost": 1068000,
+    "species": [
+      "tyrannosaurusrex"
+    ],
+    "unlocks_after": "hell_creek_formation_a"
+  },
+  {
+    "id": "horseshoe_canyon_formation_a",
+    "name": "Horseshoe Canyon Formation A",
+    "region": "North America",
+    "country": "Canada",
+    "sub_location": "Alberta",
+    "logistics": 5,
+    "duration_seconds": 270,
+    "cost": 433000,
+    "species": [
+      "chasmosaurus",
+      "edmontosaurus",
+      "atrociraptor"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "horseshoe_canyon_formation_b",
+    "name": "Horseshoe Canyon Formation B",
+    "region": "North America",
+    "country": "Canada",
+    "sub_location": "Alberta",
+    "logistics": 8,
+    "duration_seconds": 330,
+    "cost": 1028000,
+    "species": [
+      "albertosaurus"
+    ],
+    "unlocks_after": "horseshoe_canyon_formation_a"
+  },
+  {
+    "id": "hythe_formation",
+    "name": "Hythe Formation",
+    "region": "Europe",
+    "country": "UK",
+    "sub_location": "Kent",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 193000,
+    "species": [
+      "iguanodon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "iguanodon_mine",
+    "name": "Iguanodon Mine",
+    "region": "Europe",
+    "country": "Belgium",
+    "sub_location": "Bernissart",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 170000,
+    "species": [
+      "iguanodon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "iren_dabasu_formation",
+    "name": "Iren Dabasu Formation",
+    "region": "Asia",
+    "country": "China",
+    "sub_location": "Inner Mongolia",
+    "logistics": 4,
+    "duration_seconds": 240,
+    "cost": 253000,
+    "species": [
+      "velociraptor",
+      "archaeornithomimus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "ischigualasto_formation",
+    "name": "Ischigualasto Formation",
+    "region": "South America",
+    "country": "Argentina",
+    "sub_location": "San Juan Province",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 190000,
+    "species": [
+      "herrerasaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "isle_of_wight",
+    "name": "Isle of Wight",
+    "region": "Europe",
+    "country": "UK",
+    "sub_location": "South Coast",
+    "logistics": 4,
+    "duration_seconds": 270,
+    "cost": 364000,
+    "species": [
+      "baryonyx",
+      "hypsilophodon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "javelina_formation",
+    "name": "Javelina Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Texas",
+    "logistics": 11,
+    "duration_seconds": 390,
+    "cost": 2153000,
+    "species": [
+      "quetzalcoatlus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "judith_river_formation",
+    "name": "Judith River Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Montana",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 204000,
+    "species": [
+      "lokiceratops",
+      "troodon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "jurassic_coast_a",
+    "name": "Jurassic Coast A",
+    "region": "Europe",
+    "country": "UK",
+    "sub_location": "South Coast",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 245000,
+    "species": [
+      "ichthyosaurus",
+      "dimorphodon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "jurassic_coast_b",
+    "name": "Jurassic Coast B",
+    "region": "Europe",
+    "country": "UK",
+    "sub_location": "South Coast",
+    "logistics": 5,
+    "duration_seconds": 270,
+    "cost": 435000,
+    "species": [
+      "attenborosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "kaiparowits_formation",
+    "name": "Kaiparowits Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Utah",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 149000,
+    "species": [
+      "nasutoceratops"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "kayenta_formation",
+    "name": "Kayenta Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Utah",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 205000,
+    "species": [
+      "dilophosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "kirtland_formation",
+    "name": "Kirtland Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "New Mexico",
+    "logistics": 1,
+    "duration_seconds": 150,
+    "cost": 39000,
+    "species": [
+      "parasaurolophus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "la_amarga_formation",
+    "name": "La Amarga Formation",
+    "region": "South America",
+    "country": "Argentina",
+    "sub_location": "Zapala",
+    "logistics": 6,
+    "duration_seconds": 270,
+    "cost": 51000,
+    "species": [
+      "amargasaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "la_bouchard",
+    "name": "La Bouchard",
+    "region": "Europe",
+    "country": "France",
+    "sub_location": "Provence-Alpes-Côte d'Azur",
+    "logistics": 4,
+    "duration_seconds": 240,
+    "cost": 260000,
+    "species": [
+      "pyroraptor"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "la_colonia_formation",
+    "name": "La Colonia Formation",
+    "region": "South America",
+    "country": "Argentina",
+    "sub_location": "Chubut Province",
+    "logistics": 6,
+    "duration_seconds": 300,
+    "cost": 549000,
+    "species": [
+      "carnotaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "la_huerguina_formation",
+    "name": "La Huérguina Formation",
+    "region": "Europe",
+    "country": "Spain",
+    "sub_location": "Castilla-La Mancha",
+    "logistics": 6,
+    "duration_seconds": 300,
+    "cost": 610000,
+    "species": [
+      "concavenator"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "lameta_formation",
+    "name": "Lameta Formation",
+    "region": "Asia",
+    "country": "India",
+    "sub_location": "Narmada Valley",
+    "logistics": 8,
+    "duration_seconds": 420,
+    "cost": 300000,
+    "species": [
+      "titanosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "lance_formation_a",
+    "name": "Lance Formation A",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Wyoming",
+    "logistics": 2,
+    "duration_seconds": 180,
+    "cost": 85000,
+    "species": [
+      "edmontosaurus",
+      "struthiomimus",
+      "torosaurus",
+      "stygimoloch"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "lance_formation_b",
+    "name": "Lance Formation B",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Wyoming",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 117000,
+    "species": [
+      "triceratops"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "lance_formation_c",
+    "name": "Lance Formation C",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Wyoming",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 238000,
+    "species": [
+      "ankylosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "laramie_formation",
+    "name": "Laramie Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Colorado",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 181000,
+    "species": [
+      "styracosaurus",
+      "torosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "lost_burro_gap",
+    "name": "Lost Burro Gap",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "California",
+    "logistics": 5,
+    "duration_seconds": 270,
+    "cost": 371000,
+    "species": [
+      "dunkleosteus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "lourinha_formation_a",
+    "name": "Lourinhã Formation A",
+    "region": "Europe",
+    "country": "Portugal",
+    "sub_location": "Lourinhã",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 228000,
+    "species": [
+      "ceratosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "lourinha_formation_b",
+    "name": "Lourinhã Formation B",
+    "region": "Europe",
+    "country": "Portugal",
+    "sub_location": "Lourinhã",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 89000,
+    "species": [
+      "stegosaurus"
+    ],
+    "unlocks_after": "lourinha_formation_a"
+  },
+  {
+    "id": "maastricht_formation",
+    "name": "Maastricht Formation",
+    "region": "Europe",
+    "country": "Netherlands",
+    "sub_location": "Maastricht",
+    "logistics": 9,
+    "duration_seconds": 360,
+    "cost": 1599000,
+    "species": [
+      "mosasaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "mackunda_formation",
+    "name": "Mackunda Formation",
+    "region": "Australia",
+    "country": "Australia",
+    "sub_location": "Queensland",
+    "logistics": 1,
+    "duration_seconds": 180,
+    "cost": 80000,
+    "species": [
+      "muttaburrasaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "maevarano_formation",
+    "name": "Maevarano Formation",
+    "region": "Africa",
+    "country": "Madagascar",
+    "sub_location": "Mahajanga Basin",
+    "logistics": 6,
+    "duration_seconds": 420,
+    "cost": 270000,
+    "species": [
+      "majungasaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "minchinhampton",
+    "name": "Minchinhampton",
+    "region": "Europe",
+    "country": "UK",
+    "sub_location": "Gloucestershire",
+    "logistics": 4,
+    "duration_seconds": 240,
+    "cost": 264000,
+    "species": [
+      "proceratosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "morrison_formation_b",
+    "name": "Morrison Formation B",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Colorado",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 204000,
+    "species": [
+      "dryosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "nanxiong_formation",
+    "name": "Nanxiong Formation",
+    "region": "Asia",
+    "country": "China",
+    "sub_location": "Ganzhou",
+    "logistics": 5,
+    "duration_seconds": 300,
+    "cost": 488000,
+    "species": [
+      "qianzhousaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "nemegt_formation_a",
+    "name": "Nemegt Formation A",
+    "region": "Asia",
+    "country": "Mongolia",
+    "sub_location": "Gobi Desert",
+    "logistics": 4,
+    "duration_seconds": 240,
+    "cost": 255000,
+    "species": [
+      "gallimimus",
+      "homalocephale"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "nemegt_formation_b",
+    "name": "Nemegt Formation B",
+    "region": "Asia",
+    "country": "Mongolia",
+    "sub_location": "Gobi Desert",
+    "logistics": 11,
+    "duration_seconds": 420,
+    "cost": 2508000,
+    "species": [
+      "therizinosaurus"
+    ],
+    "unlocks_after": "nemegt_formation_a"
+  },
+  {
+    "id": "niobrara_formation",
+    "name": "Niobrara Formation",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Nebraska",
+    "logistics": 5,
+    "duration_seconds": 300,
+    "cost": 463000,
+    "species": [
+      "geosternbergia",
+      "pteranodon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "oshih_formation",
+    "name": "Oshih Formation",
+    "region": "Asia",
+    "country": "Mongolia",
+    "sub_location": "Oshih Formation",
+    "logistics": 1,
+    "duration_seconds": 150,
+    "cost": 37000,
+    "species": [
+      "psittacosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "oxford_clay",
+    "name": "Oxford Clay",
+    "region": "Europe",
+    "country": "UK",
+    "sub_location": "Weymouth",
+    "logistics": 9,
+    "duration_seconds": 360,
+    "cost": 1431000,
+    "species": [
+      "liopleurodon",
+      "metriacanthosaurus",
+      "plesiosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "pardonet_formation",
+    "name": "Pardonet Formation",
+    "region": "North America",
+    "country": "Canada",
+    "sub_location": "British Columbia",
+    "logistics": 9,
+    "duration_seconds": 360,
+    "cost": 1431000,
+    "species": [
+      "shonisaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "peay_sandstone_member",
+    "name": "Peay Sandstone Member",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Wyoming",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 180000,
+    "species": [
+      "nodosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "pierre_shale",
+    "name": "Pierre Shale",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Montana",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 87000,
+    "species": [
+      "pteranodon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "plottier_formation",
+    "name": "Plottier Formation",
+    "region": "South America",
+    "country": "Argentina",
+    "sub_location": "Neuquén Province",
+    "logistics": 4,
+    "duration_seconds": 270,
+    "cost": 356000,
+    "species": [
+      "thanatosdrakon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "post_quarry",
+    "name": "Post Quarry",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Texas",
+    "logistics": 6,
+    "duration_seconds": 240,
+    "cost": 150000,
+    "species": [
+      "postosuchus",
+      "desmatosuchus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "red_beds",
+    "name": "Red Beds",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Texas",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 192000,
+    "species": [
+      "dimetrodon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "romualdo_formation",
+    "name": "Romualdo Formation",
+    "region": "South America",
+    "country": "Brazil",
+    "sub_location": "Ceará",
+    "logistics": 6,
+    "duration_seconds": 45,
+    "cost": 561000,
+    "species": [
+      "irritator",
+      "tapejara",
+      "tropeognathus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "shishugou_formation",
+    "name": "Shishugou Formation",
+    "region": "Asia",
+    "country": "China",
+    "sub_location": "Xinjiang",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 221000,
+    "species": [
+      "guanlong",
+      "microceratus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "smoky_hill_chalk",
+    "name": "Smoky Hill Chalk",
+    "region": "North America",
+    "country": "USA",
+    "sub_location": "Kansas",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 87000,
+    "species": [
+      "pteranodon"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "tegama_beds",
+    "name": "Tegama Beds",
+    "region": "Africa",
+    "country": "Niger",
+    "sub_location": "Tenere Desert",
+    "logistics": 9,
+    "duration_seconds": 360,
+    "cost": 1482000,
+    "species": [
+      "suchomimus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "tendaguru_formation",
+    "name": "Tendaguru Formation",
+    "region": "Africa",
+    "country": "Tanzania",
+    "sub_location": "Mkoa wa Mtwara",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 127000,
+    "species": [
+      "kentrosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "toolebuc_formation",
+    "name": "Toolebuc Formation",
+    "region": "Australia",
+    "country": "Australia",
+    "sub_location": "Queensland",
+    "logistics": 9,
+    "duration_seconds": 360,
+    "cost": 1352000,
+    "species": [
+      "kronosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "udurchukan_formation",
+    "name": "Udurchukan Formation",
+    "region": "Asia",
+    "country": "Russia",
+    "sub_location": "Amur Oblast",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 123000,
+    "species": [
+      "olorotitan"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "xingezhuang_formation",
+    "name": "Xingezhuang Formation",
+    "region": "Asia",
+    "country": "China",
+    "sub_location": "Zhucheng",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 218000,
+    "species": [
+      "sinoceratops"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "yixian_formation",
+    "name": "Yixian Formation",
+    "region": "Asia",
+    "country": "China",
+    "sub_location": "Liaoning",
+    "logistics": 6,
+    "duration_seconds": 300,
+    "cost": 560000,
+    "species": [
+      "yutyrannus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "yuliangze_formation",
+    "name": "Yuliangze Formation",
+    "region": "Asia",
+    "country": "China",
+    "sub_location": "Heilongjiang",
+    "logistics": 2,
+    "duration_seconds": 210,
+    "cost": 108000,
+    "species": [
+      "tsintaosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "ziliujing_formation_a",
+    "name": "Ziliujing Formation A",
+    "region": "Asia",
+    "country": "China",
+    "sub_location": "Dashanpu",
+    "logistics": 3,
+    "duration_seconds": 240,
+    "cost": 190000,
+    "species": [
+      "chungkingosaurus"
+    ],
+    "unlocks_after": null
+  },
+  {
+    "id": "ziliujing_formation_b",
+    "name": "Ziliujing Formation B",
+    "region": "Asia",
+    "country": "China",
+    "sub_location": "Dashanpu",
+    "logistics": 8,
+    "duration_seconds": 330,
+    "cost": 1005000,
+    "species": [
+      "mamenchisaurus",
+      "gigantspinosaurus"
+    ],
+    "unlocks_after": "ziliujing_formation_a"
+  }
+]
