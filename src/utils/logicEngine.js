@@ -276,43 +276,53 @@ export function calculatePaddockSpace(paddockGroup) {
         comfortWarnings[speciesId] = warnings;
       }
 
-      // --- AREA SCALING ---
-      const extraAdults = Math.max(0, totalAdults - 1);
-      const adultMultiplier = 1 + extraAdults * 0.15;
+      // --- DYNAMIC AREA SCALING (OVERLAPPING ENGINE) ---
+      const sociability = species.sociability ?? femaleVariant.sociability ?? 0.85;
+      const areaGrowthRate = Math.max(0, 1 - sociability);
 
-      // Direct game file environment m² calculation
-      const envData = femaleVariant.environment || species.terrain_percentages || {};
+      // Helper function to calculate a specific variant's footprint independently
+      const processVariantTerrain = (variant, count, isJuvenile) => {
+        if (count <= 0) return;
 
-      let rawTotalM2 = 0;
-      Object.entries(envData).forEach(([terrain, val]) => {
-        if (terrain === 'prestige_area_ratio' || val <= 0) return;
-        rawTotalM2 += val > 1 ? val : val * 10000;
-      });
-      if (rawTotalM2 === 0) rawTotalM2 = 10000;
-
-      Object.entries(envData).forEach(([terrain, val]) => {
-        if (terrain === 'prestige_area_ratio' || val <= 0) return;
-
-        let terrainBaseM2 = 0;
-        if (val > 1) {
-          // Direct raw m² requirement (e.g. Spinosaurus pasture: 3000, deep_water: 6000)
-          terrainBaseM2 = val;
-        } else if (femaleVariant.appeal && femaleVariant.appeal_per_hectare) {
-          // Fallback ratio applied to calculated base area
-          terrainBaseM2 = (femaleVariant.appeal / femaleVariant.appeal_per_hectare) * 10000 * val;
+        let multiplier = 0;
+        if (isJuvenile) {
+          multiplier = count; // Juveniles scale linearly (+100% per juvi)
         } else {
-          terrainBaseM2 = val * 10000;
+          multiplier = 1 + ((count - 1) * areaGrowthRate); // Adults scale via sociability
         }
 
-        const scaledNeed = terrainBaseM2 * adultMultiplier;
-        const terrainRatio = val > 1 ? val / rawTotalM2 : val;
-        const juviExtra = validJuveniles * 400 * terrainRatio;
+        const envData = variant.environment || species.terrain_percentages || {};
 
-        maxEnv[terrain] = Math.max(
-          maxEnv[terrain] || 0,
-          Math.round(scaledNeed + juviExtra)
-        );
-      });
+        Object.entries(envData).forEach(([terrain, val]) => {
+          if (terrain === 'prestige_area_ratio' || val <= 0) return;
+
+          let terrainBaseM2 = 0;
+          if (val > 1) {
+            terrainBaseM2 = val; // Direct raw m² requirement
+          } else if (variant.appeal && variant.appeal_per_hectare) {
+            terrainBaseM2 = (variant.appeal / variant.appeal_per_hectare) * 10000 * val;
+          } else {
+            terrainBaseM2 = val * 10000;
+          }
+
+          const scaledNeed = terrainBaseM2 * multiplier;
+
+          // CORE CALCULATION CHANGE: Terrain Needs Overlap! 
+          maxEnv[terrain] = Math.max(
+            maxEnv[terrain] || 0,
+            Math.round(scaledNeed)
+          );
+        });
+      };
+
+      // Process each variant as an isolated, overlapping cluster
+      processVariantTerrain(femaleVariant, validFemales, false);
+      if (species.restrictions?.has_males) {
+        processVariantTerrain(maleVariant, validMales, false);
+      }
+      if (species.restrictions?.has_juveniles) {
+        processVariantTerrain(juvenileVariant, validJuveniles, true);
+      }
 
       // --- APPEAL & DOMINANCE AGGREGATION ---
       const femaleAppeal = femaleVariant.appeal || femaleVariant.prestige_base || 0;

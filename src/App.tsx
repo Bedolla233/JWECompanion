@@ -310,6 +310,11 @@ export default function App() {
                     const species = speciesData.find((s) => s.id === speciesId);
                     if (!species) return null;
 
+                    // Compute area growth metrics for UI
+                    const sociability = species.sociability ?? species.variants?.female?.sociability ?? 0.85;
+                    const adultGrowthRate = Math.max(0, 1 - sociability);
+                    const adultGrowthPercent = Math.round(adultGrowthRate * 100);
+
                     return (
                       <div
                         key={speciesId}
@@ -552,20 +557,29 @@ export default function App() {
                           <div style={{ color: '#f3f4f6', fontWeight: 'bold', marginBottom: '2px' }}>Variant Growth & Space Contribution:</div>
                           {femaleCount > 0 && species.variants?.female && (
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                              <span>Females ({femaleCount}): {species.variants.female.appeal * femaleCount} Appeal</span>
-                              <span style={{ color: '#14b8a6' }}>{(((species.variants.female.appeal / (species.variants.female.appeal_per_hectare || 1)) * femaleCount)).toFixed(2)} ha</span>
+                              <span>
+                                Females ({femaleCount}): {species.variants.female.appeal * femaleCount} Appeal
+                                <span style={{ marginLeft: '6px', color: '#6b7280', fontSize: '11px' }}>[+{adultGrowthPercent}% Area Growth]</span>
+                              </span>
+                              <span style={{ color: '#14b8a6' }}>{((species.variants.female.appeal / (species.variants.female.appeal_per_hectare || 1)) * (1 + (femaleCount - 1) * adultGrowthRate)).toFixed(2)} ha</span>
                             </div>
                           )}
                           {maleCount > 0 && species.variants?.male && species.restrictions?.has_males && (
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                              <span>Males ({maleCount}): {species.variants.male.appeal * maleCount} Appeal</span>
-                              <span style={{ color: '#14b8a6' }}>{(((species.variants.male.appeal / (species.variants.male.appeal_per_hectare || 1)) * maleCount)).toFixed(2)} ha</span>
+                              <span>
+                                Males ({maleCount}): {species.variants.male.appeal * maleCount} Appeal
+                                <span style={{ marginLeft: '6px', color: '#6b7280', fontSize: '11px' }}>[+{adultGrowthPercent}% Area Growth]</span>
+                              </span>
+                              <span style={{ color: '#14b8a6' }}>{((species.variants.male.appeal / (species.variants.male.appeal_per_hectare || 1)) * (1 + (maleCount - 1) * adultGrowthRate)).toFixed(2)} ha</span>
                             </div>
                           )}
                           {juvenileCount > 0 && species.variants?.juvenile && species.restrictions?.has_juveniles && (
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                              <span>Juveniles ({juvenileCount}): {species.variants.juvenile.appeal * juvenileCount} Appeal</span>
-                              <span style={{ color: '#14b8a6' }}>{(((species.variants.juvenile.appeal / (species.variants.juvenile.appeal_per_hectare || 1)) * juvenileCount)).toFixed(2)} ha</span>
+                              <span>
+                                Juveniles ({juvenileCount}): {species.variants.juvenile.appeal * juvenileCount} Appeal
+                                <span style={{ marginLeft: '6px', color: '#6b7280', fontSize: '11px' }}>[+100% Area Growth]</span>
+                              </span>
+                              <span style={{ color: '#14b8a6' }}>{((species.variants.juvenile.appeal / (species.variants.juvenile.appeal_per_hectare || 1)) * juvenileCount).toFixed(2)} ha</span>
                             </div>
                           )}
                         </div>
