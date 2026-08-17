@@ -156,7 +156,7 @@ export default function App() {
         >
           <div>
             <h1 style={{ margin: 0, color: '#14b8a6', fontSize: '28px' }}>
-              JWE3 Habitat Planner
+            Unofficial JWE Companion
             </h1>
             <p
               style={{
@@ -165,7 +165,7 @@ export default function App() {
                 fontSize: '14px',
               }}
             >
-              Dark HUD Edition • Offline PWA
+              Website by Krabone
             </p>
           </div>
           <div style={{ display: 'flex', gap: '10px' }}>
@@ -520,7 +520,6 @@ export default function App() {
                           )}
                         </div>
 
-                        {/* Variant & Space Contribution Footer */}
                         <div style={{ background: '#111827', padding: '10px', borderRadius: '6px', fontSize: '12px', color: '#9ca3af', display: 'flex', flexDirection: 'column', gap: '4px' }}>
                           <div style={{ color: '#f3f4f6', fontWeight: 'bold', marginBottom: '2px' }}>Variant Growth & Space Contribution:</div>
                           {femaleCount > 0 && species.variants?.female && (
@@ -570,14 +569,13 @@ export default function App() {
                     marginBottom: '15px',
                   }}
                 >
-                  <h2 style={{ margin: 0, fontSize: '20px' }}>
-                    Live Enclosure Summary
-                  </h2>
                   <span
                     style={{
                       background:
                         summary?.synergyStatus?.code === 'RED'
                           ? '#ef4444'
+                          : summary?.synergyStatus?.code === 'YELLOW'
+                          ? '#f59e0b'
                           : '#22c55e',
                       color: '#111827',
                       padding: '4px 10px',
@@ -626,30 +624,26 @@ export default function App() {
                     </p>
                   </div>
                   <div>
-                    <p
-                      style={{
-                        margin: '4px 0',
-                        fontSize: '14px',
-                        color: '#9ca3af',
-                      }}
-                    >
-                      Meat Feeders:{' '}
-                      <b style={{ color: '#fff' }}>
-                        {summary?.feederBreakdown?.meat || 0}
-                      </b>
-                    </p>
-                    <p
-                      style={{
-                        margin: '4px 0',
-                        fontSize: '14px',
-                        color: '#9ca3af',
-                      }}
-                    >
-                      Fish Feeders:{' '}
-                      <b style={{ color: '#fff' }}>
-                        {summary?.feederBreakdown?.fish || 0}
-                      </b>
-                    </p>
+                    {summary?.feederBreakdown?.meat > 0 && (
+                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#9ca3af' }}>
+                        Est. Meat Feeders: <b style={{ color: '#fff' }}>{summary.feederBreakdown.meat}</b>
+                      </p>
+                    )}
+                    {summary?.feederBreakdown?.livePrey > 0 && (
+                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#9ca3af' }}>
+                        Est. Live Feeders: <b style={{ color: '#fff' }}>{summary.feederBreakdown.livePrey}</b>
+                      </p>
+                    )}
+                    {summary?.feederBreakdown?.fish > 0 && (
+                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#9ca3af' }}>
+                        Est. Fish Feeders: <b style={{ color: '#fff' }}>{summary.feederBreakdown.fish}</b>
+                      </p>
+                    )}
+                    {(!summary?.feederBreakdown?.meat && !summary?.feederBreakdown?.livePrey && !summary?.feederBreakdown?.fish) && (
+                      <p style={{ margin: '4px 0', fontSize: '14px', color: '#9ca3af' }}>
+                        Feeders: <b style={{ color: '#14b8a6' }}>0 (Herbivores)</b>
+                      </p>
+                    )}
                     <p style={{ margin: '4px 0', fontSize: '14px', color: '#f59e0b' }}>
                       Efficiency: <b>{summary?.appealDensity || 0}</b> <small>Appeal/ha</small>
                     </p>

@@ -5,6 +5,10 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   const [sortConfig, setSortConfig] = useState({ key: 'appealDensityHa', direction: 'desc' });
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Determine active paddock habitat based on first resident
+  const activeResident = paddock.length > 0 ? speciesData.find(s => s.id === paddock[0].speciesId) : null;
+  const activeHabitat = activeResident ? (activeResident.habitat || 'terrestrial') : null;
+
   const checkCompatibility = (candidate) => {
     if (paddock.length === 0) return true;
     
@@ -65,8 +69,12 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
     const totalAreaM2 = appealPerHectare > 0 ? (baseAppeal / appealPerHectare) * 10000 : 0;
     const totalAreaHa = totalAreaM2 / 10000;
     const appealDensityHa = totalAreaHa > 0 ? Math.round(baseAppeal / totalAreaHa) : 0;
-    const isCompatible = checkCompatibility(species);
     const habitatStr = formatHabitat(species.terrain_percentages);
+
+    // Hard physical boundary check against active enclosure habitat type
+    const candidateHabitat = species.habitat || 'terrestrial';
+    const habitatMismatch = activeHabitat ? candidateHabitat !== activeHabitat : false;
+    const isCompatible = !habitatMismatch && checkCompatibility(species);
 
     return {
       ...species,
@@ -81,6 +89,7 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
       totalAreaHa,
       appealDensityHa,
       isCompatible,
+      habitatMismatch,
       habitatStr
     };
   };
@@ -171,6 +180,10 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
                       <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
                         OK
                       </span>
+                    ) : s.habitatMismatch ? (
+                      <span className="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
+                        Wrong Habitat
+                      </span>
                     ) : (
                       <span className="bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
                         Fight
@@ -181,13 +194,17 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
                 </div>
                 
                 <button
-                  disabled={inPaddock}
+                  disabled={inPaddock || s.habitatMismatch}
                   onClick={() => onAddSpecies(s.id)}
                   className={`px-3 py-1.5 rounded-md font-bold text-sm min-w-[70px] ${
-                    inPaddock ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-teal-500 text-gray-900 cursor-pointer hover:bg-teal-400'
+                    inPaddock 
+                      ? 'bg-gray-700 text-gray-400 cursor-not-allowed' 
+                      : s.habitatMismatch
+                        ? 'bg-red-900/40 text-red-400 cursor-not-allowed border border-red-800/50'
+                        : 'bg-teal-500 text-gray-900 cursor-pointer hover:bg-teal-400'
                   }`}
                 >
-                  {inPaddock ? 'Added' : '+ Add'}
+                  {inPaddock ? 'Added' : s.habitatMismatch ? 'Blocked' : '+ Add'}
                 </button>
               </div>
 
@@ -257,13 +274,17 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
                 <tr key={s.id || index} className={`${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} hover:bg-gray-700 transition-colors`}>
                   <td className="p-3 flex items-center gap-3">
                     <button
-                      disabled={inPaddock}
+                      disabled={inPaddock || s.habitatMismatch}
                       onClick={() => onAddSpecies(s.id)}
                       className={`px-2.5 py-1.5 rounded text-xs font-bold min-w-[65px] ${
-                        inPaddock ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-teal-500 text-gray-900 cursor-pointer hover:bg-teal-400'
+                        inPaddock 
+                          ? 'bg-gray-700 text-gray-400 cursor-not-allowed' 
+                          : s.habitatMismatch
+                            ? 'bg-red-900/40 text-red-400 cursor-not-allowed border border-red-800/50'
+                            : 'bg-teal-500 text-gray-900 cursor-pointer hover:bg-teal-400'
                       }`}
                     >
-                      {inPaddock ? 'Added' : '+ Add'}
+                      {inPaddock ? 'Added' : s.habitatMismatch ? 'Blocked' : '+ Add'}
                     </button>
                     <b className="text-white">{s.name}</b>
                   </td>
@@ -272,6 +293,10 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
                     {s.isCompatible ? (
                       <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs font-bold">
                         Yes
+                      </span>
+                    ) : s.habitatMismatch ? (
+                      <span className="bg-amber-500/20 text-amber-400 px-2 py-1 rounded text-xs font-bold" title="Incompatible Enclosure Habitat">
+                        Habitat Clashes
                       </span>
                     ) : (
                       <span className="bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-bold">
