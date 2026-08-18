@@ -7,25 +7,43 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   const [familyFilter, setFamilyFilter] = useState('');
   const [dietFilter, setDietFilter] = useState('');
   
-  const [imageFailures, setImageFailures] = useState({});
+  // Track exact image source per species declaratively to prevent mobile double-firing bugs
+  const [imageSources, setImageSources] = useState({});
 
-  const handleImageError = (id) => {
-    setImageFailures(prev => ({
-      ...prev,
-      [id]: (prev[id] || 0) + 1
-    }));
+  const getFamilySlug = (familyName) => {
+    const f = (familyName || '').toLowerCase();
+    if (f.includes('carnivore') || f.includes('raptor') || f.includes('theropod')) return 'carnivore';
+    if (f.includes('sauropod')) return 'sauropod';
+    if (f.includes('ankylosaur')) return 'ankylosaurid';
+    if (f.includes('stegosaur')) return 'stegosaurid';
+    if (f.includes('ceratops')) return 'ceratopsid';
+    if (f.includes('hadrosaur')) return 'hadrosaurid';
+    if (f.includes('ornithomim')) return 'ornithomimosaurid';
+    if (f.includes('pachycephalosaur')) return 'pachycephalosaurid';
+    if (f.includes('therapsid')) return 'therapsid';
+    if (f.includes('scavenger')) return 'scavenger';
+    return 'herbivore';
   };
 
   const getImageUrl = (s) => {
-    const fails = imageFailures[s.id] || 0;
-    if (fails === 0) return `/images/species/${s.id}.webp`;
-    if (fails === 1) {
-      const familySlug = (s.family || 'herbivore').toLowerCase().replace(/\s+/g, '_');
-      return `/images/families/${familySlug}.webp`;
-    }
-    return '/images/families/dino_icon.webp';
+    return imageSources[s.id] || `/images/species/${s.id}.webp`;
   };
 
+  const handleImageError = (s) => {
+    const current = imageSources[s.id] || `/images/species/${s.id}.webp`;
+    
+    // Step 1: If species image failed, try family WebP
+    if (current.includes('/images/species/')) {
+      const familySlug = getFamilySlug(s.family);
+      setImageSources(prev => ({ ...prev, [s.id]: `/images/families/${familySlug}.webp` }));
+    } 
+    // Step 2: If family WebP failed, fallback to generic dino_icon
+    else if (!current.includes('dino_icon.webp')) {
+      setImageSources(prev => ({ ...prev, [s.id]: '/images/families/dino_icon.webp' }));
+    }
+  };
+
+  // Determine active paddock habitat based on first resident
   const activeResident = paddock.length > 0 ? speciesData.find(s => s.id === paddock[0].speciesId) : null;
   const activeHabitat = activeResident ? (activeResident.habitat || 'terrestrial') : null;
 
@@ -250,9 +268,9 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
                     src={getImageUrl(s)} 
                     alt={s.name} 
                     loading="lazy"
-                    style={{ width: '48px', height: '32px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
+                    style={{ width: '48px', height: '40px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
                     className="bg-gray-700"
-                    onError={() => handleImageError(s.id)}
+                    onError={() => handleImageError(s)}
                   />
                   <div>
                     <h3 className="text-lg font-bold text-white mb-1 flex items-center flex-wrap gap-2">
@@ -373,7 +391,7 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
                       loading="lazy"
                       style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
                       className="bg-gray-700"
-                      onError={() => handleImageError(s.id)}
+                      onError={() => handleImageError(s)}
                     />
                     <b className="text-white">{s.name}</b>
                   </td>
