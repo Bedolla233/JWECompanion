@@ -6,14 +6,30 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [familyFilter, setFamilyFilter] = useState('');
   const [dietFilter, setDietFilter] = useState('');
+  
+  const [imageFailures, setImageFailures] = useState({});
 
-  // Determine active paddock habitat based on first resident
+  const handleImageError = (id) => {
+    setImageFailures(prev => ({
+      ...prev,
+      [id]: (prev[id] || 0) + 1
+    }));
+  };
+
+  const getImageUrl = (s) => {
+    const fails = imageFailures[s.id] || 0;
+    if (fails === 0) return `/images/species/${s.id}.webp`;
+    if (fails === 1) {
+      const familySlug = (s.family || 'herbivore').toLowerCase().replace(/\s+/g, '_');
+      return `/images/families/${familySlug}.webp`;
+    }
+    return '/images/families/dino_icon.webp';
+  };
+
   const activeResident = paddock.length > 0 ? speciesData.find(s => s.id === paddock[0].speciesId) : null;
   const activeHabitat = activeResident ? (activeResident.habitat || 'terrestrial') : null;
 
-  // Extract unique families for the dropdown
   const families = Array.from(new Set(speciesData.map(s => s.family || "Unknown"))).sort();
-  // Clean, high-level diet categories for the dropdown
   const dietCategories = ['Carnivore', 'Herbivore', 'Piscivore', 'Omnivore', 'Scavenger', 'Live Prey'];
 
   const checkCompatibility = (candidate) => {
@@ -69,7 +85,6 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   };
 
   const processSpeciesData = (species) => {
-    // If it's an array, grab female or first. If object, grab female or male.
     let femaleVariant = {};
     if (Array.isArray(species.variants)) {
       femaleVariant = species.variants.find((v) => v.variant === 'female') || species.variants[0] || {};
@@ -85,7 +100,6 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
     const appealDensityHa = totalAreaHa > 0 ? Math.round(baseAppeal / totalAreaHa) : 0;
     const habitatStr = formatHabitat(species.terrain_percentages || femaleVariant.environment);
 
-    // Hard physical boundary check against active enclosure habitat type
     const candidateHabitat = species.habitat || 'terrestrial';
     const habitatMismatch = activeHabitat ? candidateHabitat !== activeHabitat : false;
     const isCompatible = !habitatMismatch && checkCompatibility(species);
@@ -156,7 +170,6 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
       {/* HEADER & CONTROLS */}
       <div className="flex flex-col gap-4 mb-5">
         
-        {/* Title & Return Button */}
         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
           <div>
             <h2 className="m-0 text-teal-400 flex items-center gap-2 text-xl font-bold">
@@ -174,7 +187,6 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
           </button>
         </div>
         
-        {/* Responsive Control Panel */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 bg-gray-900 p-3 rounded-lg border border-gray-700">
           
           <input
@@ -203,7 +215,6 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
             {dietCategories.map(d => <option key={d} value={d}>{d}</option>)}
           </select>
 
-          {/* MOBILE ONLY: Sort Dropdown (Since Table Headers are hidden) */}
           <div className="flex gap-2 md:hidden">
             <select 
               value={sortConfig.key} 
@@ -233,25 +244,35 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
           const inPaddock = paddock.some((p) => p.speciesId === s.id);
           return (
             <div key={s.id || index} className="bg-gray-900 border border-gray-700 p-4 rounded-lg shadow-sm">
-              <div className="flex justify-between items-start mb-2">
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-1 flex items-center flex-wrap gap-2">
-                    {s.name}
-                    {s.isCompatible ? (
-                      <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
-                        OK
-                      </span>
-                    ) : s.habitatMismatch ? (
-                      <span className="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
-                        Wrong Habitat
-                      </span>
-                    ) : (
-                      <span className="bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
-                        Fight
-                      </span>
-                    )}
-                  </h3>
-                  <p className="text-sm text-gray-400">{s.family} • {s.diet}</p>
+              <div className="flex justify-between items-start mb-2 gap-3">
+                <div className="flex items-center gap-3">
+                  <img 
+                    src={getImageUrl(s)} 
+                    alt={s.name} 
+                    loading="lazy"
+                    style={{ width: '48px', height: '32px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
+                    className="bg-gray-700"
+                    onError={() => handleImageError(s.id)}
+                  />
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-1 flex items-center flex-wrap gap-2">
+                      {s.name}
+                      {s.isCompatible ? (
+                        <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
+                          OK
+                        </span>
+                      ) : s.habitatMismatch ? (
+                        <span className="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
+                          Wrong Habitat
+                        </span>
+                      ) : (
+                        <span className="bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
+                          Fight
+                        </span>
+                      )}
+                    </h3>
+                    <p className="text-sm text-gray-400">{s.family} • {s.diet}</p>
+                  </div>
                 </div>
                 
                 <button
@@ -346,6 +367,14 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
                     >
                       {inPaddock ? 'Added' : s.habitatMismatch ? 'Blocked' : '+ Add'}
                     </button>
+                    <img 
+                      src={getImageUrl(s)} 
+                      alt={s.name} 
+                      loading="lazy"
+                      style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
+                      className="bg-gray-700"
+                      onError={() => handleImageError(s.id)}
+                    />
                     <b className="text-white">{s.name}</b>
                   </td>
 
