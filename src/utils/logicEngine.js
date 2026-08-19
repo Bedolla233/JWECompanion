@@ -219,10 +219,10 @@ export function calculatePaddockSpace(paddockGroup) {
   let totalAppeal = 0;
   let totalDominance = 0;
 
-  // Track populations for the 3 distinct feeder types
-  let standardCarnivoreCount = 0;
-  let livePreyCarnivoreCount = 0;
-  let piscivoreCount = 0;
+  // Track populations for the 3 distinct feeder types based on terrain needs
+  let meatFeederCount = 0;
+  let livePreyFeederCount = 0;
+  let fishFeederCount = 0;
 
   paddockGroup.forEach(
     ({ speciesId, maleCount = 0, femaleCount = 0, juvenileCount = 0 }) => {
@@ -347,14 +347,17 @@ export function calculatePaddockSpace(paddockGroup) {
         totalDominance += juviDom * validJuveniles;
       }
 
-      // --- POPULATION-BASED FEEDER MATH ---
-      const diet = (species.diet || '').toLowerCase();
-      if (diet.includes('piscivore') || diet.includes('diet_fish')) {
-        piscivoreCount += totalDinos;
-      } else if (diet.includes('live prey') || diet.includes('prey')) {
-        livePreyCarnivoreCount += totalDinos;
-      } else if (diet.includes('carnivore') || diet.includes('meat')) {
-        standardCarnivoreCount += totalDinos;
+      // --- NEW POPULATION-BASED FEEDER MATH (TERRAIN EXPLICIT) ---
+      const terrain = species.terrain_percentages || femaleVariant.environment || {};
+      
+      if (terrain.meat && terrain.meat > 0) {
+        meatFeederCount += totalDinos;
+      }
+      if (terrain.fish && terrain.fish > 0) {
+        fishFeederCount += totalDinos;
+      }
+      if (terrain.prey && terrain.prey > 0) {
+        livePreyFeederCount += totalDinos;
       }
     }
   );
@@ -376,9 +379,9 @@ export function calculatePaddockSpace(paddockGroup) {
 
   // Feeder requirements (1 dispenser per 3 eating animals)
   const feederBreakdown = {
-    meat: standardCarnivoreCount > 0 ? Math.ceil(standardCarnivoreCount / 3) : 0,
-    livePrey: livePreyCarnivoreCount > 0 ? Math.ceil(livePreyCarnivoreCount / 3) : 0,
-    fish: piscivoreCount > 0 ? Math.ceil(piscivoreCount / 3) : 0,
+    meat: meatFeederCount > 0 ? Math.ceil(meatFeederCount / 3) : 0,
+    livePrey: livePreyFeederCount > 0 ? Math.ceil(livePreyFeederCount / 3) : 0,
+    fish: fishFeederCount > 0 ? Math.ceil(fishFeederCount / 3) : 0,
   };
 
   const activeSpecies = paddockGroup

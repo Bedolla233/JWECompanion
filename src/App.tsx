@@ -162,7 +162,7 @@ export default function App() {
         }
       `}</style>
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '100%', margin: '0 auto' }}>
       <header
           style={{
             display: 'flex',
@@ -751,7 +751,7 @@ export default function App() {
                     )}
                     {(!summary?.feederBreakdown?.meat && !summary?.feederBreakdown?.livePrey && !summary?.feederBreakdown?.fish) && (
                       <p style={{ margin: '4px 0', fontSize: '14px', color: '#9ca3af' }}>
-                        Feeders: <b style={{ color: '#14b8a6' }}>0 (Herbivores)</b>
+                        Feeders: <b style={{ color: '#14b8a6' }}>0</b>
                       </p>
                     )}
                     <p style={{ margin: '4px 0', fontSize: '14px', color: '#f59e0b' }}>
