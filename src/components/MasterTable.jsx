@@ -268,7 +268,7 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
                     src={getImageUrl(s)} 
                     alt={s.name} 
                     loading="lazy"
-                    style={{ width: '48px', height: '40px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
+                    style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
                     className="bg-gray-700"
                     onError={() => handleImageError(s)}
                   />
