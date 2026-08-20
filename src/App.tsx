@@ -1,11 +1,12 @@
 import DigSites from './components/DigSites';
 import MasterTable from './components/MasterTable';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import speciesData from './data/jwe3_species.json';
 import GenomeHub from './components/GenomeHub';
 import {
   calculatePaddockSpace,
   findOptimalTankmates,
+  evaluateSpeciesPair,
 } from './utils/logicEngine';
 
 export default function App() {
@@ -67,6 +68,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [familyFilter, setFamilyFilter] = useState('');
   const [hideUnsynthesizable, setHideUnsynthesizable] = useState(false);
+  const [modalSort, setModalSort] = useState('name'); // NEW: Modal Sorting State
 
   useEffect(() => {
     localStorage.setItem('jwe3_paddock', JSON.stringify(paddock));
@@ -112,18 +114,84 @@ export default function App() {
   const summary = calculatePaddockSpace(paddock) || {};
   const recommendations = findOptimalTankmates(paddock) || [];
 
-  const filteredSpecies = speciesData.filter((s) => {
-    const matchesSearch = (s.name || "")
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
-    const matchesFamily =
-      !familyFilter ||
-      (s.family || "").toLowerCase().includes(familyFilter.toLowerCase());
-    const matchesGenome = !hideUnsynthesizable || isSynthesizable(s.id);
-    return matchesSearch && matchesFamily && matchesGenome;
-  });
-
   const families = Array.from(new Set(speciesData.map((s) => s.family || "Unknown"))).sort();
+
+  // --- NEW: INTELLIGENT CONTEXTUAL SORTING ENGINE ---
+  const sortedAndFilteredSpecies = useMemo(() => {
+    let list = speciesData.filter((s) => {
+      const matchesSearch = (s.name || "").toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesFamily = !familyFilter || (s.family || "").toLowerCase().includes(familyFilter.toLowerCase());
+      const matchesGenome = !hideUnsynthesizable || isSynthesizable(s.id);
+      return matchesSearch && matchesFamily && matchesGenome;
+    });
+
+    if (modalSort === 'likes' && paddock.length > 0) {
+      list.sort((a, b) => {
+        let aScore = 0; let bScore = 0;
+        paddock.forEach(p => {
+          const activeSp = speciesData.find(s => s.id === p.speciesId);
+          if (!activeSp) return;
+          
+          const evalA = evaluateSpeciesPair(activeSp, a);
+          if (evalA === 'LIKES') aScore += 2;
+          if (evalA === 'DISLIKES') aScore -= 5;
+          
+          const evalB = evaluateSpeciesPair(activeSp, b);
+          if (evalB === 'LIKES') bScore += 2;
+          if (evalB === 'DISLIKES') bScore -= 5;
+        });
+        if (bScore === aScore) return (a.name || '').localeCompare(b.name || '');
+        return bScore - aScore;
+      });
+    } 
+    else if (modalSort === 'habitat' && paddock.length > 0) {
+      const activeTerrainKeys = new Set();
+      paddock.forEach(p => {
+        const sp = speciesData.find(s => s.id === p.speciesId);
+        if (sp && (sp.terrain_percentages || sp.variants?.female?.environment)) {
+          const env = sp.terrain_percentages || sp.variants?.female?.environment;
+          Object.entries(env).forEach(([k, val]) => {
+            if (val > 0) activeTerrainKeys.add(k);
+          });
+        }
+      });
+
+      const getOverlap = (targetSp) => {
+        const env = targetSp.terrain_percentages || targetSp.variants?.female?.environment;
+        if (!env) return 0;
+        let overlap = 0;
+        let totalNeeds = 0;
+        Object.entries(env).forEach(([k, val]) => {
+          if (val > 0 && k !== 'prestige_area_ratio') {
+            totalNeeds++;
+            if (activeTerrainKeys.has(k)) overlap++;
+          }
+        });
+        return totalNeeds > 0 ? (overlap / totalNeeds) : 0;
+      };
+
+      list.sort((a, b) => {
+        const overlapA = getOverlap(a);
+        const overlapB = getOverlap(b);
+        if (overlapB === overlapA) return (a.name || '').localeCompare(b.name || '');
+        return overlapB - overlapA;
+      });
+    } 
+    else if (modalSort === 'appeal') {
+      list.sort((a, b) => {
+        const appealA = a.variants?.female?.appeal || a.variants?.[0]?.appeal || 0;
+        const appealB = b.variants?.female?.appeal || b.variants?.[0]?.appeal || 0;
+        if (appealB === appealA) return (a.name || '').localeCompare(b.name || '');
+        return appealB - appealA;
+      });
+    } 
+    else {
+      // Default: A-Z
+      list.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    }
+
+    return list;
+  }, [searchQuery, familyFilter, hideUnsynthesizable, modalSort, paddock, isSynthesizable]);
 
   const formatTerrainBreakdown = (terrainPercentages) => {
     if (!terrainPercentages) return 'None specified';
@@ -181,10 +249,7 @@ export default function App() {
             </div>
           </div>
           
-          {/* Navigation Buttons Row - Uses flex-wrap for mobile safety */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-            
-            {/* Conditional Escape Hatch */}
             {activeView !== 'planner' && (
               <button
                 onClick={() => setActiveView('planner')}
@@ -353,7 +418,6 @@ export default function App() {
                     const species = speciesData.find((s) => s.id === speciesId);
                     if (!species) return null;
 
-                    // Compute area growth metrics for UI
                     const sociability = species.sociability ?? species.variants?.female?.sociability ?? 0.85;
                     const adultGrowthRate = Math.max(0, 1 - sociability);
                     const adultGrowthPercent = Math.round(adultGrowthRate * 100);
@@ -627,7 +691,6 @@ export default function App() {
                           )}
                         </div>
 
-                        {/* COMFORT WARNINGS UI */}
                         {summary?.comfortWarnings?.[speciesId]?.length > 0 && (
                           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '8px' }}>
                             {summary.comfortWarnings[speciesId].map((warning, idx) => (
@@ -651,7 +714,6 @@ export default function App() {
                             ))}
                           </div>
                         )}
-
                       </div>
                     );
                   }
@@ -709,23 +771,11 @@ export default function App() {
                   }}
                 >
                   <div>
-                    <p
-                      style={{
-                        margin: '4px 0',
-                        fontSize: '14px',
-                        color: '#9ca3af',
-                      }}
-                    >
+                    <p style={{ margin: '4px 0', fontSize: '14px', color: '#9ca3af' }}>
                       Total Appeal:{' '}
                       <b style={{ color: '#fff' }}>{summary?.totalAppeal || 0}</b>
                     </p>
-                    <p
-                      style={{
-                        margin: '4px 0',
-                        fontSize: '14px',
-                        color: '#9ca3af',
-                      }}
-                    >
+                    <p style={{ margin: '4px 0', fontSize: '14px', color: '#9ca3af' }}>
                       Dominance:{' '}
                       <b style={{ color: '#fff' }}>{summary?.totalDominance || 0}</b>
                     </p>
@@ -897,6 +947,7 @@ export default function App() {
           </div>
         )}
 
+        {/* --- THE MODAL OVERLAY --- */}
         {isModalOpen && (
           <div
             style={{
@@ -961,7 +1012,8 @@ export default function App() {
                   gap: '10px',
                 }}
               >
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                {/* 3-COLUMN RESPONSIVE GRID FOR CONTROLS */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '10px' }}>
                   <input
                     type="text"
                     placeholder="Search species name..."
@@ -993,9 +1045,28 @@ export default function App() {
                       </option>
                     ))}
                   </select>
+                  
+                  {/* NEW: INTELLIGENT SORTING SELECTOR */}
+                  <select
+                    value={modalSort}
+                    onChange={(e) => setModalSort(e.target.value)}
+                    style={{
+                      background: '#1f2937',
+                      border: '1px solid #14b8a6',
+                      color: '#fff',
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                      outline: 'none'
+                    }}
+                  >
+                    <option value="name">Sort: A-Z</option>
+                    <option value="appeal">Sort: Highest Appeal</option>
+                    <option value="likes">Sort: Best Compatibility</option>
+                    <option value="habitat">Sort: Closest Habitat Match</option>
+                  </select>
                 </div>
                 
-                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#9ca3af', fontSize: '14px', cursor: 'pointer' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#9ca3af', fontSize: '14px', cursor: 'pointer', marginTop: '4px' }}>
                   <input 
                     type="checkbox" 
                     checked={hideUnsynthesizable} 
@@ -1015,11 +1086,12 @@ export default function App() {
                   gap: '8px',
                 }}
               >
-                {filteredSpecies.map((s) => {
+                {/* USING THE NEW sortedAndFilteredSpecies MEMO HERE */}
+                {sortedAndFilteredSpecies.map((s) => {
                   const inPaddock = paddock.some((p) => p.speciesId === s.id);
-                  const femaleApp = s.variants?.female?.appeal || 0;
-                  const secRating = s.security_rating || 1;
-                  const habitatStr = formatTerrainBreakdown(s.terrain_percentages);
+                  const femaleApp = s.variants?.female?.appeal || s.variants?.[0]?.appeal || 0;
+                  const secRating = s.security_rating || s.variants?.female?.security_rating || 1;
+                  const habitatStr = formatTerrainBreakdown(s.terrain_percentages || s.variants?.female?.environment);
 
                   return (
                     <div

@@ -7,7 +7,6 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   const [familyFilter, setFamilyFilter] = useState('');
   const [dietFilter, setDietFilter] = useState('');
   
-  // Track exact image source per species declaratively to prevent mobile double-firing bugs
   const [imageSources, setImageSources] = useState({});
 
   const getFamilySlug = (familyName) => {
@@ -32,18 +31,15 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   const handleImageError = (s) => {
     const current = imageSources[s.id] || `/images/species/${s.id}.webp`;
     
-    // Step 1: If species image failed, try family WebP
     if (current.includes('/images/species/')) {
       const familySlug = getFamilySlug(s.family);
       setImageSources(prev => ({ ...prev, [s.id]: `/images/families/${familySlug}.webp` }));
     } 
-    // Step 2: If family WebP failed, fallback to generic dino_icon
     else if (!current.includes('dino_icon.webp')) {
       setImageSources(prev => ({ ...prev, [s.id]: '/images/families/dino_icon.webp' }));
     }
   };
 
-  // Determine active paddock habitat based on first resident
   const activeResident = paddock.length > 0 ? speciesData.find(s => s.id === paddock[0].speciesId) : null;
   const activeHabitat = activeResident ? (activeResident.habitat || 'terrestrial') : null;
 
@@ -102,6 +98,16 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
       .join(', ');
   };
 
+  // Helper to extract clean alphabetical strings of terrain keys for sorting
+  const getHabitatSortString = (terrainPercentages) => {
+    if (!terrainPercentages) return '';
+    return Object.entries(terrainPercentages)
+      .filter(([k, ratio]) => ratio > 0 && k !== 'prestige_area_ratio')
+      .map(([k]) => k)
+      .sort()
+      .join(',');
+  };
+
   const processSpeciesData = (species) => {
     let femaleVariant = {};
     if (Array.isArray(species.variants)) {
@@ -116,7 +122,10 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
     const totalAreaM2 = appealPerHectare > 0 ? (baseAppeal / appealPerHectare) * 10000 : 0;
     const totalAreaHa = totalAreaM2 / 10000;
     const appealDensityHa = totalAreaHa > 0 ? Math.round(baseAppeal / totalAreaHa) : 0;
-    const habitatStr = formatHabitat(species.terrain_percentages || femaleVariant.environment);
+    
+    const terrainData = species.terrain_percentages || femaleVariant.environment;
+    const habitatStr = formatHabitat(terrainData);
+    const habitatSortKey = getHabitatSortString(terrainData); // Used invisibly for sorting
 
     const candidateHabitat = species.habitat || 'terrestrial';
     const habitatMismatch = activeHabitat ? candidateHabitat !== activeHabitat : false;
@@ -136,7 +145,8 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
       appealDensityHa,
       isCompatible,
       habitatMismatch,
-      habitatStr
+      habitatStr,
+      habitatSortKey // Injected for the sorting engine
     };
   };
 
@@ -159,12 +169,14 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
       );
 
     filtered.sort((a, b) => {
+      // 1. BOOLEANS (e.g. isCompatible)
       if (typeof a[sortConfig.key] === 'boolean') {
         return sortConfig.direction === 'asc' 
           ? (a[sortConfig.key] === b[sortConfig.key] ? 0 : a[sortConfig.key] ? -1 : 1)
           : (a[sortConfig.key] === b[sortConfig.key] ? 0 : a[sortConfig.key] ? 1 : -1);
       }
 
+      // 2. STRINGS & NUMBERS (including habitatSortKey which we extracted)
       if (a[sortConfig.key] < b[sortConfig.key]) {
         return sortConfig.direction === 'asc' ? -1 : 1;
       }
@@ -240,6 +252,8 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
               className="bg-gray-800 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full text-sm"
             >
               <option value="name">Sort: Name</option>
+              {/* REPLACED: Habitat Sort on Mobile */}
+              <option value="habitatSortKey">Sort: Habitat Match</option>
               <option value="appealDensityHa">Sort: Density/ha</option>
               <option value="baseAppeal">Sort: Base Appeal</option>
               <option value="totalAreaHa">Sort: Base Area</option>
@@ -357,8 +371,11 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
               <th onClick={() => handleSort('name')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Species <SortIcon columnKey="name" /></th>
               <th onClick={() => handleSort('isCompatible')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Compatible <SortIcon columnKey="isCompatible" /></th>
               <th onClick={() => handleSort('diet')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Diet <SortIcon columnKey="diet" /></th>
-              <th className="p-3">Habitat Needs</th>
+              
+              {/* FIXED: Reverted Cohabitation and wired up Habitat Needs sorting */}
+              <th onClick={() => handleSort('habitatSortKey')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Habitat Needs <SortIcon columnKey="habitatSortKey" /></th>
               <th className="p-3">Cohabitation & Interactions</th>
+              
               <th onClick={() => handleSort('family')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Family <SortIcon columnKey="family" /></th>
               <th onClick={() => handleSort('baseAppeal')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Appeal <SortIcon columnKey="baseAppeal" /></th>
               <th onClick={() => handleSort('securityRating')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Security <SortIcon columnKey="securityRating" /></th>
