@@ -8,6 +8,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'images/**/*'],
+      filename: 'manifest.webmanifest',
       devOptions: {
         enabled: true, // Required to run the Service Worker inside StackBlitz
         type: 'module'
