@@ -7,12 +7,8 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'auto',
       includeAssets: ['favicon.ico', 'images/**/*'],
-      filename: 'manifest.webmanifest',
-      devOptions: {
-        enabled: true, // Required to run the Service Worker inside StackBlitz
-        type: 'module'
-      },
       manifest: {
         name: 'JWE3 Habitat Planner',
         short_name: 'JWE3 Planner',
@@ -21,6 +17,7 @@ export default defineConfig({
         background_color: '#0b0f19',
         display: 'standalone',
         orientation: 'portrait',
+        start_url: '/',
         icons: [
           {
             src: '/images/families/dino_icon.webp',
@@ -36,8 +33,11 @@ export default defineConfig({
         ]
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 5000000,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,json}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,json}'],
+        maximumFileSizeToCacheInBytes: 5000000
+      },
+      devOptions: {
+        enabled: false 
       }
     })
   ]
