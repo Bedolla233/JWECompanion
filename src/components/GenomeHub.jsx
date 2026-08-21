@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
 import speciesData from '../data/jwe3_species.json';
 
-export default function GenomeHub({ userGenomes, setUserGenomes, onClose }) {
+export default function GenomeHub({ userGenomes, setUserGenomes, onClose, theme }) {
   const [searchTerm, setSearchTerm] = useState('');
+  const t = theme || {
+    bgMain: '#111827',
+    bgCard: '#1f2937',
+    bgSubCard: '#111827',
+    border: '#374151',
+    textMain: '#f3f4f6',
+    textMuted: '#9ca3af',
+    primary: '#14b8a6',
+    accent: '#f59e0b',
+  };
 
   const handleSlider = (id, value) => {
     setUserGenomes((prev) => ({
@@ -26,7 +36,7 @@ export default function GenomeHub({ userGenomes, setUserGenomes, onClose }) {
   );
 
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', color: '#f3f4f6' }}>
+    <div style={{ maxWidth: '800px', margin: '0 auto', color: t.textMain }}>
       <header
         style={{
           display: 'flex',
@@ -34,23 +44,23 @@ export default function GenomeHub({ userGenomes, setUserGenomes, onClose }) {
           alignItems: 'center',
           marginBottom: '20px',
           paddingBottom: '15px',
-          borderBottom: '2px solid #1f2937',
+          borderBottom: `2px solid ${t.border}`,
         }}
       >
         <div>
-          <h2 style={{ margin: 0, color: '#14b8a6', fontSize: '24px' }}>
-            🧬 Genome Collection Hub
+          <h2 style={{ margin: 0, color: t.primary, fontSize: '24px' }}>
+            Genome Collection Hub
           </h2>
-          <p style={{ margin: '4px 0 0 0', color: '#9ca3af', fontSize: '14px' }}>
+          <p style={{ margin: '4px 0 0 0', color: t.textMuted, fontSize: '14px' }}>
             Track extraction progress. Species require 50% to synthesize.
           </p>
         </div>
         <button
           onClick={onClose}
           style={{
-            background: '#374151',
-            color: '#f3f4f6',
-            border: 'none',
+            background: t.border,
+            color: t.textMain,
+            border: `1px solid ${t.border}`,
             padding: '8px 16px',
             borderRadius: '6px',
             cursor: 'pointer',
@@ -67,7 +77,8 @@ export default function GenomeHub({ userGenomes, setUserGenomes, onClose }) {
           display: 'flex',
           gap: '15px',
           marginBottom: '25px',
-          background: '#1f2937',
+          background: t.bgCard,
+          border: `1px solid ${t.border}`,
           padding: '15px',
           borderRadius: '8px',
           alignItems: 'center',
@@ -81,20 +92,21 @@ export default function GenomeHub({ userGenomes, setUserGenomes, onClose }) {
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{
             flex: 1,
-            background: '#111827',
-            border: '1px solid #374151',
-            color: '#fff',
+            background: t.bgSubCard,
+            border: `1px solid ${t.border}`,
+            color: t.textMain,
             padding: '10px 12px',
             borderRadius: '6px',
             minWidth: '200px',
+            outline: 'none',
           }}
         />
         <button
           onClick={() => handleSetAll(100)}
           style={{
-            background: '#14b8a622',
-            color: '#14b8a6',
-            border: '1px solid #14b8a6',
+            background: `${t.primary}22`,
+            color: t.primary,
+            border: `1px solid ${t.primary}`,
             padding: '10px 16px',
             borderRadius: '6px',
             cursor: 'pointer',
@@ -106,7 +118,7 @@ export default function GenomeHub({ userGenomes, setUserGenomes, onClose }) {
         <button
           onClick={() => handleSetAll(0)}
           style={{
-            background: '#ef444422',
+            background: 'rgba(239, 68, 68, 0.2)',
             color: '#ef4444',
             border: '1px solid #ef4444',
             padding: '10px 16px',
@@ -135,8 +147,8 @@ export default function GenomeHub({ userGenomes, setUserGenomes, onClose }) {
             <div
               key={s.id}
               style={{
-                background: '#1f2937',
-                border: `1px solid ${isSynthesizable ? '#14b8a644' : '#374151'}`,
+                background: t.bgCard,
+                border: `1px solid ${isSynthesizable ? `${t.primary}44` : t.border}`,
                 borderRadius: '8px',
                 padding: '16px',
               }}
@@ -148,12 +160,12 @@ export default function GenomeHub({ userGenomes, setUserGenomes, onClose }) {
                   marginBottom: '10px',
                 }}
               >
-                <strong style={{ color: isSynthesizable ? '#f3f4f6' : '#9ca3af' }}>
+                <strong style={{ color: isSynthesizable ? t.textMain : t.textMuted }}>
                   {s.name}
                 </strong>
                 <span
                   style={{
-                    color: isSynthesizable ? '#14b8a6' : '#ef4444',
+                    color: isSynthesizable ? t.primary : '#ef4444',
                     fontWeight: 'bold',
                   }}
                 >
@@ -167,7 +179,7 @@ export default function GenomeHub({ userGenomes, setUserGenomes, onClose }) {
                 step="10"
                 value={currentProgress}
                 onChange={(e) => handleSlider(s.id, e.target.value)}
-                style={{ width: '100%', cursor: 'pointer' }}
+                style={{ width: '100%', cursor: 'pointer', accentColor: t.primary }}
               />
             </div>
           );

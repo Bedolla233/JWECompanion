@@ -1,7 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import speciesData from '../data/jwe3_species.json';
 
-export default function MasterTable({ paddock, onAddSpecies, onClose }) {
+export default function MasterTable({ paddock, onAddSpecies, onClose, theme }) {
+  const t = theme || {
+    bgMain: '#111827',
+    bgCard: '#1f2937',
+    textMain: '#f3f4f6',
+    border: '#374151',
+    primary: '#14b8a6'
+  };
   const [sortConfig, setSortConfig] = useState({ key: 'appealDensityHa', direction: 'desc' });
   const [searchTerm, setSearchTerm] = useState('');
   const [familyFilter, setFamilyFilter] = useState('');
@@ -195,42 +202,42 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
   };
 
   return (
-    <div className="bg-gray-800 p-4 md:p-5 rounded-xl border border-gray-700 w-full text-left flex flex-col h-full">
+    <div style={{ background: theme?.bgCard || '#1f2937', padding: '16px', borderRadius: '12px', border: `1px solid ${theme?.border || '#374151'}`, width: '100%', textAlign: 'left', display: 'flex', flexDirection: 'column', height: '100%', color: theme?.textMain || '#f3f4f6' }}>
       
       {/* HEADER & CONTROLS */}
-      <div className="flex flex-col gap-4 mb-5">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '20px' }}>
         
-        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
           <div>
-            <h2 className="m-0 text-teal-400 flex items-center gap-2 text-xl font-bold">
+            <h2 style={{ margin: 0, color: theme?.primary || '#14b8a6', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '20px', fontWeight: 'bold' }}>
               Master Species Spreadsheet
             </h2>
-            <p className="mt-1 text-gray-400 text-sm">
+            <p style={{ marginTop: '4px', color: theme?.textMuted || '#9ca3af', fontSize: '14px', marginBottom: 0 }}>
               Compare base stats, security ratings, cohabitation, and area efficiency.
             </p>
           </div>
           <button
             onClick={onClose}
-            className="bg-gray-700 w-full sm:w-auto text-gray-100 border border-gray-600 px-4 py-2 rounded-md font-bold hover:bg-gray-600 transition-colors whitespace-nowrap shadow-sm"
+            style={{ background: theme?.border || '#374151', width: '100%', maxWidth: 'auto', color: theme?.textMain || '#f3f4f6', border: `1px solid ${theme?.border || '#374151'}`, padding: '8px 16px', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', whiteSpace: 'nowrap' }}
           >
             Return to Planner
           </button>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 bg-gray-900 p-3 rounded-lg border border-gray-700">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px', background: theme?.bgSubCard || '#111827', padding: '12px', borderRadius: '8px', border: `1px solid ${theme?.border || '#374151'}` }}>
           
           <input
             type="text"
             placeholder="Search name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="bg-gray-800 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full text-sm"
+            style={{ background: theme?.bgCard || '#1f2937', border: `1px solid ${theme?.border || '#374151'}`, color: theme?.textMain || '#f3f4f6', padding: '8px 12px', borderRadius: '6px', outline: 'none', width: '100%', fontSize: '14px' }}
           />
           
           <select 
             value={familyFilter} 
             onChange={(e) => setFamilyFilter(e.target.value)}
-            className="bg-gray-800 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full text-sm"
+            style={{ background: theme?.bgCard || '#1f2937', border: `1px solid ${theme?.border || '#374151'}`, color: theme?.textMain || '#f3f4f6', padding: '8px 12px', borderRadius: '6px', outline: 'none', width: '100%', fontSize: '14px' }}
           >
             <option value="">All Families</option>
             {families.map(f => <option key={f} value={f}>{f}</option>)}
@@ -239,20 +246,19 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
           <select 
             value={dietFilter} 
             onChange={(e) => setDietFilter(e.target.value)}
-            className="bg-gray-800 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full text-sm"
+            style={{ background: theme?.bgCard || '#1f2937', border: `1px solid ${theme?.border || '#374151'}`, color: theme?.textMain || '#f3f4f6', padding: '8px 12px', borderRadius: '6px', outline: 'none', width: '100%', fontSize: '14px' }}
           >
             <option value="">All Diets</option>
             {dietCategories.map(d => <option key={d} value={d}>{d}</option>)}
           </select>
-
-          <div className="flex gap-2 md:hidden">
+  
+          <div style={{ display: 'flex', gap: '8px' }} className="md:hidden">
             <select 
               value={sortConfig.key} 
               onChange={(e) => setSortConfig({...sortConfig, key: e.target.value})}
-              className="bg-gray-800 border border-gray-600 text-white px-3 py-2 rounded-md focus:outline-none focus:border-teal-500 w-full text-sm"
+              style={{ background: theme?.bgCard || '#1f2937', border: `1px solid ${theme?.border || '#374151'}`, color: theme?.textMain || '#f3f4f6', padding: '8px 12px', borderRadius: '6px', outline: 'none', width: '100%', fontSize: '14px' }}
             >
               <option value="name">Sort: Name</option>
-              {/* REPLACED: Habitat Sort on Mobile */}
               <option value="habitatSortKey">Sort: Habitat Match</option>
               <option value="appealDensityHa">Sort: Density/ha</option>
               <option value="baseAppeal">Sort: Base Appeal</option>
@@ -261,144 +267,159 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
             </select>
             <button 
               onClick={() => setSortConfig({...sortConfig, direction: sortConfig.direction === 'asc' ? 'desc' : 'asc'})}
-              className="bg-gray-700 border border-gray-500 text-white px-3 py-2 rounded-md font-bold"
+              style={{ background: theme?.border || '#374151', border: `1px solid ${theme?.border || '#374151'}`, color: theme?.textMain || '#f3f4f6', padding: '8px 12px', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer' }}
             >
               {sortConfig.direction === 'asc' ? '↑' : '↓'}
             </button>
           </div>
-
+  
         </div>
       </div>
-
+  
       {/* MOBILE VIEW: STACKED CARDS */}
-      <div className="block md:hidden space-y-3 overflow-y-auto pb-4 pr-1" style={{ maxHeight: 'calc(100vh - 280px)' }}>
-        {sortedAndFilteredData.map((s, index) => {
-          const inPaddock = paddock.some((p) => p.speciesId === s.id);
-          return (
-            <div key={s.id || index} className="bg-gray-900 border border-gray-700 p-4 rounded-lg shadow-sm">
-              <div className="flex justify-between items-start mb-2 gap-3">
-                <div className="flex items-center gap-3">
-                  <img 
-                    src={getImageUrl(s)} 
-                    alt={s.name} 
-                    loading="lazy"
-                    style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
-                    className="bg-gray-700"
-                    onError={() => handleImageError(s)}
-                  />
+      <div className="block md:hidden custom-scrollbar" style={{ maxHeight: 'calc(100vh - 280px)', overflowY: 'auto', paddingBottom: '16px', paddingRight: '4px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          {sortedAndFilteredData.map((s, index) => {
+            const inPaddock = paddock.some((p) => p.speciesId === s.id);
+            return (
+              <div key={s.id || index} style={{ background: theme?.bgSubCard || '#111827', border: `1px solid ${theme?.border || '#374151'}`, padding: '16px', borderRadius: '8px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px', gap: '12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <img 
+                      src={getImageUrl(s)} 
+                      alt={s.name} 
+                      loading="lazy"
+                      style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0, background: theme?.border || '#374151' }}
+                      onError={() => handleImageError(s)}
+                    />
+                    <div>
+                      <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: theme?.textMain || '#f3f4f6', marginBottom: '4px', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                        {s.name}
+                        {s.isCompatible ? (
+                          <span style={{ background: 'rgba(34, 197, 94, 0.2)', color: '#4ade80', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 'bold', textTransform: 'uppercase' }}>
+                            OK
+                          </span>
+                        ) : s.habitatMismatch ? (
+                          <span style={{ background: 'rgba(245, 158, 11, 0.2)', color: '#fbbf24', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 'bold', textTransform: 'uppercase' }}>
+                            Wrong Habitat
+                          </span>
+                        ) : (
+                          <span style={{ background: 'rgba(239, 68, 68, 0.2)', color: '#f87171', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 'bold', textTransform: 'uppercase' }}>
+                            Fight
+                          </span>
+                        )}
+                      </h3>
+                      <p style={{ fontSize: '13px', color: theme?.textMuted || '#9ca3af', margin: 0 }}>{s.family} • {s.diet}</p>
+                    </div>
+                  </div>
+                  
+                  <button
+                    disabled={inPaddock || s.habitatMismatch}
+                    onClick={() => onAddSpecies(s.id)}
+                    style={{
+                      padding: '6px 12px',
+                      borderRadius: '6px',
+                      fontWeight: 'bold',
+                      fontSize: '13px',
+                      minWidth: '70px',
+                      border: s.habitatMismatch ? '1px solid rgba(153, 27, 27, 0.5)' : 'none',
+                      background: inPaddock 
+                        ? theme?.border || '#374151' 
+                        : s.habitatMismatch
+                          ? 'rgba(127, 29, 29, 0.4)'
+                          : theme?.primary || '#14b8a6',
+                      color: inPaddock || s.habitatMismatch ? theme?.textMuted || '#9ca3af' : theme?.bgMain || '#111827',
+                      cursor: inPaddock || s.habitatMismatch ? 'not-allowed' : 'pointer'
+                    }}
+                  >
+                    {inPaddock ? 'Added' : s.habitatMismatch ? 'Blocked' : '+ Add'}
+                  </button>
+                </div>
+  
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '12px', paddingTop: '12px', borderTop: `1px solid ${theme?.border || '#374151'}`, fontSize: '13px' }}>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-1 flex items-center flex-wrap gap-2">
-                      {s.name}
-                      {s.isCompatible ? (
-                        <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
-                          OK
-                        </span>
-                      ) : s.habitatMismatch ? (
-                        <span className="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
-                          Wrong Habitat
-                        </span>
-                      ) : (
-                        <span className="bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-xs font-bold uppercase">
-                          Fight
-                        </span>
-                      )}
-                    </h3>
-                    <p className="text-sm text-gray-400">{s.family} • {s.diet}</p>
+                    <span style={{ color: theme?.textMuted || '#9ca3af', display: 'block', fontSize: '11px', textTransform: 'uppercase' }}>Appeal</span>
+                    <span style={{ color: theme?.primary || '#14b8a6', fontWeight: 'bold' }}>{s.baseAppeal}</span>
+                  </div>
+                  <div>
+                    <span style={{ color: theme?.textMuted || '#9ca3af', display: 'block', fontSize: '11px', textTransform: 'uppercase' }}>Density</span>
+                    <span style={{ color: theme?.accent || '#f59e0b', fontWeight: 'bold' }}>{s.appealDensityHa.toLocaleString()} <span style={{ color: theme?.textMuted || '#9ca3af', fontSize: '11px' }}>/ha</span></span>
+                  </div>
+                  <div>
+                    <span style={{ color: theme?.textMuted || '#9ca3af', display: 'block', fontSize: '11px', textTransform: 'uppercase' }}>Base Area</span>
+                    <span style={{ color: theme?.textMain || '#f3f4f6' }}>{s.totalAreaHa.toFixed(2)} ha</span>
+                  </div>
+                  <div>
+                    <span style={{ color: theme?.textMuted || '#9ca3af', display: 'block', fontSize: '11px', textTransform: 'uppercase' }}>Security</span>
+                    <span style={{ color: theme?.accent || '#f59e0b' }}>Lv. {s.securityRating}</span>
                   </div>
                 </div>
-                
-                <button
-                  disabled={inPaddock || s.habitatMismatch}
-                  onClick={() => onAddSpecies(s.id)}
-                  className={`px-3 py-1.5 rounded-md font-bold text-sm min-w-[70px] ${
-                    inPaddock 
-                      ? 'bg-gray-700 text-gray-400 cursor-not-allowed' 
-                      : s.habitatMismatch
-                        ? 'bg-red-900/40 text-red-400 cursor-not-allowed border border-red-800/50'
-                        : 'bg-teal-500 text-gray-900 cursor-pointer hover:bg-teal-400'
-                  }`}
-                >
-                  {inPaddock ? 'Added' : s.habitatMismatch ? 'Blocked' : '+ Add'}
-                </button>
+  
+                <div style={{ marginTop: '12px', background: theme?.bgCard || '#1f2937', borderRadius: '6px', padding: '8px', fontSize: '12px' }}>
+                  <p style={{ color: '#38bdf8', lineHeight: '1.3', margin: '0 0 4px 0' }}>
+                    <strong>Habitat:</strong> {s.habitatStr}
+                  </p>
+                  <div style={{ lineHeight: '1.3' }}>
+                    {s.likes.length > 0 && (
+                      <div style={{ color: '#4ade80', marginBottom: '4px' }}><strong>Likes:</strong> {s.likes.join(', ')}</div>
+                    )}
+                    {s.dislikes.length > 0 && (
+                      <div style={{ color: '#f87171' }}><strong>Fights:</strong> {s.dislikes.join(', ')}</div>
+                    )}
+                    {s.likes.length === 0 && s.dislikes.length === 0 && (
+                      <span style={{ color: theme?.textMuted || '#9ca3af' }}>No specific preferences</span>
+                    )}
+                  </div>
+                </div>
+  
               </div>
-
-              <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-gray-800 text-sm">
-                <div>
-                  <span className="text-gray-500 block text-xs uppercase">Appeal</span>
-                  <span className="text-teal-400 font-bold">{s.baseAppeal}</span>
-                </div>
-                <div>
-                  <span className="text-gray-500 block text-xs uppercase">Density</span>
-                  <span className="text-amber-500 font-bold">{s.appealDensityHa.toLocaleString()} <span className="text-gray-500 text-xs">/ha</span></span>
-                </div>
-                <div>
-                  <span className="text-gray-500 block text-xs uppercase">Base Area</span>
-                  <span className="text-gray-300">{s.totalAreaHa.toFixed(2)} ha</span>
-                </div>
-                <div>
-                  <span className="text-gray-500 block text-xs uppercase">Security</span>
-                  <span className="text-amber-500">Lv. {s.securityRating}</span>
-                </div>
-              </div>
-
-              <div className="mt-3 bg-gray-800 rounded p-2 text-xs">
-                <p className="text-sky-400 leading-tight mb-1">
-                  <strong>Habitat:</strong> {s.habitatStr}
-                </p>
-                <div className="leading-tight">
-                  {s.likes.length > 0 && (
-                    <div className="text-green-400 mb-1"><strong>Likes:</strong> {s.likes.join(', ')}</div>
-                  )}
-                  {s.dislikes.length > 0 && (
-                    <div className="text-red-400"><strong>Fights:</strong> {s.dislikes.join(', ')}</div>
-                  )}
-                  {s.likes.length === 0 && s.dislikes.length === 0 && (
-                    <span className="text-gray-500">No specific preferences</span>
-                  )}
-                </div>
-              </div>
-
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-
+  
       {/* DESKTOP VIEW: STANDARD SPREADSHEET */}
-      <div className="hidden md:block overflow-x-auto rounded-lg border border-gray-700 custom-scrollbar flex-grow" style={{ maxHeight: 'calc(100vh - 200px)' }}>
-        <table className="w-full border-collapse text-left text-sm whitespace-nowrap">
-          <thead className="bg-gray-900 sticky top-0 z-10 text-gray-100 border-b-2 border-gray-700">
+      <div className="hidden md:block custom-scrollbar flex-grow" style={{ overflowX: 'auto', borderRadius: '8px', border: `1px solid ${theme?.border || '#374151'}`, maxHeight: 'calc(100vh - 200px)' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '14px', whiteSpace: 'nowrap' }}>
+          <thead style={{ background: theme?.bgCard || '#1f2937', position: 'sticky', top: 0, zIndex: 10, color: theme?.textMain || '#f3f4f6', borderBottom: `2px solid ${theme?.border || '#374151'}` }}>
             <tr>
-              <th onClick={() => handleSort('name')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Species <SortIcon columnKey="name" /></th>
-              <th onClick={() => handleSort('isCompatible')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Compatible <SortIcon columnKey="isCompatible" /></th>
-              <th onClick={() => handleSort('diet')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Diet <SortIcon columnKey="diet" /></th>
-              
-              {/* FIXED: Reverted Cohabitation and wired up Habitat Needs sorting */}
-              <th onClick={() => handleSort('habitatSortKey')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Habitat Needs <SortIcon columnKey="habitatSortKey" /></th>
-              <th className="p-3">Cohabitation & Interactions</th>
-              
-              <th onClick={() => handleSort('family')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Family <SortIcon columnKey="family" /></th>
-              <th onClick={() => handleSort('baseAppeal')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Appeal <SortIcon columnKey="baseAppeal" /></th>
-              <th onClick={() => handleSort('securityRating')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Security <SortIcon columnKey="securityRating" /></th>
-              <th onClick={() => handleSort('totalAreaHa')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Base Area (ha) <SortIcon columnKey="totalAreaHa" /></th>
-              <th onClick={() => handleSort('appealDensityHa')} className="p-3 cursor-pointer select-none hover:bg-gray-800 transition-colors">Appeal / ha <SortIcon columnKey="appealDensityHa" /></th>
+              <th onClick={() => handleSort('name')} style={{ padding: '12px', cursor: 'pointer', userSelect: 'none' }}>Species <SortIcon columnKey="name" /></th>
+              <th onClick={() => handleSort('isCompatible')} style={{ padding: '12px', cursor: 'pointer', userSelect: 'none' }}>Compatible <SortIcon columnKey="isCompatible" /></th>
+              <th onClick={() => handleSort('diet')} style={{ padding: '12px', cursor: 'pointer', userSelect: 'none' }}>Diet <SortIcon columnKey="diet" /></th>
+              <th onClick={() => handleSort('habitatSortKey')} style={{ padding: '12px', cursor: 'pointer', userSelect: 'none' }}>Habitat Needs <SortIcon columnKey="habitatSortKey" /></th>
+              <th style={{ padding: '12px' }}>Cohabitation & Interactions</th>
+              <th onClick={() => handleSort('family')} style={{ padding: '12px', cursor: 'pointer', userSelect: 'none' }}>Family <SortIcon columnKey="family" /></th>
+              <th onClick={() => handleSort('baseAppeal')} style={{ padding: '12px', cursor: 'pointer', userSelect: 'none' }}>Appeal <SortIcon columnKey="baseAppeal" /></th>
+              <th onClick={() => handleSort('securityRating')} style={{ padding: '12px', cursor: 'pointer', userSelect: 'none' }}>Security <SortIcon columnKey="securityRating" /></th>
+              <th onClick={() => handleSort('totalAreaHa')} style={{ padding: '12px', cursor: 'pointer', userSelect: 'none' }}>Base Area (ha) <SortIcon columnKey="totalAreaHa" /></th>
+              <th onClick={() => handleSort('appealDensityHa')} style={{ padding: '12px', cursor: 'pointer', userSelect: 'none' }}>Appeal / ha <SortIcon columnKey="appealDensityHa" /></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-700">
+          <tbody>
             {sortedAndFilteredData.map((s, index) => {
               const inPaddock = paddock.some((p) => p.speciesId === s.id);
+              const rowBg = index % 2 === 0 ? (theme?.bgSubCard || '#111827') : (theme?.bgCard || '#1f2937');
               return (
-                <tr key={s.id || index} className={`${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-900'} hover:bg-gray-700 transition-colors`}>
-                  <td className="p-3 flex items-center gap-3">
+                <tr key={s.id || index} style={{ background: rowBg, borderBottom: `1px solid ${theme?.border || '#374151'}` }}>
+                  <td style={{ padding: '12px', display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <button
                       disabled={inPaddock || s.habitatMismatch}
                       onClick={() => onAddSpecies(s.id)}
-                      className={`px-2.5 py-1.5 rounded text-xs font-bold min-w-[65px] ${
-                        inPaddock 
-                          ? 'bg-gray-700 text-gray-400 cursor-not-allowed' 
+                      style={{
+                        padding: '6px 10px',
+                        borderRadius: '4px',
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        minWidth: '65px',
+                        border: s.habitatMismatch ? '1px solid rgba(153, 27, 27, 0.5)' : 'none',
+                        background: inPaddock 
+                          ? theme?.border || '#374151' 
                           : s.habitatMismatch
-                            ? 'bg-red-900/40 text-red-400 cursor-not-allowed border border-red-800/50'
-                            : 'bg-teal-500 text-gray-900 cursor-pointer hover:bg-teal-400'
-                      }`}
+                            ? 'rgba(127, 29, 29, 0.4)'
+                            : theme?.primary || '#14b8a6',
+                        color: inPaddock || s.habitatMismatch ? theme?.textMuted || '#9ca3af' : theme?.bgMain || '#111827',
+                        cursor: inPaddock || s.habitatMismatch ? 'not-allowed' : 'pointer'
+                      }}
                     >
                       {inPaddock ? 'Added' : s.habitatMismatch ? 'Blocked' : '+ Add'}
                     </button>
@@ -406,54 +427,53 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
                       src={getImageUrl(s)} 
                       alt={s.name} 
                       loading="lazy"
-                      style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
-                      className="bg-gray-700"
+                      style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0, background: theme?.border || '#374151' }}
                       onError={() => handleImageError(s)}
                     />
-                    <b className="text-white">{s.name}</b>
+                    <b style={{ color: theme?.textMain || '#f3f4f6' }}>{s.name}</b>
                   </td>
-
-                  <td className="p-3">
+  
+                  <td style={{ padding: '12px' }}>
                     {s.isCompatible ? (
-                      <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs font-bold">
+                      <span style={{ background: 'rgba(34, 197, 94, 0.2)', color: '#4ade80', padding: '4px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: 'bold' }}>
                         Yes
                       </span>
                     ) : s.habitatMismatch ? (
-                      <span className="bg-amber-500/20 text-amber-400 px-2 py-1 rounded text-xs font-bold" title="Incompatible Enclosure Habitat">
+                      <span style={{ background: 'rgba(245, 158, 11, 0.2)', color: '#fbbf24', padding: '4px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: 'bold' }} title="Incompatible Enclosure Habitat">
                         Habitat Clashes
                       </span>
                     ) : (
-                      <span className="bg-red-500/20 text-red-400 px-2 py-1 rounded text-xs font-bold">
+                      <span style={{ background: 'rgba(239, 68, 68, 0.2)', color: '#f87171', padding: '4px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: 'bold' }}>
                         No
                       </span>
                     )}
                   </td>
-
-                  <td className="p-3 text-gray-300">{s.diet}</td>
-
-                  <td className="p-3 text-sky-400 text-xs min-w-[180px] whitespace-normal leading-tight">
+  
+                  <td style={{ padding: '12px', color: theme?.textMuted || '#9ca3af' }}>{s.diet}</td>
+  
+                  <td style={{ padding: '12px', color: '#38bdf8', fontSize: '12px', minWidth: '180px', whiteSpace: 'normal', lineHeight: '1.3' }}>
                     {s.habitatStr}
                   </td>
-
-                  <td className="p-3 text-xs min-w-[220px] whitespace-normal leading-tight">
+  
+                  <td style={{ padding: '12px', fontSize: '12px', minWidth: '220px', whiteSpace: 'normal', lineHeight: '1.3' }}>
                     {s.likes.length > 0 && (
-                      <div className="text-green-400 mb-0.5"><strong>Likes:</strong> {s.likes.join(', ')}</div>
+                      <div style={{ color: '#4ade80', marginBottom: '2px' }}><strong>Likes:</strong> {s.likes.join(', ')}</div>
                     )}
                     {s.dislikes.length > 0 && (
-                      <div className="text-red-400"><strong>Fights:</strong> {s.dislikes.join(', ')}</div>
+                      <div style={{ color: '#f87171' }}><strong>Fights:</strong> {s.dislikes.join(', ')}</div>
                     )}
                     {s.likes.length === 0 && s.dislikes.length === 0 && (
-                      <span className="text-gray-500">No specific preferences</span>
+                      <span style={{ color: theme?.textMuted || '#9ca3af' }}>No specific preferences</span>
                     )}
                   </td>
-
-                  <td className="p-3 text-gray-400">{s.family}</td>
-                  <td className="p-3 text-teal-400 font-bold">{s.baseAppeal}</td>
-                  <td className="p-3 text-amber-500">Lv. {s.securityRating}</td>
+  
+                  <td style={{ padding: '12px', color: theme?.textMuted || '#9ca3af' }}>{s.family}</td>
+                  <td style={{ padding: '12px', color: theme?.primary || '#14b8a6', fontWeight: 'bold' }}>{s.baseAppeal}</td>
+                  <td style={{ padding: '12px', color: theme?.accent || '#f59e0b' }}>Lv. {s.securityRating}</td>
                   
-                  <td className="p-3 text-gray-300">{s.totalAreaHa.toFixed(2)} ha</td>
-                  <td className="p-3 text-amber-500 font-bold">
-                    {s.appealDensityHa.toLocaleString()} <small className="text-gray-400">/ha</small>
+                  <td style={{ padding: '12px', color: theme?.textMuted || '#9ca3af' }}>{s.totalAreaHa.toFixed(2)} ha</td>
+                  <td style={{ padding: '12px', color: theme?.accent || '#f59e0b', fontWeight: 'bold' }}>
+                    {s.appealDensityHa.toLocaleString()} <small style={{ color: theme?.textMuted || '#9ca3af' }}>/ha</small>
                   </td>
                 </tr>
               );
@@ -462,5 +482,5 @@ export default function MasterTable({ paddock, onAddSpecies, onClose }) {
         </table>
       </div>
     </div>
-  );
+  )
 }
