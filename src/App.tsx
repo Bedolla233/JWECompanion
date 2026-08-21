@@ -271,12 +271,19 @@ export default function App() {
   };
 
   return (
-    <div style={{ background: t.bgMain, minHeight: '100vh', color: t.textMain, fontFamily: 'sans-serif', padding: '20px', transition: 'background 0.3s ease, color 0.3s ease' }}>
+    <div className="app-container" style={{ background: t.bgMain, minHeight: '100vh', color: t.textMain, fontFamily: 'sans-serif', padding: '10px', transition: 'background 0.3s ease, color 0.3s ease' }}>
       <style>{`
         .app-grid { display: grid; grid-template-columns: 1fr 340px; gap: 25px; align-items: start; }
         .custom-scrollbar::-webkit-scrollbar { height: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: ${t.bgCard}; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: ${t.border}; border-radius: 4px; }
+        
+        @media (min-width: 768px) {
+          .app-container {
+            padding: 20px !important;
+          }
+        }
+
         @media (max-width: 850px) {
           .app-grid { display: flex; flex-direction: column-reverse; }
           .dashboard-col { position: static !important; margin-bottom: 20px; }
