@@ -189,28 +189,48 @@ export default function App() {
     if (window.confirm('Clear all dinosaurs from this enclosure?')) updateActiveRoster([]);
   };
 
-  // --- SHARE & EXPORT HANDLERS ---
   const handleShareLink = () => {
     const encoded = encodeParkData(paddocks);
     if (encoded) {
       const shareUrl = `${window.location.origin}${window.location.pathname}?park=${encoded}`;
-      navigator.clipboard.writeText(shareUrl);
-      alert("Shareable link copied to clipboard!");
+      
+      // Robust clipboard copy with fallback for HTTP/non-secure contexts
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          alert("Shareable link copied to clipboard!");
+        }).catch(() => {
+          fallbackCopyTextToClipboard(shareUrl);
+        });
+      } else {
+        fallbackCopyTextToClipboard(shareUrl);
+      }
     } else {
       alert("Failed to generate link.");
     }
   };
 
-  const handleExportPark = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(paddocks, null, 2));
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `jwe_park_${Date.now()}.json`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
+  const fallbackCopyTextToClipboard = (text) => {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";  
+    textArea.style.opacity = "0";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        alert("Shareable link copied to clipboard!");
+      } else {
+        alert("Failed to copy link. Check browser permissions.");
+      }
+    } catch (err) {
+      alert("Unable to copy to clipboard automatically.");
+    }
+    document.body.removeChild(textArea);
   };
 
+  //Future use
   const handleImportPark = (event) => {
     const fileReader = new FileReader();
     if (event.target.files && event.target.files[0]) {
@@ -703,7 +723,7 @@ export default function App() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
                       <button
                         onClick={() => {
-                          const link = generateParkShareUrl(paddocks);
+                          const link = handleShareLink(paddocks);
                           navigator.clipboard.writeText(link);
                           alert("Shareable link copied to clipboard!");
                         }}
