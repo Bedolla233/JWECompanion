@@ -8,9 +8,9 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
-      includeAssets: ['favicon.ico', 'images/**/*'],
+      includeAssets: ['images/**/*'],
       manifest: {
-        name: 'JWE3 Habitat Planner',
+        name: 'JWE3-Companion',
         short_name: 'JWE3 Planner',
         description: 'Enclosure and expedition planner for Jurassic World Evolution 3',
         theme_color: '#0b0f19',
