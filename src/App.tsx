@@ -8,6 +8,8 @@ import {
   findOptimalTankmates,
   evaluateSpeciesPair,
   calculateGlobalParkStats,
+  encodeParkData,
+  decodeParkData,
 } from './utils/logicEngine';
 
 const themes = {
@@ -57,8 +59,23 @@ export default function App() {
 
   const t = themes[currentTheme] || themes.default;
 
-  // 1. STATE RESTRUCTURE & AUTO-MIGRATION
+  // 1. STATE RESTRUCTURE, AUTO-MIGRATION, & URL PARSING
   const [paddocks, setPaddocks] = useState(() => {
+    // Check if user opened a shared URL link first
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const parkParam = params.get('park');
+      if (parkParam) {
+        const sharedPark = decodeParkData(parkParam);
+        if (sharedPark) {
+          // Clean the URL bar so it doesn't stay cluttered
+          window.history.replaceState({}, document.title, window.location.pathname);
+          return sharedPark;
+        }
+      }
+    } catch (e) {}
+
+    // Fallback to local storage
     const savedPaddocks = localStorage.getItem('jwe3_paddocks');
     if (savedPaddocks) {
       try {
@@ -66,6 +83,7 @@ export default function App() {
       } catch (e) {}
     }
     
+    // Legacy migration check
     const legacySaved = localStorage.getItem('jwe3_paddock');
     if (legacySaved) {
       try {
@@ -75,6 +93,8 @@ export default function App() {
         }
       } catch (e) {}
     }
+    
+    // Default park
     return [{
       id: 'pad-1',
       name: 'Enclosure 1',
@@ -119,6 +139,7 @@ export default function App() {
   const activePaddock = paddocks.find(p => p.id === activePaddockId) || paddocks[0];
   const currentRoster = activePaddock?.roster || [];
 
+  // --- MULTI-PADDOCK ACTIONS ---
   const handleAddPaddock = () => {
     const newId = 'pad-' + Date.now();
     setPaddocks([...paddocks, { id: newId, name: `Enclosure ${paddocks.length + 1}`, roster: [] }]);
@@ -166,6 +187,49 @@ export default function App() {
 
   const handleReset = () => {
     if (window.confirm('Clear all dinosaurs from this enclosure?')) updateActiveRoster([]);
+  };
+
+  // --- SHARE & EXPORT HANDLERS ---
+  const handleShareLink = () => {
+    const encoded = encodeParkData(paddocks);
+    if (encoded) {
+      const shareUrl = `${window.location.origin}${window.location.pathname}?park=${encoded}`;
+      navigator.clipboard.writeText(shareUrl);
+      alert("Shareable link copied to clipboard!");
+    } else {
+      alert("Failed to generate link.");
+    }
+  };
+
+  const handleExportPark = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(paddocks, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `jwe_park_${Date.now()}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+  };
+
+  const handleImportPark = (event) => {
+    const fileReader = new FileReader();
+    if (event.target.files && event.target.files[0]) {
+      fileReader.readAsText(event.target.files[0], "UTF-8");
+      fileReader.onload = (e) => {
+        try {
+          const importedData = JSON.parse(e.target.result);
+          if (Array.isArray(importedData) && importedData[0].roster) {
+            setPaddocks(importedData);
+            setActivePaddockId(importedData[0]?.id || 'pad-1');
+            alert("Park imported successfully!");
+          } else {
+            alert("Invalid park file format.");
+          }
+        } catch (error) {
+          alert("Failed to parse JSON file.");
+        }
+      };
+    }
   };
 
   const summary = calculatePaddockSpace(currentRoster) || {};
@@ -292,8 +356,25 @@ export default function App() {
 
       <div style={{ maxWidth: '100%', margin: '0 auto' }}>
         <header style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginBottom: '25px', borderBottom: `2px solid ${t.border}`, paddingBottom: '15px' }}>
+          
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-            <div><h1 style={{ margin: 0, color: t.primary, fontSize: '28px', lineHeight: '1.2' }}>Unofficial JWE Companion</h1></div>
+          <div>
+            <h1 style={{ margin: 0, color: t.primary, fontSize: '28px', lineHeight: '1.2', display: 'flex', alignItems: 'center', gap: '12px' }}>
+            Unofficial JWE Companion
+              <img 
+                src="/images/icons/Mobile_Icon.png" 
+                alt="App Logo" 
+                style={{ 
+                  width: '40px', 
+                  height: '40px', 
+                  borderRadius: '8px', 
+                  objectFit: 'cover',
+                  border: `2px solid ${t.border}`,
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)'
+                }} 
+              />
+            </h1>
+          </div>
             
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span style={{ fontSize: '13px', color: t.textMuted, fontWeight: 'bold' }}>Theme:</span>
@@ -309,7 +390,7 @@ export default function App() {
                   fontWeight: 'bold',
                   outline: 'none',
                   cursor: 'pointer',
-                  width: '50%'
+                  width: 'auto'
                 }}
               >
                 <option value="default">Default Dark</option>
@@ -319,13 +400,80 @@ export default function App() {
             </div>
           </div>
           
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-            {activeView !== 'planner' && (
-              <button onClick={() => setActiveView('planner')} style={{ flex: '1 1 auto', background: t.primary, color: t.bgMain, border: `1px solid ${t.primary}`, padding: '10px 16px', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap' }}>← Return to Planner</button>
-            )}
-            <button onClick={() => setActiveView('table')} style={{ flex: '1 1 auto', background: activeView === 'table' ? t.primary : t.bgCard, color: activeView === 'table' ? t.bgMain : t.primary, border: `1px solid ${activeView === 'table' ? t.primary : t.border}`, padding: '10px 16px', borderRadius: '6px', cursor: activeView === 'table' ? 'default' : 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap' }}>Master Table</button>
-            <button onClick={() => setActiveView('genomes')} style={{ flex: '1 1 auto', background: activeView === 'genomes' ? t.primary : t.bgCard, color: activeView === 'genomes' ? t.bgMain : t.primary, border: `1px solid ${activeView === 'genomes' ? t.primary : t.border}`, padding: '10px 16px', borderRadius: '6px', cursor: activeView === 'genomes' ? 'default' : 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap' }}>Genome Hub</button>
-            <button onClick={() => setActiveView('digsites')} style={{ flex: '1 1 auto', background: activeView === 'digsites' ? t.primary : t.bgCard, color: activeView === 'digsites' ? t.bgMain : t.primary, border: `1px solid ${activeView === 'digsites' ? t.primary : t.border}`, padding: '10px 16px', borderRadius: '6px', cursor: activeView === 'digsites' ? 'default' : 'pointer', fontWeight: 'bold', whiteSpace: 'nowrap' }}>Dig Sites</button>
+          <div style={{ display: 'flex', overflowX: 'auto' }} className="custom-scrollbar">
+            <div style={{
+              display: 'inline-flex',
+              background: t.bgCard,
+              border: `1px solid ${t.border}`,
+              borderRadius: '8px',
+              padding: '4px',
+              gap: '2px'
+            }}>
+              <button 
+                onClick={() => setActiveView('planner')} 
+                style={{ 
+                  background: activeView === 'planner' ? t.primary : 'transparent', 
+                  color: activeView === 'planner' ? t.bgMain : t.textMuted, 
+                  border: 'none', 
+                  padding: '8px 16px', 
+                  borderRadius: '6px', 
+                  cursor: activeView === 'planner' ? 'default' : 'pointer', 
+                  fontWeight: 'bold', 
+                  fontSize: '13px',
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.2s ease'
+                }}>
+                Enclosures
+              </button>
+              <button 
+                onClick={() => setActiveView('table')} 
+                style={{ 
+                  background: activeView === 'table' ? t.primary : 'transparent', 
+                  color: activeView === 'table' ? t.bgMain : t.textMuted, 
+                  border: 'none', 
+                  padding: '8px 16px', 
+                  borderRadius: '6px', 
+                  cursor: activeView === 'table' ? 'default' : 'pointer', 
+                  fontWeight: 'bold', 
+                  fontSize: '13px',
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.2s ease'
+                }}>
+                Master Table
+              </button>
+              <button 
+                onClick={() => setActiveView('genomes')} 
+                style={{ 
+                  background: activeView === 'genomes' ? t.primary : 'transparent', 
+                  color: activeView === 'genomes' ? t.bgMain : t.textMuted, 
+                  border: 'none', 
+                  padding: '8px 16px', 
+                  borderRadius: '6px', 
+                  cursor: activeView === 'genomes' ? 'default' : 'pointer', 
+                  fontWeight: 'bold', 
+                  fontSize: '13px',
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.2s ease'
+                }}>
+                Genome Hub
+              </button>
+              <button 
+                onClick={() => setActiveView('digsites')} 
+                style={{ 
+                  background: activeView === 'digsites' ? t.primary : 'transparent', 
+                  color: activeView === 'digsites' ? t.bgMain : t.textMuted, 
+                  border: 'none', 
+                  padding: '8px 16px', 
+                  borderRadius: '6px', 
+                  cursor: activeView === 'digsites' ? 'default' : 'pointer', 
+                  fontWeight: 'bold', 
+                  fontSize: '13px',
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.2s ease'
+                }}>
+                Dig Sites
+              </button>
+            </div>
           </div>
         </header>
 
@@ -509,6 +657,11 @@ export default function App() {
                   }
                 )
               )}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+            <button onClick={handleShareLink} style={{ background: t.bgCard, border: `1px solid ${t.primary}`, color: t.primary, padding: '8px 12px', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '13px' }}>
+              🔗 Copy Share Link
+            </button>
+          </div>
             </div>
 
             <div className="dashboard-col" style={{ position: 'sticky', top: '20px' }}>

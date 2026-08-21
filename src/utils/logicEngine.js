@@ -524,3 +524,34 @@ export const calculateGlobalParkStats = (paddocks) => {
     }
   };
 };
+
+//Encodes the park array into a URL-safe Base64 string.
+// TODO: Improve with User Login
+export const encodeParkData = (paddocks) => {
+  try {
+    const jsonString = JSON.stringify(paddocks);
+    // encodeURIComponent handles special characters safely before Base64 encoding
+    return btoa(encodeURIComponent(jsonString));
+  } catch (error) {
+    console.error("Failed to encode park data:", error);
+    return null;
+  }
+};
+
+// Decodes a Base64 string back into a valid paddocks array.
+export const decodeParkData = (encodedString) => {
+  try {
+    const decodedJson = decodeURIComponent(atob(encodedString));
+    const parsed = JSON.parse(decodedJson);
+    
+    // Safety Check: Ensure it's a valid array and looks like a paddock object
+    if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].roster) {
+      return parsed;
+    }
+    console.warn("Decoded data is not a valid park structure.");
+    return null;
+  } catch (error) {
+    console.error("Failed to decode park data:", error);
+    return null;
+  }
+};
