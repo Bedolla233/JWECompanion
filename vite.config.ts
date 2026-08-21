@@ -15,6 +15,7 @@ export default defineConfig({
         description: 'Enclosure and expedition planner for Jurassic World Evolution 3',
         theme_color: '#0b0f19',
         background_color: '#0b0f19',
+        filename: 'manifest.json',
         display: 'standalone',
         orientation: 'portrait',
         start_url: '/',
