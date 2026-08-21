@@ -530,7 +530,6 @@ export const calculateGlobalParkStats = (paddocks) => {
 export const encodeParkData = (paddocks) => {
   try {
     const jsonString = JSON.stringify(paddocks);
-    // encodeURIComponent handles special characters safely before Base64 encoding
     return btoa(encodeURIComponent(jsonString));
   } catch (error) {
     console.error("Failed to encode park data:", error);

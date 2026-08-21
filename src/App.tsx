@@ -53,6 +53,8 @@ export default function App() {
     return localStorage.getItem('jwe3_theme') || 'default';
   });
 
+  const [copied, setCopied] = useState(false);
+
   useEffect(() => {
     localStorage.setItem('jwe3_theme', currentTheme);
   }, [currentTheme]);
@@ -189,23 +191,24 @@ export default function App() {
     if (window.confirm('Clear all dinosaurs from this enclosure?')) updateActiveRoster([]);
   };
 
-  const handleShareLink = () => {
+  const handleShareLink = async () => {
     const encoded = encodeParkData(paddocks);
-    if (encoded) {
-      const shareUrl = `${window.location.origin}${window.location.pathname}?park=${encoded}`;
-      
-      // Robust clipboard copy with fallback for HTTP/non-secure contexts
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(shareUrl).then(() => {
-          alert("Shareable link copied to clipboard!");
-        }).catch(() => {
-          fallbackCopyTextToClipboard(shareUrl);
-        });
-      } else {
-        fallbackCopyTextToClipboard(shareUrl);
-      }
-    } else {
-      alert("Failed to generate link.");
+    if (!encoded) {
+      console.error("Failed to encode park data");
+      return;
+    }
+
+    const baseUrl = window.location.href.split('?')[0];
+    const shareUrl = `${baseUrl}?park=${encoded}`;
+
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset button text after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+      // Fallback for restricted environments
+      fallbackCopyTextToClipboard(shareUrl);
     }
   };
 
@@ -218,18 +221,14 @@ export default function App() {
     textArea.focus();
     textArea.select();
     try {
-      const successful = document.execCommand('copy');
-      if (successful) {
-        alert("Shareable link copied to clipboard!");
-      } else {
-        alert("Failed to copy link. Check browser permissions.");
-      }
-    } catch (err) {
-      alert("Unable to copy to clipboard automatically.");
+      document.execCommand('copy');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (e) {
+      console.error('Fallback copy failed', e);
     }
     document.body.removeChild(textArea);
   };
-
   //Future use
   const handleImportPark = (event) => {
     const fileReader = new FileReader();
@@ -721,24 +720,21 @@ export default function App() {
                     )
                   )}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                      <button
-                        onClick={() => {
-                          const link = handleShareLink(paddocks);
-                          navigator.clipboard.writeText(link);
-                          alert("Shareable link copied to clipboard!");
-                        }}
-                        style={{
-                          background: t.bgCard,
-                          border: `1px solid ${t.primary}`,
-                          color: t.primary,
-                          padding: '8px 12px',
-                          borderRadius: '6px',
-                          fontWeight: 'bold',
-                          cursor: 'pointer',
-                          fontSize: '13px'
-                        }}
-                      >
-                        Copy Share Link
+                      <button 
+                          onClick={handleShareLink} 
+                          style={{ 
+                            background: t.bgCard, 
+                            border: `1px solid ${copied ? '#22c55e' : t.primary}`, 
+                            color: copied ? '#22c55e' : t.primary, 
+                            padding: '8px 12px', 
+                            borderRadius: '6px', 
+                            fontWeight: 'bold', 
+                            cursor: 'pointer', 
+                            fontSize: '13px',
+                            transition: 'all 0.2s ease'
+                          }}
+                        >
+                          {copied ? '✓ Copied to Clipboard!' : '🔗 Copy Share Link'}
                       </button>
 
                     </div>
