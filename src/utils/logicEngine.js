@@ -437,7 +437,6 @@ export function calculatePaddockSpace(paddockGroup) {
 }
 
 // Logic for Dig sites
-
 export function calculateRequiredExpeditions(paddockGroup, completedSitesMap) {
   const requiredSiteIds = new Set();
   const activeSpeciesIds = paddockGroup.map((p) => p.speciesId);
@@ -474,3 +473,54 @@ export function calculateRequiredExpeditions(paddockGroup, completedSitesMap) {
 
   return { sites, totalCost, totalDuration, maxLogistics };
 }
+
+// Scans the entire multi-paddock park to calculate global metrics.
+export const calculateGlobalParkStats = (paddocks) => {
+  let totalAppeal = 0;
+  let totalAreaHa = 0;
+  let totalDinos = 0;
+  let totalMeatFeeders = 0;
+  let totalLiveFeeders = 0;
+  let totalFishFeeders = 0;
+
+  if (!Array.isArray(paddocks)) {
+    return { 
+      totalAppeal: 0, 
+      totalAreaHa: 0, 
+      totalDinos: 0, 
+      feederTotals: { meat: 0, livePrey: 0, fish: 0 } 
+    };
+  }
+
+  paddocks.forEach(paddock => {
+    const stats = calculatePaddockSpace(paddock.roster || []);
+    
+    if (stats) {
+      totalAppeal += Number(stats.totalAppeal || 0);
+      totalAreaHa += Number(stats.totalAreaHa || 0);
+      
+      if (stats.feederBreakdown) {
+        totalMeatFeeders += Number(stats.feederBreakdown.meat || 0);
+        totalLiveFeeders += Number(stats.feederBreakdown.livePrey || 0);
+        totalFishFeeders += Number(stats.feederBreakdown.fish || 0);
+      }
+
+      if (Array.isArray(paddock.roster)) {
+        paddock.roster.forEach(dino => {
+          totalDinos += Number(dino.femaleCount || 0) + Number(dino.maleCount || 0) + Number(dino.juvenileCount || 0);
+        });
+      }
+    }
+  });
+
+  return {
+    totalAppeal,
+    totalAreaHa: Number(totalAreaHa || 0), // Forces it to always be a valid number
+    totalDinos,
+    feederTotals: {
+      meat: totalMeatFeeders,
+      livePrey: totalLiveFeeders,
+      fish: totalFishFeeders
+    }
+  };
+};
