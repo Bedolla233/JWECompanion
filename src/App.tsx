@@ -3,6 +3,7 @@ import MasterTable from './components/MasterTable';
 import React, { useState, useEffect, useMemo } from 'react';
 import speciesData from './data/jwe3_species.json';
 import GenomeHub from './components/GenomeHub';
+import { Analytics } from '@vercel/analytics/react';
 import {
   calculatePaddockSpace,
   findOptimalTankmates,
@@ -907,7 +908,7 @@ export default function App() {
                 
                 <div style={{ display: 'flex', gap: '20px', alignItems: 'right' }}>
                   <a 
-                    href="https://github.com/Bedolla233/JWECompanion" 
+                    href="https://github.com/Bedolla233/JWECompanion/issues/new" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     style={{ color: t.primary, textDecoration: 'none', fontWeight: 'bold' }}
@@ -921,6 +922,7 @@ export default function App() {
                 Not endorsed by or affiliated with Frontier Developments. Use of any third-party trademarks and content is for reference only. All trademarks and copyrights are property of their respective owners.
               </p>
             </footer>
+            <Analytics />
         </div>
       </div>
     );
