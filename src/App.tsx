@@ -47,11 +47,18 @@ const themes = {
     accent: '#48cae4', 
   }
 };
+const themeIcons = {
+  default: '/images/icons/Theme_Icon_Default.png',
+  jp: '/images/icons/Theme_Icon_Park.png',
+  jw: '/images/icons/Theme_Icon_World.png'
+};
 
 export default function App() {
   const [currentTheme, setCurrentTheme] = useState(() => {
     return localStorage.getItem('jwe3_theme') || 'default';
   });
+
+  const currentIcon = themeIcons[currentTheme] || themeIcons.default;
 
   const [copied, setCopied] = useState(false);
 
@@ -381,7 +388,7 @@ export default function App() {
             <h1 style={{ margin: 0, color: t.primary, fontSize: '28px', lineHeight: '1.2', display: 'flex', alignItems: 'center', gap: '12px' }}>
             Unofficial JWE Companion
               <img 
-                src="/images/icons/Mobile_Icon.png" 
+                src={currentIcon}
                 alt="App Logo" 
                 style={{ 
                   width: '40px', 
@@ -884,6 +891,36 @@ export default function App() {
               </div>
             </div>
           )}
+            <footer style={{ 
+              marginTop: '60px', 
+              paddingTop: '25px', 
+              paddingBottom: '25px',
+              borderTop: `1px solid ${t.border}`, 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '12px',
+              fontSize: '13px',
+              color: t.textMuted 
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
+                <span style={{ color: t.primary, fontWeight: 'bold', fontSize: '14px' }}>Unofficial JWE Companion (Created by Krabone)</span>
+                
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'right' }}>
+                  <a 
+                    href="https://github.com/Bedolla233/JWECompanion" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    style={{ color: t.primary, textDecoration: 'none', fontWeight: 'bold' }}
+                  >
+                    Report Issues on GitHub
+                  </a>
+                </div>
+              </div>
+
+              <p style={{ margin: '0 auto', lineHeight: '1.4', maxWidth: '800px', textAlign: 'center' }}>
+                Not endorsed by or affiliated with Frontier Developments. Use of any third-party trademarks and content is for reference only. All trademarks and copyrights are property of their respective owners.
+              </p>
+            </footer>
         </div>
       </div>
     );
