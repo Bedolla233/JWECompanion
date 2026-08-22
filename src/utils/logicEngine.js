@@ -529,25 +529,50 @@ export const calculateGlobalParkStats = (paddocks) => {
 // TODO: Improve with User Login
 export const encodeParkData = (paddocks) => {
   try {
-    const jsonString = JSON.stringify(paddocks);
-    return btoa(encodeURIComponent(jsonString));
+    const compactData = paddocks.map(p => ({
+      i: p.id,
+      n: p.name,
+      r: p.roster.map(item => ({
+        s: item.speciesId,
+        f: item.femaleCount || 0,
+        m: item.maleCount || 0,
+        j: item.juvenileCount || 0
+      }))
+    }));
+
+    const jsonString = JSON.stringify(compactData);
+    const bytes = new TextEncoder().encode(jsonString);
+    let binaryString = '';
+    for (let i = 0; i < bytes.byteLength; i++) {
+      binaryString += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binaryString);
   } catch (error) {
     console.error("Failed to encode park data:", error);
     return null;
   }
 };
 
-// Decodes a Base64 string back into a valid paddocks array.
 export const decodeParkData = (encodedString) => {
   try {
-    const decodedJson = decodeURIComponent(atob(encodedString));
-    const parsed = JSON.parse(decodedJson);
+    const binaryString = atob(encodedString);
+    const bytes = Uint8Array.from(binaryString, (c) => c.charCodeAt(0));
+    const jsonString = new TextDecoder().decode(bytes);
+    const parsed = JSON.parse(jsonString);
     
-    // Safety Check: Ensure it's a valid array and looks like a paddock object
-    if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].roster) {
-      return parsed;
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      // Map short keys back to the app's full property format
+      return parsed.map(p => ({
+        id: p.i || ('pad-' + Date.now()),
+        name: p.n || 'Enclosure',
+        roster: Array.isArray(p.r) ? p.r.map(item => ({
+          speciesId: item.s,
+          femaleCount: item.f || 0,
+          maleCount: item.m || 0,
+          juvenileCount: item.j || 0
+        })) : []
+      }));
     }
-    console.warn("Decoded data is not a valid park structure.");
     return null;
   } catch (error) {
     console.error("Failed to decode park data:", error);
